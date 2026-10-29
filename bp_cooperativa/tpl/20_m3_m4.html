@@ -1,0 +1,215 @@
+
+<section class="mod" id="m3" data-mod="m3">
+  <h2><span class="n">3</span>Ativo linha a linha</h2>
+  <p class="objetivo">Para cada linha: o que é, o que entra, um lançamento típico, como analisar e o número da Coop Vale do Ipê. O ativo aparece em ordem de liquidez (do que vira caixa mais rápido para o que demora mais), como pede a Resolução BCB 2/2020.</p>
+
+  <div class="card-ind" id="l-caixa"><h3>Disponibilidades (caixa) <span class="fam">liquidez imediata</span></h3>
+    <p><b>O que é:</b> dinheiro em espécie nas agências, nos caixas eletrônicos e em trânsito.</p>
+    <p><b>Lançamento típico:</b> associado deposita R$ 5 mil em dinheiro: entra no caixa (ativo) e no depósito à vista (passivo). No fim do dia, a sobra vai para a centralização.</p>
+    <p><b>Como analisar:</b> deve ser pequeno. Dinheiro em espécie não rende e tem custo (transporte de valores, seguro). Sobe em datas de pagamento e na safra.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('caixa',2025)}} mil, {{p1:s('caixa',2025)/s('ativo',2025)}} do ativo.</p>
+  </div>
+
+  <div class="card-ind" id="l-centralizacao"><h3>Centralização financeira <span class="fam">relações interfinanceiras</span></h3>
+    <p><b>O que é:</b> as sobras de caixa da cooperativa singular aplicadas na cooperativa central. A central junta o dinheiro de todas as filiadas e aplica de forma centralizada; a singular resgata quando precisa.</p>
+    <p><b>O que entra:</b> todo recurso que a cooperativa captou e não emprestou. Rende perto de 100% do CDI e aparece na DSP como ingressos de depósitos intercooperativos.</p>
+    <p><b>Lançamento típico:</b> a cooperativa capta R$ 10 milhões em RDC e libera R$ 6 milhões em crédito. Os R$ 4 milhões restantes vão para a centralização.</p>
+    <p><b>Como analisar:</b> é o pulmão da liquidez. Cresce quando a captação cresce mais que o crédito e cai no movimento contrário. Compare o rendimento (cerca de 100% do CDI) com o custo do dinheiro captado (o RDC custa cerca de {{p0:-d('desp_rdc',2025)/avg('rdc',2025)/CDI[2025]}} do CDI): sobra parada na centralização perde a diferença.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('centralizacao',2025)}} mil, {{p1:s('centralizacao',2025)/s('ativo',2025)}} do ativo, alta de {{p1:ah(s('centralizacao',2025),s('centralizacao',2024))}} no ano. É a maior conta do ativo depois do crédito.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilha</div><p>Para a singular, a centralização é liquidez imediata. Para o sistema, ela depende de como a central aplica o dinheiro. Quando muitas cooperativas precisam de caixa ao mesmo tempo (uma safra ruim na região, por exemplo), a liquidez é do sistema, não só da singular.</p></div>
+  </div>
+
+  <div class="card-ind" id="l-aplic_interfin"><h3>Aplicações interfinanceiras de liquidez</h3>
+    <p><b>O que é:</b> depósitos interfinanceiros (DI) aplicados no banco cooperativo ou em outras cooperativas do sistema (o DI intrassistema que você viu na tela do simulador) e operações compromissadas.</p>
+    <p><b>Como analisar:</b> rendem um pouco acima da centralização (por exemplo, 103% do DI) em troca de prazo. Olhe o vencimento: o que vence em mais de 30 dias não conta como liquidez imediata.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('aplic_interfin',2025)}} mil ({{p1:s('aplic_interfin',2025)/s('ativo',2025)}} do ativo), rendendo {{p1:d('rend_aplic',2025)/avg('aplic_interfin',2025)}} em 2025.</p>
+  </div>
+
+  <div class="card-ind" id="l-tvm"><h3>Títulos e valores mobiliários (TVM)</h3>
+    <p><b>O que é:</b> títulos públicos federais (como a LFT), cotas de fundos, letras financeiras de outras instituições.</p>
+    <p><b>Como a Resolução 4.966 classifica:</b></p>
+    <ul>
+      <li><b>Custo amortizado:</b> a cooperativa compra para receber juros e principal até o vencimento. Rende pela taxa do título, sem marcação a mercado.</li>
+      <li><b>VJORA (valor justo em outros resultados abrangentes):</b> pode vender antes. A marcação a mercado vai para o PL (ajustes de avaliação patrimonial) e só passa pela DSP quando o título é vendido.</li>
+      <li><b>VJR (valor justo no resultado):</b> a marcação a mercado vai direto para a DSP.</li>
+    </ul>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('tvm',2025)}} mil, basicamente títulos públicos, com R$ {{m:s('aap',2025)}} mil de marcação a mercado no PL.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilha</div><p>Ganho de marcação a mercado de títulos em VJR aumenta o resultado do ano mas não se repete. Separe no resultado recorrente.</p></div>
+  </div>
+
+  <div class="card-ind"><h3>Operações de crédito <span class="fam">o coração do ativo</span></h3>
+    <p>É a carteira bruta, antes da provisão. Inclui o principal e os juros já reconhecidos e ainda não recebidos. Pela Resolução 4.966, o crédito é registrado ao custo amortizado pela taxa efetiva (que considera tarifas e custos da originação).</p>
+    <div id="l-cred_emprestimos"><h4>Empréstimos e títulos descontados</h4>
+      <p>Crédito sem destinação específica: crédito pessoal, consignado, cheque especial, cartão parcelado, capital de giro, desconto de duplicatas e de recebíveis de cartão. Taxa mais alta, prazo mais curto, risco maior. <b>Coop:</b> R$ {{m:s('cred_emprestimos',2025)}} mil.</p></div>
+    <div id="l-cred_financiamentos"><h4>Financiamentos</h4>
+      <p>Crédito com destinação: veículos, máquinas, imóveis, investimento de empresas, inclusive os financiados com repasse do BNDES. Tem garantia do próprio bem, prazo maior e taxa menor. <b>Coop:</b> R$ {{m:s('cred_financiamentos',2025)}} mil.</p></div>
+    <div id="l-cred_rural"><h4>Financiamentos rurais e agroindustriais</h4>
+      <p>Custeio (pagar a safra), investimento (máquinas, armazéns, irrigação), comercialização e industrialização. Pode usar recursos livres ou direcionados (poupança rural, LCA, repasses), às vezes com taxa equalizada pelo governo. Taxa menor, risco ligado a clima e preço. <b>Coop:</b> R$ {{m:s('cred_rural',2025)}} mil, com taxa média de {{p1:d('rend_rural',2025)/avg('cred_rural',2025)}} contra {{p1:d('rend_comercial',2025)/avg('cred_comercial',2025)}} da carteira comercial.</p></div>
+    <p><b>Como analisar a carteira:</b> tamanho e crescimento, mix (comercial x rural, PF x PJ), concentração (os 20 maiores devedores são {{p1:n('top20_devedores',2025)}} da carteira), taxa média, prazo, garantias e, principalmente, atraso e provisão (módulo 7).</p>
+    <p><b>Na Coop Vale do Ipê:</b> carteira bruta de R$ {{m:s('carteira',2025)}} mil, {{p1:s('carteira',2025)/s('ativo',2025)}} do ativo, crescimento de {{p1:i('cresc_carteira',2025)}}.</p>
+    <div class="box pense"><div class="t">🤔 Pense antes de concluir</div><p>Parte do crescimento da carteira vem só dos juros reconhecidos sobre o saldo antigo. Com CDI alto, uma carteira que não libera nenhum crédito novo ainda "cresce". Compare o crescimento com as liberações do período quando tiver esse dado.</p></div>
+  </div>
+
+  <div class="card-ind" id="l-provisao"><h3>(-) Provisão para perdas esperadas <span class="fam">conta redutora</span></h3>
+    <p><b>O que é:</b> a estimativa do quanto da carteira não vai voltar. Fica negativa no ativo e reduz a carteira bruta para a carteira líquida.</p>
+    <p><b>Como se calcula (Res. CMN 4.966, desde 2025):</b> perda esperada = PD (probabilidade de inadimplência) × LGD (perda dado o default) × EAD (exposição). Cada operação fica num estágio:</p>
+    <ul>
+      <li><b>Estágio 1:</b> risco normal. Provisiona a perda esperada dos próximos 12 meses.</li>
+      <li><b>Estágio 2:</b> aumento significativo do risco desde a contratação (por exemplo, atraso acima de 30 dias). Provisiona a perda da vida toda da operação.</li>
+      <li><b>Estágio 3:</b> ativo com problema de recuperação (atraso acima de 90 dias ou outros indícios, como reestruturação). Provisão alta, com pisos mínimos definidos pela Resolução BCB 352/2023, e a receita de juros deixa de ser reconhecida enquanto não for recebida.</li>
+    </ul>
+    <p>Até 2024 valia a Resolução CMN 2.682: classificação de AA a H, com percentuais mínimos por faixa de atraso. A mudança de regra explica parte da alta das provisões em 2025 em todo o sistema.</p>
+    <p><b>Lançamento típico:</b> uma operação passa para o estágio 2. A provisão aumenta (ativo menor) e a despesa de provisão (PDD) entra na DSP (resultado menor).</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:-s('provisao',2025)}} mil, {{p2:i('prov_carteira',2025)}} da carteira (era {{p2:i('prov_carteira',2024)}}).</p>
+  </div>
+
+  <div class="card-ind" id="l-outros_ativos_fin"><h3>Outros ativos financeiros</h3>
+    <p>Rendas a receber, valores a receber de transações de pagamento (cartões, credenciamento), títulos e créditos a receber, devedores diversos de natureza financeira. Pela 4.966 também podem ter perda esperada. <b>Coop:</b> R$ {{m:s('outros_ativos_fin',2025)}} mil.</p>
+  </div>
+  <div class="card-ind" id="l-ativos_fiscais"><h3>Ativos fiscais</h3>
+    <p>Tributos a compensar e créditos tributários (por exemplo, sobre provisões que só serão dedutíveis no futuro, na parte de atos não cooperativos). Em cooperativa costuma ser pequeno. Créditos tributários acima de certos limites são deduzidos do capital no cálculo do PR. <b>Coop:</b> R$ {{m:s('ativos_fiscais',2025)}} mil.</p>
+  </div>
+  <div class="card-ind" id="l-bndu"><h3>Bens não de uso próprio (BNDU)</h3>
+    <p><b>O que é:</b> bens recebidos em dação em pagamento ou arrematados em leilão para quitar dívida: imóveis, máquinas, veículos. Ficam registrados até a venda, em geral pelo menor valor entre a dívida e o valor de venda menos custos.</p>
+    <p><b>Como analisar:</b> BNDU crescendo é sinal de crédito difícil de recuperar e tem custo de carregamento (manutenção, seguro, IPTU). Há prazo regulatório para vender.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('bndu',2025)}} mil, alta de {{p1:ah(s('bndu',2025),s('bndu',2024))}}: mais um sinal, junto com a inadimplência, de que o crédito piorou.</p>
+  </div>
+  <div class="card-ind" id="l-outros_ativos"><h3>Outros ativos</h3>
+    <p>Despesas antecipadas (seguros, licenças pagas antes), adiantamentos a funcionários, materiais em estoque. <b>Coop:</b> R$ {{m:s('outros_ativos',2025)}} mil.</p>
+  </div>
+  <div class="card-ind" id="l-investimentos"><h3>Investimentos <span class="fam">participações no sistema</span></h3>
+    <p><b>O que é:</b> quotas da cooperativa central, participação na holding do sistema e em outras entidades. A singular é dona da central, e a central é dona da estrutura acima.</p>
+    <p><b>Como analisar:</b> não é liquidez (não dá para resgatar quando quiser) e consome capital. Rende por juros ao capital e dividendos recebidos (outras receitas operacionais). Cresce com as chamadas de capital do sistema.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('investimentos',2025)}} mil ({{p1:s('investimentos',2025)/s('ativo',2025)}} do ativo).</p>
+  </div>
+  <div class="card-ind" id="l-imobilizado"><h3>Imobilizado de uso</h3>
+    <p><b>O que é:</b> agências, terrenos, móveis, equipamentos, tecnologia, líquidos da depreciação acumulada.</p>
+    <p><b>Como analisar:</b> imobilizado crescendo antecipa despesa: agência nova traz depreciação, pessoal e aluguel antes de trazer receita. Há limite regulatório de imobilização em relação ao PR.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('imobilizado',2025)}} mil, alta de {{p1:ah(s('imobilizado',2025),s('imobilizado',2024))}} (expansão de agências). Venda de um imóvel antigo gerou R$ {{m:n('nr_venda_imovel',2025)}} mil de resultado não operacional.</p>
+  </div>
+  <div class="card-ind" id="l-intangivel"><h3>Intangível</h3>
+    <p>Softwares, licenças e direitos de uso, amortizados ao longo da vida útil. É deduzido do capital principal no cálculo do PR, porque não serve para absorver perdas. <b>Coop:</b> R$ {{m:s('intangivel',2025)}} mil.</p>
+  </div>
+  <div class="card-ind" id="l-coobrigacoes"><h3>Fora do balanço: coobrigações e garantias prestadas</h3>
+    <p><b>O que é:</b> fianças, avais e coobrigações em repasses (quando a cooperativa garante uma operação feita pelo banco do sistema). Ficam em contas de compensação: não estão no ativo, mas a cooperativa paga se o associado não pagar.</p>
+    <p><b>Como analisar:</b> consomem capital (entram no RWA com um fator de conversão), e pela 4.966 podem exigir provisão para garantias financeiras prestadas, no passivo. Some com a carteira para ver a exposição total ao associado.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:n('coobrigacoes',2025)}} mil, ou {{p1:n('coobrigacoes',2025)/s('carteira',2025)}} da carteira do balanço.</p>
+  </div>
+
+  <div class="resolvido" id="r2"><span class="tag">Exercício resolvido 2</span>
+    <h4>Para onde foi o dinheiro: a composição do ativo</h4>
+    <p>Agrupe o ativo em quatro blocos e calcule a participação de cada um (análise vertical).</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Bloco</th><th>2024 (R$ mil)</th><th>% do ativo</th><th>2025 (R$ mil)</th><th>% do ativo</th></tr></thead>
+      <tbody>
+        <tr><td>Liquidez (caixa + centralização + aplicações + TVM)</td><td>{{m:s('liquidez',2024)}}</td><td>{{p1:s('liquidez',2024)/s('ativo',2024)}}</td><td>{{m:s('liquidez',2025)}}</td><td>{{p1:s('liquidez',2025)/s('ativo',2025)}}</td></tr>
+        <tr><td>Crédito líquido (carteira - provisão)</td><td>{{m:s('carteira',2024)+s('provisao',2024)}}</td><td>{{p1:(s('carteira',2024)+s('provisao',2024))/s('ativo',2024)}}</td><td>{{m:s('carteira',2025)+s('provisao',2025)}}</td><td>{{p1:(s('carteira',2025)+s('provisao',2025))/s('ativo',2025)}}</td></tr>
+        <tr><td>Permanente (investimentos + imobilizado + intangível)</td><td>{{m:s('investimentos',2024)+s('imobilizado',2024)+s('intangivel',2024)}}</td><td>{{p1:(s('investimentos',2024)+s('imobilizado',2024)+s('intangivel',2024))/s('ativo',2024)}}</td><td>{{m:s('investimentos',2025)+s('imobilizado',2025)+s('intangivel',2025)}}</td><td>{{p1:(s('investimentos',2025)+s('imobilizado',2025)+s('intangivel',2025))/s('ativo',2025)}}</td></tr>
+        <tr><td>Outros (financeiros, fiscais, BNDU, diversos)</td><td>{{m:s('outros_ativos_fin',2024)+s('ativos_fiscais',2024)+s('bndu',2024)+s('outros_ativos',2024)}}</td><td>{{p1:(s('outros_ativos_fin',2024)+s('ativos_fiscais',2024)+s('bndu',2024)+s('outros_ativos',2024))/s('ativo',2024)}}</td><td>{{m:s('outros_ativos_fin',2025)+s('ativos_fiscais',2025)+s('bndu',2025)+s('outros_ativos',2025)}}</td><td>{{p1:(s('outros_ativos_fin',2025)+s('ativos_fiscais',2025)+s('bndu',2025)+s('outros_ativos',2025))/s('ativo',2025)}}</td></tr>
+        <tr class="tot"><td>Total do ativo</td><td>{{m:s('ativo',2024)}}</td><td>100,0%</td><td>{{m:s('ativo',2025)}}</td><td>100,0%</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Como ler:</b> a estrutura quase não mudou. O crédito líquido ficou perto de 57% do ativo e a liquidez perto de 34%. Isso significa que a carteira cresceu quase no mesmo ritmo da captação: a cooperativa não "apertou" a liquidez para emprestar mais. A pergunta que fica é se 34% de liquidez é necessário (segurança) ou excesso (custo). Vamos responder no indicador de liquidez.</p>
+  </div>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m3" type="button">Marcar módulo como concluído</button></div>
+</section>
+
+<section class="mod" id="m4" data-mod="m4">
+  <h2><span class="n">4</span>Passivo e patrimônio líquido linha a linha</h2>
+  <p class="objetivo">O passivo diz quem financia a cooperativa e quanto isso custa. O PL diz quanto é dos associados e quão estável é esse capital.</p>
+
+  <h3>4.1 Captação com associados</h3>
+  <div class="card-ind" id="l-dep_vista"><h3>Depósitos à vista</h3>
+    <p><b>O que é:</b> saldo em conta corrente de pessoas físicas e jurídicas. O associado saca quando quiser.</p>
+    <p><b>Como analisar:</b> é o dinheiro mais barato (a cooperativa não paga juros) e o mais volátil. Parte do saldo é estável (o "core", que fica sempre na conta) e parte é passagem. Com CDI alto, o associado tira o dinheiro parado da conta e aplica: o depósito à vista cresce menos e a captação fica mais cara.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('dep_vista',2025)}} mil, alta de só {{p1:ah(s('dep_vista',2025),s('dep_vista',2024))}}, contra {{p1:ah(s('rdc',2025),s('rdc',2024))}} do RDC.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilha</div><p>O saldo de 31/12 pode estar inflado por pagamentos de fim de ano. Para custo e estabilidade, use saldo médio.</p></div>
+  </div>
+  <div class="card-ind" id="l-poupanca"><h3>Depósitos de poupança</h3>
+    <p><b>O que é:</b> poupança, inclusive a rural. A remuneração é definida em lei: 0,5% ao mês + TR quando a Selic está acima de 8,5% ao ano; 70% da Selic + TR quando está abaixo. É isenta de IR para pessoa física.</p>
+    <p><b>Como analisar:</b> custa menos que o CDI quando os juros estão altos, mas uma parte relevante precisa ser aplicada em crédito rural (direcionamento). Por isso o transfer (FTP) da poupança costuma ser diferente do RDC.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('poupanca',2025)}} mil, custo implícito de {{p1:-d('desp_poupanca',2025)/avg('poupanca',2025)}} em 2025.</p>
+  </div>
+  <div class="card-ind" id="l-rdc"><h3>Depósitos a prazo (RDC)</h3>
+    <p><b>O que é:</b> o Recibo de Depósito Cooperativo, o "CDB da cooperativa". Pode ser pós-fixado (percentual do CDI) ou prefixado, com liquidez diária ou com carência. É coberto pelo FGCoop até R$ 250 mil por associado.</p>
+    <p><b>Como analisar:</b> é o principal funding. Mais estável que o depósito à vista, mas mais caro. Olhe o percentual do CDI pago, o prazo médio e a concentração: poucos depositantes grandes podem sair juntos.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('rdc',2025)}} mil, {{p1:s('rdc',2025)/(s('passivo',2025)+s('pl',2025))}} do passivo + PL, pagando cerca de {{p0:-d('desp_rdc',2025)/avg('rdc',2025)/CDI[2025]}} do CDI.</p>
+  </div>
+  <div class="card-ind" id="l-lca"><h3>Recursos de aceites e emissão de títulos (LCA)</h3>
+    <p><b>O que é:</b> Letra de Crédito do Agronegócio emitida pela cooperativa, com lastro em crédito do agronegócio. Isenta de IR para pessoa física, por isso paga menos que o CDI. Tem carência mínima definida pelo CMN e parte do valor é direcionada ao crédito rural.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('lca',2025)}} mil, alta de {{p1:ah(s('lca',2025),s('lca',2024))}}, custando {{p0:-d('desp_lca',2025)/avg('lca',2025)/CDI[2025]}} do CDI.</p>
+  </div>
+
+  <h3>4.2 Recursos do sistema e de repasse</h3>
+  <div class="card-ind" id="l-repasses_interfin"><h3>Relações interfinanceiras (recursos da central e do banco)</h3>
+    <p>Dinheiro tomado do próprio sistema: recursos para crédito rural de outras fontes, linhas de liquidez e recursos corporativos. Em geral o custo é menor que o RDC ou casado com a operação financiada. <b>Coop:</b> R$ {{m:s('repasses_interfin',2025)}} mil, custo implícito de {{p1:-d('desp_repasses_interfin',2025)/avg('repasses_interfin',2025)}}.</p>
+  </div>
+  <div class="card-ind" id="l-emprestimos_repasses"><h3>Obrigações por empréstimos e repasses</h3>
+    <p>BNDES, FINAME, BRDE, Funcafé e fundos constitucionais repassados pelo banco cooperativo. Prazo e taxa casados com o financiamento no ativo: a margem é pequena, mas o risco de crédito do associado fica com a cooperativa. <b>Coop:</b> R$ {{m:s('emprestimos_repasses',2025)}} mil.</p>
+  </div>
+  <div class="card-ind" id="l-lfs"><h3>Instrumentos de dívida elegíveis a capital (LFS)</h3>
+    <p><b>O que é:</b> Letra Financeira Subordinada, uma dívida de longo prazo que só é paga depois dos demais credores. Por isso conta como capital de Nível II no PR, com limites de cômputo.</p>
+    <p><b>Como analisar:</b> compra tempo para o capital, não resultado. O custo é alto (na tela do simulador, perto de 145% do DI). Uma Basileia sustentada por LFS é mais frágil que uma sustentada por reservas.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('lfs',2025)}} mil captados em 2025.</p>
+  </div>
+
+  <h3>4.3 Outras obrigações</h3>
+  <div class="card-ind" id="l-outros_passivos_fin"><h3>Outros passivos financeiros</h3>
+    <p>Cobrança e arrecadação de terceiros (tributos, convênios) ainda não repassadas, valores a pagar a estabelecimentos de cartões, credores diversos. <b>Coop:</b> R$ {{m:s('outros_passivos_fin',2025)}} mil.</p>
+  </div>
+  <div class="card-ind" id="l-provisoes"><h3>Provisões (contingências e garantias prestadas)</h3>
+    <p>Processos trabalhistas, cíveis e fiscais com perda provável (as possíveis só aparecem em nota) e provisão para garantias financeiras prestadas. Quando a cooperativa ganha um processo, a provisão é revertida e vira receita: não recorrente. <b>Coop:</b> R$ {{m:s('provisoes',2025)}} mil, depois de reverter R$ {{m:n('nr_reversao_conting',2025)}} mil de uma causa fiscal ganha.</p>
+  </div>
+  <div class="card-ind" id="l-obrig_sociais"><h3>Obrigações sociais e estatutárias</h3>
+    <p>Saldo do FATES ainda não aplicado, juros ao capital e sobras a pagar, quotas a devolver a associados desligados. <b>Coop:</b> R$ {{m:s('obrig_sociais',2025)}} mil.</p>
+    <div class="box norma"><div class="t">📜 Norma</div><p>Nas cooperativas de crédito o FATES fica no passivo, não no PL: é um recurso com destino obrigatório (assistência técnica, educacional e social aos associados e funcionários). Confira na sua demonstração.</p></div>
+  </div>
+  <div class="card-ind" id="l-obrig_fiscais_outras"><h3>Obrigações fiscais e outras obrigações</h3>
+    <p>IR retido nas aplicações dos associados, PIS, Cofins e ISS a recolher, salários, férias, encargos, PLR e fornecedores a pagar. <b>Coop:</b> R$ {{m:s('obrig_fiscais_outras',2025)}} mil.</p>
+  </div>
+
+  <h3>4.4 Patrimônio líquido</h3>
+  <div class="card-ind" id="l-capital_social"><h3>Capital social</h3>
+    <p><b>O que é:</b> as quotas-partes integralizadas pelos associados. É variável: cresce com novas integralizações, com a capitalização de sobras decidida em AGO e com os juros ao capital creditados nas quotas; cai quando associados saem e levam a quota.</p>
+    <p><b>Como analisar:</b> é capital, mas menos estável que as reservas. Olhe a proporção no PL, as devoluções do ano, o capital por associado e a concentração (poucos associados com quotas grandes).</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('capital_social',2025)}} mil ({{p1:s('capital_social',2025)/s('pl',2025)}} do PL), R$ {{n2:s('capital_social',2025)*1000/n('associados',2025)}} por associado.</p>
+  </div>
+  <div class="card-ind" id="l-reserva_legal"><h3>Reserva legal (e reservas estatutárias)</h3>
+    <p><b>O que é:</b> parte das sobras retida por lei (mínimo de 10%) e pelo estatuto. É indivisível: não volta ao associado e serve para cobrir perdas. Algumas cooperativas também têm reservas estatutárias (de expansão, de contingências).</p>
+    <p><b>Como analisar:</b> é o capital mais estável. Um PL que cresce por reserva é mais sólido que um PL que cresce por quota.</p>
+    <p><b>Na Coop Vale do Ipê:</b> R$ {{m:s('reserva_legal',2025)}} mil; o estatuto manda 45% da base para a reserva.</p>
+  </div>
+  <div class="card-ind" id="l-sobras_acum"><h3>Sobras ou perdas acumuladas</h3>
+    <p>O que sobrou do resultado depois das destinações obrigatórias, à disposição da AGO. A assembleia decide: capitalizar (vira capital social), distribuir em conta corrente (sai do PL e vira depósito) ou reforçar reservas. Se houver perda, ela é coberta pela reserva e, se faltar, rateada entre os associados. <b>Coop:</b> R$ {{m:s('sobras_acum',2025)}} mil.</p>
+  </div>
+  <div class="card-ind" id="l-aap"><h3>Ajustes de avaliação patrimonial</h3>
+    <p>Marcação a mercado de títulos em VJORA. Volta para a DSP quando o título é vendido. <b>Coop:</b> R$ {{m:s('aap',2025)}} mil.</p>
+  </div>
+
+  <div class="box chave"><div class="t">🔑 A ordem das destinações</div>
+    <ol>
+      <li>Resultado de atos não cooperativos (com não associados) vai inteiro para o FATES (Lei 5.764, art. 87).</li>
+      <li>Juros ao capital remuneram as quotas, limitados à Selic (LC 130/2009).</li>
+      <li>Reserva legal: mínimo de 10% da base; o estatuto pode pedir mais.</li>
+      <li>FATES: mínimo de 5% da base.</li>
+      <li>Reservas estatutárias, se houver.</li>
+      <li>O restante fica à disposição da AGO.</li>
+    </ol>
+  </div>
+
+  <div class="resolvido" id="r3"><span class="tag">Exercício resolvido 3</span>
+    <h4>Destinação das sobras de 2025 e o que acontece no balanço</h4>
+    <ol class="passos">
+      <li>Resultado antes dos juros ao capital: R$ {{m:d('resultado',2025)}} mil.</li>
+      <li>(-) Juros ao capital: R$ {{m:-d('juros_capital',2025)}} mil. Sobras do exercício = {{m:d('resultado',2025)}} - {{m:-d('juros_capital',2025)}} = <b>R$ {{m:d('sobras_apos_juros',2025)}} mil</b>.</li>
+      <li>(-) FATES de atos não cooperativos: R$ {{m:d('ato_nao_coop',2025)}} mil. Base para as destinações = {{m:d('sobras_apos_juros',2025)}} - {{m:d('ato_nao_coop',2025)}} = <b>R$ {{m:d('sobras_apos_juros',2025)-d('ato_nao_coop',2025)}} mil</b>.</li>
+      <li>Reserva legal: 45% × {{m:d('sobras_apos_juros',2025)-d('ato_nao_coop',2025)}} = <b>R$ {{m:-d('dest_reserva',2025)}} mil</b> (arredondado à dezena).</li>
+      <li>FATES estatutário: 5% × {{m:d('sobras_apos_juros',2025)-d('ato_nao_coop',2025)}} = <b>R$ {{m:-d('dest_fates',2025)}} mil</b>.</li>
+      <li>Sobras à disposição da AGO = {{m:d('sobras_apos_juros',2025)-d('ato_nao_coop',2025)}} - {{m:-d('dest_reserva',2025)}} - {{m:-d('dest_fates',2025)}} = <b>R$ {{m:d('sobras_ago',2025)}} mil</b>.</li>
+    </ol>
+    <p><b>No balanço:</b> a reserva legal sobe R$ {{m:-d('dest_reserva',2025)}} mil (fica no PL). O FATES (R$ {{m:d('ato_nao_coop',2025)-d('dest_fates',2025)}} mil no total) sai do PL e vai para o passivo. Os juros ao capital foram creditados nas quotas: saem do resultado e entram no capital social, efeito zero no PL. As sobras de R$ {{m:d('sobras_ago',2025)}} mil ficam no PL até a AGO de 2026 decidir.</p>
+    <p><b>Resultado no PL:</b> de R$ {{m:s('pl',2024)}} mil para R$ {{m:s('pl',2025)}} mil, alta de {{p1:i('cresc_pl',2025)}}. A nota 7 (DMPL) mostra cada movimento.</p>
+    <div class="box pense"><div class="t">🤔 Pense antes de concluir</div><p>Se a AGO de 2026 distribuir as sobras em conta corrente, o PL cai R$ {{m:d('sobras_ago',2025)}} mil e o índice de Basileia cai junto, cerca de {{pp:d('sobras_ago',2025)/i('rwa',2025)*100}} p.p. Distribuir agrada o associado hoje; capitalizar fortalece a cooperativa amanhã. Com o capital crescendo menos que o RWA, qual você recomendaria?</p></div>
+  </div>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m4" type="button">Marcar módulo como concluído</button></div>
+</section>

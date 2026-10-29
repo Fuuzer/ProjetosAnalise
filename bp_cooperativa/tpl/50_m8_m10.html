@@ -1,0 +1,139 @@
+
+<section class="mod" id="m8" data-mod="m8">
+  <h2><span class="n">8</span>Como os indicadores se ligam</h2>
+  <p class="objetivo">Indicador isolado engana. A análise boa conta uma história em que cada número explica o próximo.</p>
+
+  <h3>8.1 A árvore do ROE</h3>
+  {{html:svg_dupont()}}
+  <p>O ROE é margem × giro × alavancagem. Embaixo de cada galho estão os indicadores operacionais: a margem depende do IEAR (custo e risco), o giro depende do NIM e dos serviços, a alavancagem é o inverso de PL ÷ ativo. Na Coop Vale do Ipê, de 2024 para 2025, a alavancagem ficou parada, o giro caiu (NIM comprimido) e a margem caiu (IEAR subindo). Os dois galhos que caíram explicam o ROE menor.</p>
+
+  <h3>8.2 Cadeias de efeito: o que mexe em quê</h3>
+  <div class="tbl-wrap"><table class="txt">
+    <thead><tr><th>Evento</th><th>Efeito imediato</th><th>Efeito seguinte</th><th>Onde aparece</th></tr></thead>
+    <tbody>
+      <tr><td>CDI sobe 2 p.p.</td><td>Captação em % do CDI encarece na hora; liquidez rende mais; carteira pré não muda</td><td>Margem aperta na transição e se ajusta quando a carteira renova</td><td>NIM, spread, ROE; IE pode melhorar só pela receita da liquidez</td></tr>
+      <tr><td>Crédito cresce R$ 200 mi</td><td>Liquidez cai; RWA sobe</td><td>Receita sobe; PDD sobe meses depois</td><td>Basileia cai na hora; ROE sobe se a taxa pagar CDI + custo + perda</td></tr>
+      <tr><td>Inadimplência sobe</td><td>Mais estágio 2 e 3; juros do estágio 3 param de entrar</td><td>PDD sobe; BNDU cresce</td><td>IEAR, resultado, PL, Basileia</td></tr>
+      <tr><td>Associado troca depósito à vista por RDC</td><td>Custo da captação sobe</td><td>Margem cai sem nenhum crédito novo</td><td>Custo da captação, NIM, ROE</td></tr>
+      <tr><td>AGO distribui as sobras em conta</td><td>PL cai; depósito à vista sobe</td><td>Menos capital para crescer</td><td>ROE sobe (PL menor), Basileia cai, liquidez sobe</td></tr>
+      <tr><td>Cooperativa capta LFS</td><td>PR sobe (Nível II)</td><td>Juros altos reduzem o resultado</td><td>Basileia sobe, ROE cai um pouco</td></tr>
+      <tr><td>Despesas administrativas +10%</td><td>Resultado cai</td><td>PL cresce menos</td><td>IE, IEAR, ROE, Basileia</td></tr>
+      <tr><td>Safra ruim na região</td><td>Atraso no rural; renegociações</td><td>PDD sobe; poupança e depósitos caem</td><td>Inadimplência, PDD, liquidez</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>8.3 Simulador de alavancas</h3>
+  <p>Mexa nas alavancas e veja os indicadores de 2025 da Coop Vale do Ipê mudarem. É um modelo de treino, bem mais simples que o simulador do Sicredi: efeito de um ano cheio; crédito novo pago com a centralização (que rendia o CDI), com custo do risco igual ao da carteira e FPR de 85%; toda diferença de resultado fica no capital; PL médio do ROE mantido. Tente prever o resultado antes de mexer.</p>
+  <div class="sim" id="sim">
+    <div class="ctl">
+      <label>Crédito novo (R$ mi) <span class="vv" data-v="novo"></span></label><input type="range" id="sim-novo" min="0" max="400" step="10" value="0">
+      <label>Taxa do crédito novo (% a.a.) <span class="vv" data-v="taxa"></span></label><input type="range" id="sim-taxa" min="12" max="32" step="0.5" value="22">
+      <label>Variação da PDD (%) <span class="vv" data-v="pdd"></span></label><input type="range" id="sim-pdd" min="-30" max="60" step="5" value="0">
+      <label>Variação das despesas administrativas (%) <span class="vv" data-v="adm"></span></label><input type="range" id="sim-adm" min="-15" max="20" step="1" value="0">
+      <label>Custo do RDC (% do CDI) <span class="vv" data-v="rdc"></span></label><input type="range" id="sim-rdc" min="95" max="110" step="0.5" value="101">
+      <label>Migração de depósito à vista para RDC (R$ mi) <span class="vv" data-v="mig"></span></label><input type="range" id="sim-mig" min="0" max="150" step="10" value="0">
+      <label>Variação de serviços e tarifas (%) <span class="vv" data-v="serv"></span></label><input type="range" id="sim-serv" min="-20" max="40" step="5" value="0">
+      <p><button class="btn peq sec" id="sim-reset" type="button">Voltar ao cenário base</button></p>
+    </div>
+    <div class="out" aria-live="polite">
+      <div><div class="l">Resultado (R$ mi)</div><div class="v" id="o-res"></div><div class="d" id="d-res"></div></div>
+      <div><div class="l">ROE</div><div class="v" id="o-roe"></div><div class="d" id="d-roe"></div></div>
+      <div><div class="l">Índice de eficiência</div><div class="v" id="o-ie"></div><div class="d" id="d-ie"></div></div>
+      <div><div class="l">IEAR</div><div class="v" id="o-iear"></div><div class="d" id="d-iear"></div></div>
+      <div><div class="l">Índice de Basileia</div><div class="v" id="o-bas"></div><div class="d" id="d-bas"></div></div>
+      <div><div class="l">MM/RWA (p.p.)</div><div class="v" id="o-mm"></div><div class="d" id="d-mm"></div></div>
+      <div><div class="l">Índice de liquidez interno</div><div class="v" id="o-liq"></div><div class="d" id="d-liq"></div></div>
+      <div><div class="l">Leitura</div><div class="d" id="o-txt" style="font-size:13px;color:var(--text-2)"></div></div>
+    </div>
+  </div>
+  <script type="application/json" id="sim-base">{{html:simulador_dados()}}</script>
+  <div class="box chave"><div class="t">🔑 O que testar</div><ul>
+    <li>Crédito novo de R$ 200 mi a 16% e depois a 22%: em qual taxa o resultado deixa de cair? (Dica: precisa pagar o CDI que a centralização deixa de render mais o custo do risco.)</li>
+    <li>PDD +30%: compare com cortar 10% das despesas administrativas. Qual alavanca é mais forte?</li>
+    <li>RDC a 105% do CDI: quanto do ROE some?</li>
+    <li>Crédito novo de R$ 300 mi: o que acontece com a MM/RWA e com o índice de liquidez?</li>
+  </ul></div>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m8" type="button">Marcar módulo como concluído</button></div>
+</section>
+
+<section class="mod" id="m9" data-mod="m9">
+  <h2><span class="n">9</span>Painel da Coop Vale do Ipê</h2>
+  <p class="objetivo">Um jeito de visualizar os indicadores de uma vez: cartões com valor de 2025, variação contra 2024 e um sinal de régua didática. Clique num cartão para ir à explicação.</p>
+  {{html:painel()}}
+  <p class="legenda">Sinais: <span class="st st-ok">✓ Bom</span> <span class="st st-warn">! Atenção</span> <span class="st st-bad">✕ Ruim</span>. As réguas são didáticas; substitua pelos limites da RAS da cooperativa.</p>
+
+  <h3>9.1 Estrutura do balanço</h3>
+  {{html:svg_composicao()}}
+  <p class="legenda">Passe o mouse nos segmentos para ver valores. Os números estão na tabela do módulo 2.</p>
+
+  <h3>9.2 Rentabilidade e risco</h3>
+  {{html:svg_rentabilidade()}}
+  <p class="legenda">Em %. Cinza = 2024, azul = 2025. O ROE recorrente caiu bem mais que o contábil, e o custo do risco subiu enquanto o NIM caía.</p>
+
+  <h3>9.3 Todos os indicadores</h3>
+  {{html:tabela_resumo()}}
+  <div class="box sicredi"><div class="t">🌱 Para montar o seu painel</div><p>Na planilha, a aba <b>Indicadores</b> calcula tudo a partir do BP, da DSP e das notas. Troque os dados azuis pelos da sua cooperativa (balancete, DLO, notas) e o painel se recalcula. Para série histórica, repita a coluna por mês e use saldo médio de 12 meses.</p></div>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m9" type="button">Marcar módulo como concluído</button></div>
+</section>
+
+<section class="mod" id="m10" data-mod="m10">
+  <h2><span class="n">10</span>Roteiro de análise em 10 passos</h2>
+  <p class="objetivo">Use sempre a mesma ordem. Assim você não esquece nada e a conclusão sai como uma história.</p>
+  <div class="tbl-wrap"><table class="txt">
+    <thead><tr><th>Passo</th><th>O que calcular</th><th>A pergunta</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Contexto</b></td><td>Segmento (S4 ou S5), região, mix agro e urbano, CDI e IPCA do período, mudanças de norma</td><td>O que mudou fora da cooperativa?</td></tr>
+      <tr><td><b>2. Tamanho e crescimento</b></td><td>AH de ativo, carteira (nominal e real), captação e PL</td><td>Cresce mais ou menos que o mercado e que o próprio capital?</td></tr>
+      <tr><td><b>3. Estrutura</b></td><td>AV do ativo e do passivo; fontes e usos</td><td>Para onde foi e de onde veio o dinheiro?</td></tr>
+      <tr><td><b>4. Rentabilidade</b></td><td>Margem financeira, NIM, taxas implícitas, spread, serviços</td><td>O dinheiro rende quanto, e por quê mudou?</td></tr>
+      <tr><td><b>5. Custo</b></td><td>IE contábil e recorrente, composição das despesas, rateios</td><td>Custa quanto funcionar?</td></tr>
+      <tr><td><b>6. Risco de crédito</b></td><td>Inadimplência 15 a 90 e acima de 90, estágios, renegociação, PDD, cobertura, baixas, BNDU</td><td>A carteira está piorando? A provisão acompanha?</td></tr>
+      <tr><td><b>7. Resultado</b></td><td>Resultado recorrente, ROE contábil e recorrente, DuPont, IEAR</td><td>O resultado se repete? Paga o custo de capital?</td></tr>
+      <tr><td><b>8. Capital</b></td><td>RWA, Basileia, MM/RWA, potencial de crédito, qualidade do PL (quotas x reservas), LFS</td><td>Aguenta perdas e aguenta crescer?</td></tr>
+      <tr><td><b>9. Liquidez e captação</b></td><td>Índice interno, LCR, crédito ÷ captação, mix e custo da captação, concentração</td><td>Aguenta saques? Quanto custa a liquidez?</td></tr>
+      <tr><td><b>10. Conclusão</b></td><td>História em cinco frases, três riscos, três recomendações, perguntas</td><td>O que a diretoria precisa decidir?</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>10.1 Sinais de alerta (red flags)</h3>
+  <div class="tbl-wrap"><table class="txt">
+    <thead><tr><th>Sinal</th><th>Por que preocupa</th><th>Na Coop Vale do Ipê</th></tr></thead>
+    <tbody>
+      <tr><td>Inadimplência de 15 a 90 dias e estágio 2 subindo</td><td>É o NPL de amanhã</td><td>Sim: {{p2:i('inad15_90',2024)}} para {{p2:i('inad15_90',2025)}}</td></tr>
+      <tr><td>Cobertura caindo com NPL subindo</td><td>Provisão atrasada; resultado futuro pressionado</td><td>Sim: {{p0:i('cobertura_npl',2024)}} para {{p0:i('cobertura_npl',2025)}}</td></tr>
+      <tr><td>Renegociação crescendo mais que a carteira</td><td>Pode esconder atraso</td><td>Sim: +{{p0:ah(n('renegociadas',2025),n('renegociadas',2024))}} contra +{{p0:i('cresc_carteira',2025)}}</td></tr>
+      <tr><td>BNDU crescendo</td><td>Recuperação difícil e custo de carregamento</td><td>Sim: +{{p0:ah(s('bndu',2025),s('bndu',2024))}}</td></tr>
+      <tr><td>Resultado sustentado por itens não recorrentes</td><td>Não se repete</td><td>Sim: {{p0:i('nao_recorrente',2025)/d('resultado',2025)}} do resultado de 2025</td></tr>
+      <tr><td>IE recorrente subindo</td><td>Custo crescendo mais que a receita</td><td>Sim: {{p1:i('ie_recorrente',2024)}} para {{p1:i('ie_recorrente',2025)}}</td></tr>
+      <tr><td>Captação crescendo pelo produto mais caro com liquidez sobrando</td><td>Destrói margem</td><td>Sim: RDC +{{p0:ah(s('rdc',2025),s('rdc',2024))}}, depósito à vista +{{p0:ah(s('dep_vista',2025),s('dep_vista',2024))}}</td></tr>
+      <tr><td>Basileia sustentada por LFS</td><td>Capital caro e temporário</td><td>Em parte: sem LFS, {{p2:i('basileia_sem_lfs',2025)}}</td></tr>
+      <tr><td>Crescimento da carteira muito acima do PL</td><td>Consome a folga de capital</td><td>Não: {{p1:i('cresc_carteira',2025)}} contra {{p1:i('cresc_pl',2025)}}</td></tr>
+      <tr><td>Concentração de depositantes ou devedores alta</td><td>Risco de liquidez e de crédito concentrado</td><td>Moderada: 10 maiores depositantes = {{p1:n('top10_depositantes',2025)}}</td></tr>
+      <tr><td>Capital social crescendo com devoluções altas</td><td>Capital instável</td><td>Atenção: devoluções de R$ {{m:-M.DMPL['devolucoes']}} mil no ano</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>10.2 Perguntas para a diretoria</h3>
+  <ol>
+    <li>Quanto da alta da PDD veio de carteira e quanto da Resolução 4.966? Qual foi o efeito da adoção inicial no PL?</li>
+    <li>Quais safras (meses de concessão) concentram o atraso? Qual linha e qual agência?</li>
+    <li>Por que as renegociações cresceram mais que a carteira? Quantas voltaram a atrasar?</li>
+    <li>Qual o percentual do CDI pago no RDC novo? Para onde foi o dinheiro captado?</li>
+    <li>Qual a meta de crescimento da carteira para o próximo ano e quanto capital ela consome?</li>
+    <li>O que acontece com a MM/RWA se o resultado recorrente se mantiver no nível de 2025?</li>
+    <li>Qual a proposta de destinação das sobras na próxima AGO?</li>
+    <li>Qual o plano para a LFS: renovar ou substituir por capital próprio?</li>
+    <li>Quanto das despesas administrativas é controlável (sem rateios)? Qual o plano para o IE?</li>
+    <li>Qual o RAROC das linhas que mais cresceram? Há taxa mínima por produto?</li>
+  </ol>
+
+  <h3>10.3 Estrutura de um parecer</h3>
+  <ol>
+    <li><b>Conclusão em duas frases</b> (está saudável? qual o principal ponto?).</li>
+    <li><b>O que melhorou</b> e <b>o que piorou</b>, com os números.</li>
+    <li><b>Os três riscos principais</b>, em ordem de importância.</li>
+    <li><b>Três recomendações</b> acionáveis, cada uma ligada a um risco.</li>
+    <li><b>Perguntas em aberto</b> que dependem de informação que você não tem.</li>
+  </ol>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m10" type="button">Marcar módulo como concluído</button></div>
+</section>

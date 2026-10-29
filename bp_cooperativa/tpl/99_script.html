@@ -1,0 +1,254 @@
+<script>
+(function(){
+  "use strict";
+  var LS = {
+    get: function(k, d){ try { var v = localStorage.getItem("bpcoop:" + k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } },
+    set: function(k, v){ try { localStorage.setItem("bpcoop:" + k, JSON.stringify(v)); } catch(e){} }
+  };
+  function $(s, r){ return (r || document).querySelector(s); }
+  function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function fmt(x, d){ return x.toLocaleString("pt-BR", {minimumFractionDigits: d, maximumFractionDigits: d}); }
+
+  // ---------- tema
+  var tema = LS.get("tema", null);
+  if (tema) document.documentElement.setAttribute("data-theme", tema);
+  $("#tema").addEventListener("click", function(){
+    var atual = document.documentElement.getAttribute("data-theme");
+    var escuro = atual ? atual === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var novo = escuro ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", novo);
+    LS.set("tema", novo);
+  });
+  $("#imprimir").addEventListener("click", function(){
+    $$("details").forEach(function(d){ d.setAttribute("open", ""); });
+    window.print();
+  });
+
+  // ---------- índice no celular
+  var toc = $("#toc"), abre = $("#abre-toc");
+  abre.addEventListener("click", function(){
+    var aberto = toc.classList.toggle("aberto");
+    abre.setAttribute("aria-expanded", aberto ? "true" : "false");
+  });
+  $$("#toc a").forEach(function(a){ a.addEventListener("click", function(){ toc.classList.remove("aberto"); abre.setAttribute("aria-expanded", "false"); }); });
+
+  // ---------- destaque da seção atual
+  var links = {};
+  $$("#toc a").forEach(function(a){ links[a.getAttribute("href").slice(1)] = a; });
+  var alvos = $$("section.mod, .card-ind[id^='ind-']");
+  if ("IntersectionObserver" in window){
+    var obs = new IntersectionObserver(function(ents){
+      ents.forEach(function(e){
+        if (e.isIntersecting && links[e.target.id]){
+          var sec = e.target.closest("section.mod");
+          $$("#toc a.ativo").forEach(function(x){ x.classList.remove("ativo"); });
+          links[e.target.id].classList.add("ativo");
+          if (sec && links[sec.id] && sec.id !== e.target.id) links[sec.id].classList.add("ativo");
+        }
+      });
+    }, {rootMargin: "-20% 0px -70% 0px"});
+    alvos.forEach(function(t){ obs.observe(t); });
+  }
+
+  // ---------- módulos concluídos
+  var feitos = LS.get("feitos", {});
+  function pintaFeitos(){
+    $$(".marcar").forEach(function(b){
+      var m = b.getAttribute("data-mod");
+      b.textContent = feitos[m] ? "✓ Concluído (clique para desmarcar)" : "Marcar módulo como concluído";
+      b.setAttribute("aria-pressed", feitos[m] ? "true" : "false");
+      if (links[m]) links[m].classList.toggle("feito", !!feitos[m]);
+    });
+  }
+  $$(".marcar").forEach(function(b){
+    b.addEventListener("click", function(){ var m = b.getAttribute("data-mod"); feitos[m] = !feitos[m]; LS.set("feitos", feitos); pintaFeitos(); });
+  });
+  pintaFeitos();
+
+  // ---------- AV / AH nas tabelas
+  $$(".tg").forEach(function(b){
+    b.addEventListener("click", function(){
+      var t = document.getElementById(b.getAttribute("data-alvo"));
+      var on = t.classList.toggle(b.getAttribute("data-classe"));
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  });
+
+  // ---------- tooltip dos gráficos
+  var tip = $("#tip");
+  document.addEventListener("mousemove", function(ev){
+    var el = ev.target.closest ? ev.target.closest("[data-tip]") : null;
+    if (!el){ tip.style.opacity = 0; return; }
+    tip.textContent = el.getAttribute("data-tip");
+    var x = Math.min(ev.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+    tip.style.left = x + "px"; tip.style.top = (ev.clientY + 14) + "px"; tip.style.opacity = 1;
+  });
+
+  // ---------- exercícios
+  function lerNumero(txt){
+    if (txt === null || txt === undefined) return NaN;
+    var s = String(txt).replace(/R\$|mil|p\.p\.|pp|vezes|%|x|\s/gi, "");
+    if (!s) return NaN;
+    var temPonto = s.indexOf(".") >= 0, temVirg = s.indexOf(",") >= 0;
+    if (temPonto && temVirg) s = s.replace(/\./g, "").replace(",", ".");
+    else if (temVirg) s = s.replace(",", ".");
+    else if (temPonto && /^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
+    return parseFloat(s);
+  }
+  var respostas = LS.get("respostas", {});
+  function chave(ex, i){ return ex + ":" + i; }
+  function corrigeItem(li){
+    var fb = $(".fb", li), ok;
+    if (li.getAttribute("data-tipo") === "opcao"){
+      var v = $("select", li).value;
+      if (!v){ fb.textContent = ""; fb.className = "fb"; return null; }
+      ok = v === li.getAttribute("data-ans");
+    } else {
+      var n = lerNumero($("input", li).value);
+      if (isNaN(n)){ fb.textContent = ""; fb.className = "fb"; return null; }
+      var ans = parseFloat(li.getAttribute("data-ans")), tol = parseFloat(li.getAttribute("data-tol"));
+      ok = Math.abs(n - ans) <= Math.max(tol, Math.abs(ans) * 0.005);
+    }
+    fb.textContent = ok ? "✓" : "✕";
+    fb.className = "fb " + (ok ? "ok" : "no");
+    fb.setAttribute("aria-label", ok ? "certo" : "errado");
+    return ok;
+  }
+  function placarGeral(){
+    var tot = 0, certo = 0;
+    $$(".ex[data-ex] .itens > li").forEach(function(li){ tot++; if ($(".fb.ok", li)) certo++; });
+    $("#placar-geral").textContent = certo + " de " + tot + " itens certos";
+  }
+  $$(".ex[data-ex]").forEach(function(ex){
+    var id = ex.getAttribute("data-ex");
+    var itens = $$(".itens > li", ex);
+    itens.forEach(function(li, i){
+      var campo = $("input, select", li);
+      var salvo = respostas[chave(id, i)];
+      if (salvo !== undefined) campo.value = salvo;
+      campo.addEventListener("change", function(){ respostas[chave(id, i)] = campo.value; LS.set("respostas", respostas); });
+      campo.addEventListener("keydown", function(e){ if (e.key === "Enter"){ e.preventDefault(); $(".conferir", ex).click(); } });
+    });
+    $(".conferir", ex).addEventListener("click", function(){
+      var c = 0, r = 0;
+      itens.forEach(function(li){ var k = corrigeItem(li); if (k !== null){ r++; if (k) c++; } });
+      $(".placar", ex).textContent = r ? (c + " de " + itens.length + " certos" + (r < itens.length ? " (" + (itens.length - r) + " em branco)" : "")) : "Preencha pelo menos um item";
+      placarGeral();
+    });
+    $(".ver", ex).addEventListener("click", function(){
+      var mostrar = $(".sol", ex).hasAttribute("hidden");
+      $$(".sol", ex).forEach(function(s){ if (mostrar) s.removeAttribute("hidden"); else s.setAttribute("hidden", ""); });
+      this.textContent = mostrar ? "Esconder respostas" : "Ver respostas";
+    });
+    if (itens.some(function(li){ return $("input, select", li).value; })){
+      itens.forEach(corrigeItem);
+    }
+  });
+  placarGeral();
+  $("#limpa-ex").addEventListener("click", function(){
+    respostas = {}; LS.set("respostas", respostas);
+    $$(".ex[data-ex] input, .ex[data-ex] select").forEach(function(c){ c.value = ""; });
+    $$(".ex[data-ex] .fb").forEach(function(f){ f.textContent = ""; f.className = "fb"; });
+    $$(".ex[data-ex] .placar").forEach(function(p){ p.textContent = ""; });
+    placarGeral();
+  });
+  var par = $("#meu-parecer");
+  par.value = LS.get("parecer", "");
+  par.addEventListener("input", function(){ LS.set("parecer", par.value); });
+
+  // ---------- quiz
+  $("#quiz-ok").addEventListener("click", function(){
+    var c = 0, qs = $$("#quiz .q");
+    qs.forEach(function(q){
+      var certa = q.getAttribute("data-c");
+      var marc = $("input:checked", q);
+      $$("label", q).forEach(function(l){ l.classList.remove("certo", "errado"); });
+      $$("input", q).forEach(function(i){ if (i.value === certa) i.parentNode.classList.add("certo"); });
+      if (marc && marc.value === certa) c++;
+      else if (marc) marc.parentNode.classList.add("errado");
+      $(".exp", q).removeAttribute("hidden");
+    });
+    var msg = c >= 12 ? " Você domina o conteúdo." : (c >= 9 ? " Quase lá: revise os módulos indicados." : " Revise os módulos indicados e tente de novo.");
+    $("#quiz-placar").textContent = c + " de " + qs.length + " certas." + msg;
+    LS.set("quiz", c);
+  });
+  $("#quiz-reset").addEventListener("click", function(){
+    $$("#quiz input").forEach(function(i){ i.checked = false; });
+    $$("#quiz label").forEach(function(l){ l.classList.remove("certo", "errado"); });
+    $$("#quiz .exp").forEach(function(e){ e.setAttribute("hidden", ""); });
+    $("#quiz-placar").textContent = "";
+  });
+
+  // ---------- simulador
+  var B = JSON.parse($("#sim-base").textContent);
+  var ids = ["novo", "taxa", "pdd", "adm", "rdc", "mig", "serv"];
+  var baseRdc = Math.round(B.rdc_pct_cdi * 1000) / 10;
+  $("#sim-rdc").value = baseRdc;
+  function calc(v){
+    var novo = v.novo * 1000, taxa = v.taxa / 100;
+    var dMf = novo * (taxa - B.cdi);
+    var dPddNovo = novo * B.custo_risco;
+    var dPdd = B.pdd * v.pdd / 100;
+    var dAdm = B.desp_adm * v.adm / 100;
+    var pct = Math.abs(v.rdc - baseRdc) < 1e-6 ? B.rdc_pct_cdi : v.rdc / 100;
+    var dRdc = B.rdc_medio * B.cdi * (pct - B.rdc_pct_cdi);
+    var dMig = v.mig * 1000 * B.cdi * pct;
+    var dServ = B.servicos * v.serv / 100;
+    var res = B.resultado + dMf - dRdc - dMig + dServ - dAdm - dPddNovo - dPdd;
+    var rl = B.receita_liquida + dMf - dRdc - dMig + dServ;
+    var adm = B.desp_adm + dAdm;
+    var risco = B.pdd_liquida + dPddNovo + dPdd;
+    var pr = B.pr + (res - B.resultado);
+    var rwa = B.rwa + novo * (B.fpr_credito - B.fpr_cent);
+    var liq = B.liquidez - novo;
+    return {res: res, roe: res / B.pl_medio, ie: adm / rl, iear: (adm + risco) / rl, bas: pr / rwa, mm: (pr / rwa - 0.105) * 100, liq: liq / (B.nml * B.depositos)};
+  }
+  var base = calc({novo: 0, taxa: 22, pdd: 0, adm: 0, rdc: baseRdc, mig: 0, serv: 0});
+  function delta(x, b, tipo){
+    var d = x - b;
+    if (Math.abs(d) < 1e-9) return "igual ao base";
+    var s = d > 0 ? "+" : "";
+    if (tipo === "mi") return s + fmt(d / 1000, 1) + " vs base";
+    if (tipo === "pct") return s + fmt(d * 100, 2) + " p.p. vs base";
+    if (tipo === "pp") return s + fmt(d, 2) + " p.p. vs base";
+    return s + fmt(d, 2) + " vs base";
+  }
+  function atualiza(){
+    var v = {};
+    ids.forEach(function(k){ v[k] = parseFloat($("#sim-" + k).value); });
+    $("[data-v=novo]").textContent = fmt(v.novo, 0);
+    $("[data-v=taxa]").textContent = fmt(v.taxa, 1) + "%";
+    $("[data-v=pdd]").textContent = (v.pdd > 0 ? "+" : "") + fmt(v.pdd, 0) + "%";
+    $("[data-v=adm]").textContent = (v.adm > 0 ? "+" : "") + fmt(v.adm, 0) + "%";
+    $("[data-v=rdc]").textContent = fmt(v.rdc, 1) + "%";
+    $("[data-v=mig]").textContent = fmt(v.mig, 0);
+    $("[data-v=serv]").textContent = (v.serv > 0 ? "+" : "") + fmt(v.serv, 0) + "%";
+    var o = calc(v);
+    $("#o-res").textContent = fmt(o.res / 1000, 1); $("#d-res").textContent = delta(o.res, base.res, "mi");
+    $("#o-roe").textContent = fmt(o.roe * 100, 1) + "%"; $("#d-roe").textContent = delta(o.roe, base.roe, "pct");
+    $("#o-ie").textContent = fmt(o.ie * 100, 1) + "%"; $("#d-ie").textContent = delta(o.ie, base.ie, "pct");
+    $("#o-iear").textContent = fmt(o.iear * 100, 1) + "%"; $("#d-iear").textContent = delta(o.iear, base.iear, "pct");
+    $("#o-bas").textContent = fmt(o.bas * 100, 2) + "%"; $("#d-bas").textContent = delta(o.bas, base.bas, "pct");
+    $("#o-mm").textContent = fmt(o.mm, 2); $("#d-mm").textContent = delta(o.mm, base.mm, "pp");
+    $("#o-liq").textContent = fmt(o.liq, 2) + "x"; $("#d-liq").textContent = delta(o.liq, base.liq, "x");
+    var t = [];
+    if (o.iear > 1) t.push("IEAR acima de 100%: prejuízo.");
+    if (o.mm < 2) t.push("MM/RWA abaixo de 2 p.p.: sem recursos corporativos.");
+    if (o.liq < 1) t.push("Liquidez abaixo do mínimo.");
+    if (o.roe < 0.15 && o.res > 0) t.push("ROE abaixo do custo de capital (~15%).");
+    if (v.novo > 0){
+      var be = (B.cdi + B.custo_risco) * 100;
+      t.push("O crédito novo só melhora o resultado acima de " + fmt(be, 1) + "% a.a. (CDI + custo do risco).");
+    }
+    $("#o-txt").textContent = t.length ? t.join(" ") : "Cenário base de 2025.";
+  }
+  ids.forEach(function(k){ $("#sim-" + k).addEventListener("input", atualiza); });
+  $("#sim-reset").addEventListener("click", function(){
+    $("#sim-novo").value = 0; $("#sim-taxa").value = 22; $("#sim-pdd").value = 0; $("#sim-adm").value = 0;
+    $("#sim-rdc").value = baseRdc; $("#sim-mig").value = 0; $("#sim-serv").value = 0; atualiza();
+  });
+  atualiza();
+})();
+</script>
+</body>
+</html>

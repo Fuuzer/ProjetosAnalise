@@ -1,0 +1,164 @@
+
+<section class="mod" id="m11" data-mod="m11">
+  <h2><span class="n">11</span>Exercícios para você fazer</h2>
+  <p class="objetivo">Faça no papel ou numa planilha em branco, digite a resposta e clique em Conferir. A resolução completa, com fórmula e explicação de cada passo, está na planilha (aba indicada em cada exercício).</p>
+  <div class="box chave"><div class="t">🔑 Como digitar</div><ul>
+    <li>Percentual: digite o número em %, com vírgula. Para 19,98%, digite <code>19,98</code>.</li>
+    <li>Valores em R$ mil: digite sem o "mil". Para R$ 193.200 mil, digite <code>193200</code> ou <code>193.200</code>.</li>
+    <li>Pontos percentuais e vezes: só o número (<code>-0,51</code>, <code>1,60</code>).</li>
+    <li>Há uma pequena tolerância para arredondamento. Suas respostas ficam salvas neste navegador.</li>
+  </ul></div>
+  <p class="placar-geral"><b>Seu placar geral:</b> <span id="placar-geral">0 de 0 itens certos</span> <button class="btn peq sec" id="limpa-ex" type="button">Apagar minhas respostas</button></p>
+  {{html:exercicios_propostos()}}
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m11" type="button">Marcar módulo como concluído</button></div>
+</section>
+
+<section class="mod" id="m12" data-mod="m12">
+  <h2><span class="n">12</span>Estudo de caso: o parecer da Coop Vale do Ipê</h2>
+  <p class="objetivo">O exercício final junta tudo. Escreva o seu parecer antes de abrir o modelo.</p>
+  <article class="ex" id="ex-P15"><header><span class="ex-tag">Exercício 15</span><h3>O parecer</h3><span class="ex-tema">Análise completa</span></header>
+    <p>Você foi chamado para apresentar a situação da Coop Vale do Ipê ao conselho de administração. Em uma página, seguindo o roteiro de 10 passos: a cooperativa está saudável? O que melhorou e o que piorou? Quais os três riscos principais? Quais as três recomendações? Que perguntas você faria à diretoria?</p>
+    <label for="meu-parecer"><b>Seu parecer</b> (fica salvo neste navegador):</label>
+    <textarea id="meu-parecer" rows="10" style="width:100%;font:inherit;font-size:14.5px;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);margin-top:6px"></textarea>
+    <details><summary>Checklist: o parecer cobre...</summary><div class="det"><ul>
+      <li>A conclusão logo no início, em uma ou duas frases?</li>
+      <li>Rentabilidade contábil e recorrente (e por que diferem)?</li>
+      <li>A causa da queda do ROE (margem, eficiência, risco) com números?</li>
+      <li>Inadimplência com sinal antecedente (15 a 90 dias, estágio 2, renegociação) e cobertura?</li>
+      <li>Capital com e sem LFS, e a comparação entre crescimento do PL e do RWA?</li>
+      <li>Liquidez e o custo de carregá-la?</li>
+      <li>Captação: mix e custo em % do CDI?</li>
+      <li>Três riscos e três recomendações ligadas a eles?</li>
+    </ul></div></details>
+    <details><summary>Ver o parecer modelo</summary><div class="det">{{html:parecer_modelo()}}</div></details>
+  </article>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m12" type="button">Marcar módulo como concluído</button></div>
+</section>
+
+<section class="mod" id="m13" data-mod="m13">
+  <h2><span class="n">13</span>Autoavaliação final</h2>
+  <p class="objetivo">Quinze perguntas de conceito. Se acertar 12 ou mais, você sabe analisar um BP de cooperativa. Se errar, a explicação aponta o módulo para revisar.</p>
+  <div class="quiz" id="quiz">
+    <div class="q" data-c="b"><p>1. A provisão para perdas esperadas aparece no balanço como:</p>
+      <label><input type="radio" name="q1" value="a">Passivo</label><label><input type="radio" name="q1" value="b">Conta redutora do ativo (negativa, abaixo da carteira)</label><label><input type="radio" name="q1" value="c">Patrimônio líquido</label><label><input type="radio" name="q1" value="d">Fora do balanço</label>
+      <div class="exp" hidden>A provisão reduz a carteira bruta para a carteira líquida. A despesa do ano (PDD) é que vai para a DSP. Revise o módulo 3.</div></div>
+    <div class="q" data-c="b"><p>2. O ROE de cooperativa usa no numerador:</p>
+      <label><input type="radio" name="q2" value="a">As sobras depois dos juros ao capital</label><label><input type="radio" name="q2" value="b">O resultado antes dos juros ao capital</label><label><input type="radio" name="q2" value="c">A margem financeira</label><label><input type="radio" name="q2" value="d">As sobras à disposição da AGO</label>
+      <div class="exp" hidden>Juros ao capital são a remuneração da própria quota, como um dividendo. Revise o indicador 7.10.</div></div>
+    <div class="q" data-c="c"><p>3. O CDI sobe 2 p.p. e a carteira é majoritariamente prefixada. O que acontece primeiro com a margem?</p>
+      <label><input type="radio" name="q3" value="a">Melhora, porque todas as taxas sobem juntas</label><label><input type="radio" name="q3" value="b">Nada muda</label><label><input type="radio" name="q3" value="c">Aperta: a captação em % do CDI reprecifica na hora e a carteira pré só no vencimento</label><label><input type="radio" name="q3" value="d">Melhora, porque a PDD cai</label>
+      <div class="exp" hidden>É o descasamento de taxa. Foi o que comprimiu o spread da Coop Vale do Ipê. Revise os indicadores 7.4 e 7.5.</div></div>
+    <div class="q" data-c="b"><p>4. O índice de eficiência caiu de 60% para 56% num ano de CDI subindo, com despesas iguais. A conclusão mais segura é:</p>
+      <label><input type="radio" name="q4" value="a">A gestão cortou custos</label><label><input type="radio" name="q4" value="b">A receita (inclusive a da liquidez) inflou o denominador; não houve ganho de gestão</label><label><input type="radio" name="q4" value="c">A PDD caiu</label><label><input type="radio" name="q4" value="d">O IE não depende do CDI</label>
+      <div class="exp" hidden>Com despesas iguais, a melhora veio do denominador. Revise o indicador 7.6.</div></div>
+    <div class="q" data-c="b"><p>5. A AGO decide distribuir todas as sobras em conta corrente. O que acontece?</p>
+      <label><input type="radio" name="q5" value="a">PL e Basileia sobem</label><label><input type="radio" name="q5" value="b">PL e Basileia caem; a liquidez sobe; o ROE seguinte tende a subir (PL menor)</label><label><input type="radio" name="q5" value="c">Nada muda</label><label><input type="radio" name="q5" value="d">Só a liquidez cai</label>
+      <div class="exp" hidden>A sobra sai do PL e vira depósito à vista. Revise o exercício resolvido 3.</div></div>
+    <div class="q" data-c="b"><p>6. Trocar R$ 100 mi de centralização (FPR 20%) por crédito comercial (FPR 85%) muda o RWA em:</p>
+      <label><input type="radio" name="q6" value="a">+R$ 100 mi</label><label><input type="radio" name="q6" value="b">+R$ 65 mi</label><label><input type="radio" name="q6" value="c">+R$ 85 mi</label><label><input type="radio" name="q6" value="d">Zero, porque o ativo não mudou</label>
+      <div class="exp" hidden>100 × 85% - 100 × 20% = 65. O ativo é o mesmo; o risco não. Revise o indicador 7.11.</div></div>
+    <div class="q" data-c="b"><p>7. O NPL 90 caiu de 3% para 2,5% no ano em que a carteira cresceu 30% e as baixas dobraram. A melhor leitura:</p>
+      <label><input type="radio" name="q7" value="a">A carteira melhorou</label><label><input type="radio" name="q7" value="b">Pode ser efeito do denominador e das baixas; olhe o NPL defasado e o NPL + baixas</label><label><input type="radio" name="q7" value="c">A provisão pode cair</label><label><input type="radio" name="q7" value="d">A cobertura subiu, então está tudo bem</label>
+      <div class="exp" hidden>Carteira nova ainda não atrasou e baixas tiram o atraso do índice. Revise o indicador 7.7.</div></div>
+    <div class="q" data-c="b"><p>8. Onde fica o FATES no balanço de uma cooperativa de crédito?</p>
+      <label><input type="radio" name="q8" value="a">No patrimônio líquido</label><label><input type="radio" name="q8" value="b">No passivo, em obrigações sociais e estatutárias</label><label><input type="radio" name="q8" value="c">No ativo</label><label><input type="radio" name="q8" value="d">Fora do balanço</label>
+      <div class="exp" hidden>É um recurso com destino obrigatório. Revise o módulo 4.</div></div>
+    <div class="q" data-c="b"><p>9. O RDC tem margem FTP negativa. Isso significa que:</p>
+      <label><input type="radio" name="q9" value="a">O produto dá prejuízo contábil</label><label><input type="radio" name="q9" value="b">Ele paga mais que a taxa de transferência; só compensa se o dinheiro for para crédito com margem</label><label><input type="radio" name="q9" value="c">A FTP está errada</label><label><input type="radio" name="q9" value="d">A cooperativa deve parar de captar RDC</label>
+      <div class="exp" hidden>A FTP mostra onde a margem nasce e onde morre. Revise o indicador 7.14.</div></div>
+    <div class="q" data-c="b"><p>10. Uma operação tem RAROC de 9% e o retorno mínimo exigido é 15%. Então:</p>
+      <label><input type="radio" name="q10" value="a">Ela cria valor</label><label><input type="radio" name="q10" value="b">Ela destrói valor; reveja preço, garantia (LGD) ou custo, ou olhe o relacionamento inteiro</label><label><input type="radio" name="q10" value="c">É indiferente</label><label><input type="radio" name="q10" value="d">RAROC não se compara com custo de capital</label>
+      <div class="exp" hidden>Abaixo do hurdle, o capital do associado rende menos que o custo dele. Revise o indicador 7.15.</div></div>
+    <div class="q" data-c="b"><p>11. O LCR regulatório é obrigatório para:</p>
+      <label><input type="radio" name="q11" value="a">Todas as cooperativas</label><label><input type="radio" name="q11" value="b">Instituições do segmento S1</label><label><input type="radio" name="q11" value="c">Só S4 e S5</label><label><input type="radio" name="q11" value="d">Nenhuma instituição</label>
+      <div class="exp" hidden>Cooperativas usam réguas internas com a mesma lógica. Revise o indicador 7.13.</div></div>
+    <div class="q" data-c="b"><p>12. Índice de Basileia de 14,4% com exigência de 10,5%. A MM/RWA é:</p>
+      <label><input type="radio" name="q12" value="a">14,4 p.p.</label><label><input type="radio" name="q12" value="b">3,9 p.p.</label><label><input type="radio" name="q12" value="c">10,5 p.p.</label><label><input type="radio" name="q12" value="d">24,9 p.p.</label>
+      <div class="exp" hidden>Folga = índice - exigência. Revise o indicador 7.12.</div></div>
+    <div class="q" data-c="c"><p>13. Qual destes itens é mais provável de ser recorrente?</p>
+      <label><input type="radio" name="q13" value="a">Venda de um imóvel</label><label><input type="radio" name="q13" value="b">Reversão de um processo ganho</label><label><input type="radio" name="q13" value="c">Recuperação de créditos baixados no ritmo normal</label><label><input type="radio" name="q13" value="d">Programa de desligamento voluntário</label>
+      <div class="exp" hidden>Recuperar crédito baixado faz parte da atividade todo ano. Revise o indicador 7.9.</div></div>
+    <div class="q" data-c="b"><p>14. Um spread de crédito alto com custo do risco alto:</p>
+      <label><input type="radio" name="q14" value="a">É sempre bom</label><label><input type="radio" name="q14" value="b">Precisa ser lido pelo spread ajustado ao risco (spread - custo do risco)</label><label><input type="radio" name="q14" value="c">Aumenta o RWA</label><label><input type="radio" name="q14" value="d">Reduz o índice de eficiência</label>
+      <div class="exp" hidden>Spread bruto não desconta perdas. Revise o indicador 7.5.</div></div>
+    <div class="q" data-c="c"><p>15. Para o RWA crescer 15% ao ano sem o índice de Basileia cair, retendo 75% do resultado, o ROE precisa ficar perto de:</p>
+      <label><input type="radio" name="q15" value="a">11%</label><label><input type="radio" name="q15" value="b">15%</label><label><input type="radio" name="q15" value="c">20%</label><label><input type="radio" name="q15" value="d">30%</label>
+      <div class="exp" hidden>Crescimento sustentável ≈ ROE × retenção, então ROE ≈ 15% ÷ 75% = 20%. Revise o indicador 7.10.</div></div>
+    <div class="ex-acoes"><button class="btn" id="quiz-ok" type="button">Corrigir</button><button class="btn sec" id="quiz-reset" type="button">Refazer</button><span class="placar" id="quiz-placar" aria-live="polite"></span></div>
+  </div>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m13" type="button">Marcar módulo como concluído</button></div>
+</section>
+
+<section class="mod" id="m14" data-mod="m14">
+  <h2><span class="n">14</span>Glossário e normas</h2>
+  <dl class="glos cols2">
+    <dt>AGO</dt><dd>Assembleia geral ordinária, até abril. Aprova as contas e decide o destino das sobras.</dd>
+    <dt>Análise horizontal (AH)</dt><dd>Variação de uma linha entre períodos: valor ÷ valor anterior - 1.</dd>
+    <dt>Análise vertical (AV)</dt><dd>Peso de uma linha no total do mesmo período.</dd>
+    <dt>Ato cooperativo</dt><dd>Operação entre a cooperativa e o associado (ou entre cooperativas). Tem tratamento tributário próprio.</dd>
+    <dt>Ato não cooperativo</dt><dd>Operação com não associados. O resultado é tributado e vai para o FATES.</dd>
+    <dt>BNDU</dt><dd>Bens não de uso próprio: bens recebidos para quitar dívidas, à venda.</dd>
+    <dt>Capital principal</dt><dd>PL menos ajustes prudenciais. É o capital de melhor qualidade do PR.</dd>
+    <dt>Capital social</dt><dd>Quotas-partes integralizadas pelos associados. Resgatáveis.</dd>
+    <dt>Centralização financeira</dt><dd>Sobras de caixa da singular aplicadas na central; a principal reserva de liquidez.</dd>
+    <dt>Cobertura</dt><dd>Provisão ÷ carteira vencida há mais de 90 dias.</dd>
+    <dt>Coobrigação</dt><dd>Garantia prestada pela cooperativa em operação de terceiro. Fica fora do balanço e consome capital.</dd>
+    <dt>COSIF</dt><dd>Plano contábil das instituições do Sistema Financeiro Nacional.</dd>
+    <dt>Custo do risco</dt><dd>Despesa de PDD ÷ carteira média.</dd>
+    <dt>DI intrassistema</dt><dd>Depósito interfinanceiro entre a cooperativa e o sistema, para aplicar sobra ou captar falta.</dd>
+    <dt>DLO</dt><dd>Demonstrativo de limites operacionais: PR, RWA, Basileia e outros limites.</dd>
+    <dt>DMPL</dt><dd>Demonstração das mutações do patrimônio líquido.</dd>
+    <dt>DSP</dt><dd>Demonstração de sobras ou perdas: a DRE da cooperativa.</dd>
+    <dt>DuPont</dt><dd>Decomposição do ROE em margem × giro × alavancagem.</dd>
+    <dt>EAD, PD, LGD</dt><dd>Exposição no default, probabilidade de default e perda dado o default. Perda esperada = EAD × PD × LGD.</dd>
+    <dt>Estágios 1, 2 e 3</dt><dd>Classificação de risco da Res. CMN 4.966: normal, aumento significativo do risco, ativo com problema de recuperação.</dd>
+    <dt>FATES</dt><dd>Fundo de assistência técnica, educacional e social. Mínimo de 5% das sobras mais o resultado de atos não cooperativos. No passivo.</dd>
+    <dt>FGCoop</dt><dd>Fundo garantidor do cooperativismo de crédito. Garante depósitos e RDC até R$ 250 mil por associado.</dd>
+    <dt>FPR</dt><dd>Fator de ponderação de risco: quanto de cada exposição conta como RWA.</dd>
+    <dt>FTP (transfer price)</dt><dd>Taxa interna que precifica o dinheiro entre captação, crédito e tesouraria.</dd>
+    <dt>GAP de capital</dt><dd>Quanto capital falta, em reais, para voltar à régua de referência.</dd>
+    <dt>Hurdle</dt><dd>Retorno mínimo exigido sobre o capital (custo de capital).</dd>
+    <dt>IE e IEAR</dt><dd>Índice de eficiência (despesas administrativas ÷ receita líquida) e sua versão com a PDD.</dd>
+    <dt>IF.data</dt><dd>Base pública do Banco Central com dados de todas as instituições.</dd>
+    <dt>Ingressos e dispêndios</dt><dd>Receitas e despesas do ato cooperativo.</dd>
+    <dt>Juros ao capital</dt><dd>Remuneração das quotas-partes, limitada à Selic (LC 130/2009).</dd>
+    <dt>LCA</dt><dd>Letra de Crédito do Agronegócio, isenta de IR para pessoa física.</dd>
+    <dt>LCR</dt><dd>Índice de cobertura de liquidez: ativos líquidos ÷ saídas líquidas de 30 dias de estresse.</dd>
+    <dt>LFS</dt><dd>Letra Financeira Subordinada: dívida que conta como capital de Nível II.</dd>
+    <dt>Margem financeira</dt><dd>Receita de crédito + receita da liquidez - despesa de captação e repasses.</dd>
+    <dt>MM/RWA</dt><dd>Folga de capital: índice de Basileia - exigência, em p.p.</dd>
+    <dt>NIM</dt><dd>Margem financeira ÷ ativo médio.</dd>
+    <dt>NML</dt><dd>Nível mínimo de liquidez sobre os depósitos (régua interna).</dd>
+    <dt>NPL 90</dt><dd>Carteira com atraso acima de 90 dias ÷ carteira total.</dd>
+    <dt>PDD</dt><dd>Despesa de provisão para perdas do período. O saldo acumulado é a provisão.</dd>
+    <dt>PR</dt><dd>Patrimônio de referência: o capital que conta para o regulador.</dd>
+    <dt>RAROC</dt><dd>Retorno ajustado ao risco sobre o capital alocado.</dd>
+    <dt>RAS</dt><dd>Declaração de apetite a riscos: os limites que a cooperativa aceita.</dd>
+    <dt>RDC</dt><dd>Recibo de Depósito Cooperativo: o depósito a prazo da cooperativa.</dd>
+    <dt>Recursos corporativos</dt><dd>Recursos do sistema para a cooperativa crescer, condicionados à folga de capital.</dd>
+    <dt>Reserva legal</dt><dd>Parte indivisível das sobras (mínimo de 10%) que cobre perdas.</dd>
+    <dt>Resultado recorrente</dt><dd>Resultado sem os itens que não se repetem.</dd>
+    <dt>ROE e ROA</dt><dd>Resultado ÷ PL médio; resultado ÷ ativo médio.</dd>
+    <dt>RWA</dt><dd>Ativos ponderados pelo risco (crédito, mercado e operacional).</dd>
+    <dt>S1 a S5</dt><dd>Segmentos de porte e atividade da Res. CMN 4.553. A maioria das singulares é S4 ou S5.</dd>
+    <dt>Sobras</dt><dd>Resultado positivo da cooperativa.</dd>
+    <dt>Spread</dt><dd>Taxa média do crédito - custo médio da captação.</dd>
+    <dt>VJORA e VJR</dt><dd>Valor justo em outros resultados abrangentes (marcação no PL) e no resultado (marcação na DSP).</dd>
+  </dl>
+
+  <h3>Normas citadas</h3>
+  <ul>
+    <li>Lei 5.764/1971 (cooperativas) e Lei Complementar 130/2009 (crédito cooperativo).</li>
+    <li>Resolução CMN 4.966/2021 e Resolução BCB 352/2023 (instrumentos financeiros e perda esperada).</li>
+    <li>Resolução BCB 2/2020 (apresentação das demonstrações) e COSIF.</li>
+    <li>Resolução CMN 4.553/2017 (segmentação), 4.955/2021 (PR), 4.958/2021 (requerimentos de capital), 4.606/2017 (S5) e 4.557/2017 (gerenciamento de riscos).</li>
+    <li>Resolução BCB 229/2022 (RWA de crédito, abordagem padronizada).</li>
+    <li>Resolução CMN 4.401/2015 e Circular BCB 3.749/2015 (LCR).</li>
+  </ul>
+  <div class="box pense"><div class="t">🤔 Antes de usar na cooperativa real</div><p>As normas mudam e têm detalhes que este material simplifica (FPR por tipo de exposição, cálculo do risco operacional, limites de cômputo da LFS, pisos de provisão). Confira a versão vigente no site do Banco Central e as regras internas do sistema. Os números da Coop Vale do Ipê são fictícios.</p></div>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m14" type="button">Marcar módulo como concluído</button></div>
+</section>
+
+<footer class="fim">Material de estudo · gerado em 29/10/2026 · Cooperativa de exemplo fictícia · Valores em R$ mil, salvo indicação. Planilha de apoio: Exercicios_BP_Cooperativa_Resolvidos.xlsx.</footer>
+</main>
+</div>

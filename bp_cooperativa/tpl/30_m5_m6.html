@@ -1,0 +1,139 @@
+
+<section class="mod" id="m5" data-mod="m5">
+  <h2><span class="n">5</span>A DSP: de onde vem o resultado</h2>
+  <p class="objetivo">A DSP contábil segue o COSIF. Para analisar, reorganize em cascata: margem financeira, receita líquida, custo, risco e resultado. É a mesma lógica do simulador de resultado.</p>
+
+  <h3>5.1 Do formato contábil para a visão gerencial</h3>
+  <p>No formato contábil, a despesa de provisão (PDD) fica dentro da intermediação financeira, misturada com juros. Isso esconde três perguntas diferentes: quanto o dinheiro rende (margem), quanto custa funcionar (despesas) e quanto se perde com crédito (risco). A visão gerencial separa as três.</p>
+  <div class="tbl-wrap"><table class="txt">
+    <thead><tr><th>Linha da DSP contábil</th><th>Vai para, na visão gerencial</th></tr></thead>
+    <tbody>
+      <tr><td>Operações de crédito</td><td>Receita de crédito</td></tr>
+      <tr><td>Centralização, aplicações interfinanceiras e TVM</td><td>Receita da liquidez</td></tr>
+      <tr><td>Captação (poupança, RDC, LCA, LFS, FGCoop)</td><td>Despesa de captação</td></tr>
+      <tr><td>Empréstimos e repasses</td><td>Despesa de repasses</td></tr>
+      <tr><td>Provisão para perdas e recuperação de créditos baixados</td><td>PDD líquida (custo do risco)</td></tr>
+      <tr><td>Serviços e tarifas</td><td>Serviços</td></tr>
+      <tr><td>Pessoal e outras despesas administrativas</td><td>Despesas administrativas</td></tr>
+      <tr><td>Tributárias, outras receitas e despesas operacionais, contingências</td><td>Outras (entram na receita líquida)</td></tr>
+      <tr><td>Não operacional e IR e CS</td><td>Abaixo do resultado operacional</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>5.2 A cascata da Coop Vale do Ipê</h3>
+  {{html:tabela_gerencial()}}
+  {{html:svg_cascata(2025)}}
+  <div class="legenda"><span><i style="background:var(--s1)"></i>ponto de partida</span><span><i style="background:var(--pos)"></i>soma</span><span><i style="background:var(--neg)"></i>subtrai</span><span><i style="background:var(--tot)"></i>subtotal</span><span>Valores em R$ milhões, 2025. Passe o mouse nas barras.</span></div>
+  <p>Leia a cascata de cima para baixo: de cada R$ 100 de receita de crédito, a captação e os repasses levam R$ {{n0:-(d('desp_captacao',2025)+d('desp_repasses',2025))/d('rend_credito',2025)*100}}, mas a liquidez devolve R$ {{n0:d('rend_liquidez',2025)/d('rend_credito',2025)*100}}. Sobra uma margem financeira de R$ {{m:d('mf',2025)}} mil. Somando serviços, a receita líquida chega a R$ {{m:d('receita_liquida',2025)}} mil, das quais {{p0:i('ie',2025)}} vão para despesas administrativas e {{p0:-d('pdd_liquida',2025)/d('receita_liquida',2025)}} para perdas de crédito. Fica um resultado de R$ {{m:d('resultado',2025)}} mil.</p>
+
+  <h3>5.3 Taxas implícitas: o que a DSP diz sobre preços</h3>
+  <p>Divida cada receita ou despesa pelo saldo médio da linha que a gera. Você descobre a taxa média que a cooperativa cobrou ou pagou, sem precisar de nenhum relatório de precificação.</p>
+  {{html:tabela_taxas()}}
+  <p><b>Como ler:</b> a liquidez rende o CDI (100%), a captação a prazo custa um pouco mais que o CDI e a carteira comercial ganha um prêmio grande sobre o CDI, enquanto a rural ganha pouco. Entre 2024 e 2025 o custo do RDC subiu {{pp1:(-d('desp_rdc',2025)/avg('rdc',2025)+d('desp_rdc',2024)/avg('rdc',2024))*100}} p.p., acompanhando o CDI, e a taxa da carteira comercial subiu só {{pp1:(d('rend_comercial',2025)/avg('cred_comercial',2025)-d('rend_comercial',2024)/avg('cred_comercial',2024))*100}} p.p. Essa diferença é o descasamento: a captação reprecifica na hora e a carteira prefixada só quando vence.</p>
+
+  <h3>5.4 Regras de reconhecimento que mudam o resultado</h3>
+  <ul>
+    <li><b>Competência:</b> juros são reconhecidos no período em que correm, recebidos ou não. A despesa do RDC entra todo mês, mesmo que o associado só receba no vencimento.</li>
+    <li><b>Ativo problemático (Res. 4.966):</b> operações com problema de recuperação (estágio 3) deixam de gerar receita de juros até serem recebidas. Inadimplência subindo derruba a receita de crédito duas vezes: pela provisão e pelos juros que deixam de entrar.</li>
+    <li><b>PDD:</b> a despesa do ano é quanto a provisão precisou crescer mais o que foi baixado como perda. Recuperação de crédito já baixado volta como receita.</li>
+    <li><b>Contingências:</b> constituir provisão é despesa; reverter é receita. Reversões grandes são não recorrentes.</li>
+    <li><b>Não operacional:</b> venda de imóveis, de BNDU e de outros bens. Raramente recorrente.</li>
+    <li><b>Juros ao capital:</b> remuneram a quota. Ficam abaixo do resultado, como destinação, por isso o ROE usa o resultado antes deles.</li>
+  </ul>
+
+  <div class="resolvido" id="r4"><span class="tag">Exercício resolvido 4</span>
+    <h4>Monte a cascata de 2025 a partir da DSP contábil</h4>
+    <ol class="passos">
+      <li><b>Margem financeira</b> = crédito {{m:d('rend_credito',2025)}} + liquidez ({{m:d('rend_centralizacao',2025)}} + {{m:d('rend_aplic',2025)}} + {{m:d('rend_tvm',2025)}} = {{m:d('rend_liquidez',2025)}}) - captação {{m:-d('desp_captacao',2025)}} - repasses {{m:-d('desp_repasses',2025)}} = <b>R$ {{m:d('mf',2025)}} mil</b>.</li>
+      <li><b>Receita líquida</b> = margem {{m:d('mf',2025)}} + serviços e tarifas {{m:d('servicos',2025)+d('tarifas',2025)}} + outras receitas {{m:d('outras_rec_op',2025)}} - outras despesas {{m:-d('outras_desp_op',2025)}} - tributárias {{m:-d('tributarias',2025)}} + contingências {{m:d('contingencias',2025)}} = <b>R$ {{m:d('receita_liquida',2025)}} mil</b>.</li>
+      <li><b>Despesas administrativas</b> = pessoal {{m:-d('pessoal',2025)}} + outras {{m:-d('outras_adm',2025)}} = <b>R$ {{m:-d('desp_adm',2025)}} mil</b>.</li>
+      <li><b>PDD líquida</b> = PDD {{m:-d('pdd',2025)}} - recuperação {{m:d('recuperacao',2025)}} = <b>R$ {{m:-d('pdd_liquida',2025)}} mil</b>.</li>
+      <li><b>Resultado operacional</b> = {{m:d('receita_liquida',2025)}} - {{m:-d('desp_adm',2025)}} - {{m:-d('pdd_liquida',2025)}} = R$ {{m:d('resultado_operacional',2025)}} mil. Somando não operacional ({{m:d('nao_operacional',2025)}}) e tirando IR e CS ({{m:-d('ir_cs',2025)}}): <b>resultado de R$ {{m:d('resultado',2025)}} mil</b>, igual à DSP contábil.</li>
+    </ol>
+    <p><b>Por que fazer isso:</b> agora dá para dizer que o resultado caiu {{p1:-ah(d('resultado',2025),d('resultado',2024))}} mesmo com a margem financeira subindo {{p1:ah(d('mf',2025),d('mf',2024))}}, porque a PDD líquida subiu {{p1:ah(d('pdd_liquida',2025),d('pdd_liquida',2024))}} e as despesas administrativas {{p1:ah(d('desp_adm',2025),d('desp_adm',2024))}}. A DSP contábil não mostra isso de forma direta.</p>
+  </div>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m5" type="button">Marcar módulo como concluído</button></div>
+</section>
+
+<section class="mod" id="m6" data-mod="m6">
+  <h2><span class="n">6</span>Análise vertical e horizontal</h2>
+  <p class="objetivo">A vertical mostra a estrutura (quanto cada linha pesa). A horizontal mostra o movimento (quanto cada linha cresceu). Calcular é fácil; o valor está em perguntar por que.</p>
+
+  <h3>6.1 As fórmulas</h3>
+  <div class="formula">Análise vertical (AV)   = valor da linha ÷ valor da base do mesmo período
+   BP:  base = total do ativo (ou total do passivo + PL)
+   DSP: base = receitas da intermediação (ou receita líquida)
+
+Análise horizontal (AH) = valor do período ÷ valor do período anterior - 1
+   AH encadeada:  cada ano contra o anterior (2025 ÷ 2024 - 1)
+   AH base fixa:  todos os anos contra um ano-base (2025 ÷ 2023 - 1)
+   AH real:       (1 + AH nominal) ÷ (1 + inflação) - 1
+
+Contribuição para a variação = variação da linha ÷ total do período anterior
+   (diz quantos pontos do crescimento total vieram daquela linha)</div>
+  <p>No Excel PT-BR, com 2024 em B e 2025 em C: AV de 2025 = <code>=C10/C$30</code>; AH = <code>=SEERRO(C10/B10-1;"n.a.")</code>; AH real = <code>=(1+D10)/(1+$B$2)-1</code>.</p>
+
+  <h3>6.2 Vertical do BP: a estrutura</h3>
+  <p>Volte à tabela do módulo 2 e clique em "Mostrar análise vertical". Os números que contam a história:</p>
+  <ul>
+    <li><b>Crédito líquido</b>: {{p1:(s('carteira',2025)+s('provisao',2025))/s('ativo',2025)}} do ativo. Cooperativas mais "emprestadoras" passam de 60%; mais líquidas ficam abaixo de 50%.</li>
+    <li><b>Liquidez</b>: {{p1:s('liquidez',2025)/s('ativo',2025)}} do ativo, quase toda na centralização.</li>
+    <li><b>Funding dos associados</b>: depósitos + LCA = {{p1:(s('depositos',2025)+s('lca',2025))/s('ativo',2025)}} do passivo + PL. O RDC sozinho é {{p1:s('rdc',2025)/s('ativo',2025)}}.</li>
+    <li><b>PL</b>: {{p1:s('pl',2025)/s('ativo',2025)}} do passivo + PL.</li>
+  </ul>
+
+  <h3>6.3 Horizontal do BP: o movimento</h3>
+  <ul>
+    <li>Ativo +{{p1:i('cresc_ativo',2025)}}, carteira +{{p1:i('cresc_carteira',2025)}}, depósitos +{{p1:i('cresc_depositos',2025)}}, PL +{{p1:i('cresc_pl',2025)}}.</li>
+    <li>Dentro dos depósitos: à vista +{{p1:ah(s('dep_vista',2025),s('dep_vista',2024))}}, poupança +{{p1:ah(s('poupanca',2025),s('poupanca',2024))}}, RDC +{{p1:ah(s('rdc',2025),s('rdc',2024))}}. O crescimento veio do funding mais caro.</li>
+    <li>Provisão +{{p1:ah(s('provisao',2025),s('provisao',2024))}}, quase o dobro da carteira. BNDU +{{p1:ah(s('bndu',2025),s('bndu',2024))}}.</li>
+  </ul>
+  <p>A forma mais útil de juntar a horizontal do balanço é a tabela de <b>fontes e usos</b>: a variação de cada linha do ativo é um uso; a variação de cada linha do passivo e do PL é uma fonte. As duas somam o mesmo valor, porque o balanço sempre fecha.</p>
+  {{html:tabela_fontes_usos()}}
+  <div class="resolvido" id="r5"><span class="tag">Exercício resolvido 5</span>
+    <h4>Fontes e usos: como a Coop Vale do Ipê financiou o crescimento de 2025</h4>
+    <ol class="passos">
+      <li><b>Usos:</b> {{p0:(s('carteira',2025)+s('provisao',2025)-s('carteira',2024)-s('provisao',2024))/(s('ativo',2025)-s('ativo',2024))}} do aumento do ativo foi para crédito líquido e {{p0:(s('centralizacao',2025)-s('centralizacao',2024)+s('aplic_interfin',2025)-s('aplic_interfin',2024)+s('tvm',2025)-s('tvm',2024))/(s('ativo',2025)-s('ativo',2024))}} ficou em liquidez (centralização, aplicações e TVM).</li>
+      <li><b>Fontes:</b> o RDC sozinho trouxe {{p0:(s('rdc',2025)-s('rdc',2024))/(s('ativo',2025)-s('ativo',2024))}} do dinheiro novo. O PL contribuiu com {{p0:(s('pl',2025)-s('pl',2024))/(s('ativo',2025)-s('ativo',2024))}}.</li>
+      <li><b>Leitura:</b> cada R$ 100 de crescimento foi financiado com cerca de R$ {{n0:(s('rdc',2025)-s('rdc',2024))/(s('ativo',2025)-s('ativo',2024))*100}} de RDC (pago a cerca de 101% do CDI) e aplicado em cerca de R$ {{n0:(s('carteira',2025)+s('provisao',2025)-s('carteira',2024)-s('provisao',2024))/(s('ativo',2025)-s('ativo',2024))*100}} de crédito e R$ {{n0:(s('centralizacao',2025)-s('centralizacao',2024)+s('aplic_interfin',2025)-s('aplic_interfin',2024)+s('tvm',2025)-s('tvm',2024))/(s('ativo',2025)-s('ativo',2024))*100}} de liquidez (rendendo perto de 100% do CDI). A parte que ficou em liquidez não paga o próprio custo.</li>
+    </ol>
+  </div>
+
+  <h3>6.4 Vertical e horizontal da DSP</h3>
+  <p>Na DSP, a vertical sobre as receitas da intermediação mostra para onde vai cada real que entra:</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Linha (sobre receitas da intermediação)</th><th>AV 2024</th><th>AV 2025</th><th>AH 25/24</th></tr></thead>
+    <tbody>
+      <tr><td>Receita de crédito</td><td>{{p1:d('rend_credito',2024)/d('receitas_intermed',2024)}}</td><td>{{p1:d('rend_credito',2025)/d('receitas_intermed',2025)}}</td><td>{{p1:ah(d('rend_credito',2025),d('rend_credito',2024))}}</td></tr>
+      <tr><td>Receita da liquidez</td><td>{{p1:d('rend_liquidez',2024)/d('receitas_intermed',2024)}}</td><td>{{p1:d('rend_liquidez',2025)/d('receitas_intermed',2025)}}</td><td>{{p1:ah(d('rend_liquidez',2025),d('rend_liquidez',2024))}}</td></tr>
+      <tr><td>(-) Despesa de captação</td><td>{{p1:-d('desp_captacao',2024)/d('receitas_intermed',2024)}}</td><td>{{p1:-d('desp_captacao',2025)/d('receitas_intermed',2025)}}</td><td>{{p1:ah(d('desp_captacao',2025),d('desp_captacao',2024))}}</td></tr>
+      <tr><td>(-) PDD</td><td>{{p1:-d('pdd',2024)/d('receitas_intermed',2024)}}</td><td>{{p1:-d('pdd',2025)/d('receitas_intermed',2025)}}</td><td>{{p1:ah(d('pdd',2025),d('pdd',2024))}}</td></tr>
+      <tr><td>(-) Despesas administrativas</td><td>{{p1:-d('desp_adm',2024)/d('receitas_intermed',2024)}}</td><td>{{p1:-d('desp_adm',2025)/d('receitas_intermed',2025)}}</td><td>{{p1:ah(d('desp_adm',2025),d('desp_adm',2024))}}</td></tr>
+      <tr class="tot"><td>Resultado antes dos juros ao capital</td><td>{{p1:d('resultado',2024)/d('receitas_intermed',2024)}}</td><td>{{p1:d('resultado',2025)/d('receitas_intermed',2025)}}</td><td>{{p1:ah(d('resultado',2025),d('resultado',2024))}}</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Como ler:</b> em 2024 a captação levava {{p0:-d('desp_captacao',2024)/d('receitas_intermed',2024)}} de cada real de receita; em 2025, {{p0:-d('desp_captacao',2025)/d('receitas_intermed',2025)}}. O resultado caiu de {{p1:d('resultado',2024)/d('receitas_intermed',2024)}} para {{p1:d('resultado',2025)/d('receitas_intermed',2025)}} das receitas. Num ano de CDI subindo, a AV da DSP quase sempre mostra isso: as receitas incham, mas a captação incha mais.</p>
+
+  <div class="resolvido" id="r6"><span class="tag">Exercício resolvido 6</span>
+    <h4>Quanto a carteira cresceu de verdade e de onde veio o crescimento</h4>
+    <ol class="passos">
+      <li><b>AH nominal:</b> {{m:s('carteira',2025)}} ÷ {{m:s('carteira',2024)}} - 1 = <b>{{p2:i('cresc_carteira',2025)}}</b>.</li>
+      <li><b>AH real:</b> (1 + {{p2:i('cresc_carteira',2025)}}) ÷ (1 + {{p1:IPCA[2025]}}) - 1 = <b>{{p2:i('cresc_real',2025)}}</b>.</li>
+      <li><b>Contribuição do comercial:</b> ({{m:s('cred_comercial',2025)}} - {{m:s('cred_comercial',2024)}}) ÷ {{m:s('carteira',2024)}} = <b>{{pp:(s('cred_comercial',2025)-s('cred_comercial',2024))/s('carteira',2024)*100}} p.p.</b></li>
+      <li><b>Contribuição do rural:</b> ({{m:s('cred_rural',2025)}} - {{m:s('cred_rural',2024)}}) ÷ {{m:s('carteira',2024)}} = <b>{{pp:(s('cred_rural',2025)-s('cred_rural',2024))/s('carteira',2024)*100}} p.p.</b> As duas somam os {{p1:i('cresc_carteira',2025)}}.</li>
+    </ol>
+    <p><b>Conclusão:</b> crescimento real de {{p1:i('cresc_real',2025)}}, puxado {{p0:(s('cred_comercial',2025)-s('cred_comercial',2024))/(s('carteira',2025)-s('carteira',2024))}} pela carteira comercial, que é a de maior taxa e também a de maior risco (provisão de {{p1:n('prov_comercial',2025)/s('cred_comercial',2025)}} contra {{p1:n('prov_rural',2025)/s('cred_rural',2025)}} no rural).</p>
+  </div>
+
+  <h3>6.5 Armadilhas da vertical e da horizontal</h3>
+  <ul>
+    <li><b>Base pequena:</b> uma linha que vai de 1 para 3 cresce 200% e não significa nada. Olhe junto a variação em reais.</li>
+    <li><b>Sinal:</b> despesa negativa dividida por despesa negativa dá AH positiva: a despesa cresceu. Para a AV de despesas, use o valor em módulo e diga "consome X%".</li>
+    <li><b>Contas redutoras:</b> provisão crescendo aparece como AH positiva de uma conta negativa. Leia como "mais provisão".</li>
+    <li><b>Efeito CDI:</b> com o CDI subindo, receitas e despesas financeiras crescem sozinhas. Compare as taxas implícitas, não só os valores.</li>
+    <li><b>Mudança de norma:</b> 2025 é o primeiro ano da Resolução 4.966. A comparação de provisão e de receita de crédito com 2024 mistura carteira e regra.</li>
+    <li><b>Sazonalidade:</b> semestres não são iguais (safra, 13º salário, AGO). Compare dezembro com dezembro e junho com junho.</li>
+    <li><b>Saldo de fim de período:</b> para taxas e retornos, use saldo médio (idealmente a média dos 12 meses, não só início e fim).</li>
+  </ul>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m6" type="button">Marcar módulo como concluído</button></div>
+</section>
