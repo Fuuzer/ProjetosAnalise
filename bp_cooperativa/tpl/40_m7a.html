@@ -1,0 +1,267 @@
+
+<section class="mod" id="m7" data-mod="m7">
+  <h2><span class="n">7</span>Os 15 indicadores</h2>
+  <p class="objetivo">Cada indicador responde uma pergunta da diretoria. Se você lembrar a pergunta, lembra a fórmula. A ordem segue a lógica de uma análise: tamanho e funding, depois rentabilidade, custo e risco, depois resultado, capital e liquidez, e por fim as ferramentas de preço (FTP e RAROC).</p>
+  <p>Todos os cartões têm o mesmo formato: pergunta, fórmula, conta com a Coop Vale do Ipê, o que significa subir ou cair, uma régua didática, as armadilhas, com o que o indicador se liga e como aparece no Sicredi. As réguas são para treino: na cooperativa real, use os limites da Declaração de Apetite a Riscos (RAS).</p>
+
+  <!-- 7.1 PL -->
+  <div class="card-ind" id="ind-pl">
+    <h3>7.1 Patrimônio líquido (PL) <span class="fam">capital</span></h3>
+    <p class="pergunta">Quanto capital próprio os associados têm na cooperativa, e de que qualidade?</p>
+    <div class="formula">PL = capital social + reservas + sobras acumuladas ± ajustes de avaliação
+Crescimento do PL = PL final ÷ PL inicial - 1
+PL ÷ ativo  |  capital social ÷ PL  |  capital social por associado = capital ÷ nº de associados</div>
+    <h4>Conta com a Coop Vale do Ipê</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Indicador</th><th>2024</th><th>2025</th></tr></thead>
+      <tbody>
+        <tr><td>PL (R$ mil)</td><td>{{m:s('pl',2024)}}</td><td>{{m:s('pl',2025)}}</td></tr>
+        <tr><td>Crescimento do PL</td><td>{{p1:i('cresc_pl',2024)}}</td><td>{{p1:i('cresc_pl',2025)}}</td></tr>
+        <tr><td>PL ÷ ativo</td><td>{{p1:i('pl_ativo',2024)}}</td><td>{{p1:i('pl_ativo',2025)}}</td></tr>
+        <tr><td>Capital social ÷ PL</td><td>{{p1:s('capital_social',2024)/s('pl',2024)}}</td><td>{{p1:s('capital_social',2025)/s('pl',2025)}}</td></tr>
+        <tr><td>Capital social por associado</td><td>R$ {{n2:s('capital_social',2024)*1000/n('associados',2024)}}</td><td>R$ {{n2:s('capital_social',2025)*1000/n('associados',2025)}}</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>De onde veio o crescimento de R$ {{m:s('pl',2025)-s('pl',2024)}} mil em 2025:</b> resultado de {{m:d('resultado',2025)}}, menos FATES de {{m:d('ato_nao_coop',2025)-d('dest_fates',2025)}}, menos {{m:s('sobras_acum',2024)-M.r10(s('sobras_acum',2024)*0.5)}} de sobras de 2024 distribuídas em conta corrente, mais {{m:M.DMPL['integralizacoes']}} de integralizações, menos {{m:-M.DMPL['devolucoes']}} de devoluções de quotas, mais {{m:s('aap',2025)-s('aap',2024)}} de ajuste de avaliação.</p>
+    <div class="leitura"><div class="up"><b>Se sobe:</b> mais colchão para perdas e mais espaço para crescer. Se veio de reserva, é capital estável; se veio de quota, pode sair.</div><div class="down"><b>Se cai:</b> perda, distribuição de sobras, resgate de quotas ou marcação negativa de títulos.</div></div>
+    <p><b>Régua didática:</b> o PL deve crescer pelo menos no ritmo do RWA. Em 2025 o PL cresceu {{p1:i('cresc_pl',2025)}} e o RWA {{p1:i('rwa',2025)/i('rwa',2024)-1}}: empate técnico.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>PL ÷ ativo não mede risco: um ativo cheio de liquidez precisa de menos capital que um ativo cheio de crédito. Para isso existe o índice de Basileia.</li>
+      <li>As sobras à disposição da AGO estão no PL hoje, mas podem sair em março.</li>
+      <li>Capital social concentrado em poucos associados é capital que pode sair de uma vez.</li>
+    </ul></div>
+    <p><b>Liga com:</b> ROE (é o denominador), Basileia (é a base do PR), potencial de crédito.</p>
+    <div class="box sicredi"><div class="t">🌱 No Sicredi</div><p>A capacidade de pagar juros ao capital (em % do CDI) aparece no simulador de resultado. Juros ao capital altos remuneram o associado hoje, mas tiram resultado que viraria reserva. Campanhas de capitalização e a destinação das sobras na AGO são as alavancas do PL.</p></div>
+    <p><a href="#ex-P14">Pratique: Exercício 14</a></p>
+  </div>
+
+  <!-- 7.2 crescimento -->
+  <div class="card-ind" id="ind-cresc">
+    <h3>7.2 Crescimento da carteira de crédito <span class="fam">tamanho</span></h3>
+    <p class="pergunta">A carteira está crescendo num ritmo que o capital, a liquidez e a qualidade aguentam?</p>
+    <div class="formula">Crescimento nominal = carteira final ÷ carteira inicial - 1
+Crescimento real    = (1 + nominal) ÷ (1 + IPCA) - 1
+Contribuição do segmento = variação do segmento ÷ carteira inicial
+NPL defasado = vencidos > 90 dias de hoje ÷ carteira de 12 meses atrás</div>
+    <h4>Conta com a Coop Vale do Ipê</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Indicador</th><th>2024</th><th>2025</th></tr></thead>
+      <tbody>
+        <tr><td>Carteira bruta (R$ mil)</td><td>{{m:s('carteira',2024)}}</td><td>{{m:s('carteira',2025)}}</td></tr>
+        <tr><td>Crescimento nominal</td><td>{{p1:i('cresc_carteira',2024)}}</td><td>{{p1:i('cresc_carteira',2025)}}</td></tr>
+        <tr><td>Crescimento real</td><td>{{p1:i('cresc_real',2024)}}</td><td>{{p1:i('cresc_real',2025)}}</td></tr>
+        <tr><td>Comercial</td><td>{{p1:i('cresc_comercial',2024)}}</td><td>{{p1:i('cresc_comercial',2025)}}</td></tr>
+        <tr><td>Rural</td><td>{{p1:i('cresc_rural',2024)}}</td><td>{{p1:i('cresc_rural',2025)}}</td></tr>
+        <tr><td>Para comparar: captação / PL / RWA</td><td>{{p1:i('cresc_captacao',2024)}} / {{p1:i('cresc_pl',2024)}} / n.d.</td><td>{{p1:i('cresc_captacao',2025)}} / {{p1:i('cresc_pl',2025)}} / {{p1:i('rwa',2025)/i('rwa',2024)-1}}</td></tr>
+      </tbody>
+    </table></div>
+    <div class="leitura"><div class="up"><b>Se sobe:</b> mais receita futura, mas consome capital (RWA), consome liquidez e traz provisão com defasagem de meses.</div><div class="down"><b>Se cai:</b> menos risco novo, mas menos escala. Pode ser falta de demanda, aperto de capital ou política de crédito mais restritiva.</div></div>
+    <p><b>Régua didática:</b> crescimento real positivo e não muito acima do crescimento do PL (até 2 p.p. a mais). Crescer mais rápido que a captação reduz a liquidez.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilha: a carteira nova esconde a inadimplência</div><p>Crédito recém-liberado ainda não atrasou. Uma carteira crescendo rápido faz o índice de inadimplência cair só porque o denominador aumentou. Teste com o NPL defasado: em 2025, {{m:at('d90',2025)}} ÷ {{m:s('carteira',2024)}} = <b>{{p2:at('d90',2025)/s('carteira',2024)}}</b>, contra {{p2:i('npl90',2025)}} do NPL normal. A diferença mostra quanto o crescimento "diluiu" o atraso.</p></div>
+    <p><b>Liga com:</b> RWA e Basileia (cada real de crédito consome capital), liquidez, PDD (que vem depois), margem.</p>
+    <div class="box sicredi"><div class="t">🌱 No Sicredi</div><p>O potencial de crédito da política de recursos corporativos limita o crescimento à folga de capital (MM/RWA acima de 2 p.p.). A safra concentra o crescimento rural no segundo semestre.</p></div>
+    <p><a href="#r6">Veja o Exercício resolvido 6</a></p>
+  </div>
+
+  <!-- 7.3 captação -->
+  <div class="card-ind" id="ind-capt">
+    <h3>7.3 Captação: depósitos à vista, poupança, RDC e LCA <span class="fam">funding</span></h3>
+    <p class="pergunta">De onde vem o dinheiro, quanto custa e quão estável ele é?</p>
+    <div class="formula">Captação com associados = depósitos à vista + poupança + RDC + LCA
+Mix = produto ÷ captação total
+Custo médio = despesa de juros da captação ÷ captação média      (custo em % do CDI = custo ÷ CDI)
+Crédito ÷ captação = carteira ÷ captação
+Concentração = 10 maiores depositantes ÷ captação</div>
+    <h4>Conta com a Coop Vale do Ipê</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Produto</th><th>Saldo 2024</th><th>Saldo 2025</th><th>AH</th><th>Mix 2025</th><th>Custo 2025</th><th>% do CDI</th></tr></thead>
+      <tbody>
+        <tr><td>Depósitos à vista</td><td>{{m:s('dep_vista',2024)}}</td><td>{{m:s('dep_vista',2025)}}</td><td>{{p1:ah(s('dep_vista',2025),s('dep_vista',2024))}}</td><td>{{p1:i('mix_dv',2025)}}</td><td>0,0%</td><td>0%</td></tr>
+        <tr><td>Poupança</td><td>{{m:s('poupanca',2024)}}</td><td>{{m:s('poupanca',2025)}}</td><td>{{p1:ah(s('poupanca',2025),s('poupanca',2024))}}</td><td>{{p1:i('mix_poup',2025)}}</td><td>{{p1:-d('desp_poupanca',2025)/avg('poupanca',2025)}}</td><td>{{p0:-d('desp_poupanca',2025)/avg('poupanca',2025)/CDI[2025]}}</td></tr>
+        <tr><td>RDC</td><td>{{m:s('rdc',2024)}}</td><td>{{m:s('rdc',2025)}}</td><td>{{p1:ah(s('rdc',2025),s('rdc',2024))}}</td><td>{{p1:i('mix_rdc',2025)}}</td><td>{{p1:-d('desp_rdc',2025)/avg('rdc',2025)}}</td><td>{{p0:-d('desp_rdc',2025)/avg('rdc',2025)/CDI[2025]}}</td></tr>
+        <tr><td>LCA</td><td>{{m:s('lca',2024)}}</td><td>{{m:s('lca',2025)}}</td><td>{{p1:ah(s('lca',2025),s('lca',2024))}}</td><td>{{p1:i('mix_lca',2025)}}</td><td>{{p1:-d('desp_lca',2025)/avg('lca',2025)}}</td><td>{{p0:-d('desp_lca',2025)/avg('lca',2025)/CDI[2025]}}</td></tr>
+        <tr class="tot"><td>Total</td><td>{{m:i('captacao_total',2024)}}</td><td>{{m:i('captacao_total',2025)}}</td><td>{{p1:i('cresc_captacao',2025)}}</td><td>100,0%</td><td>{{p2:i('custo_captacao',2025)}}</td><td>{{p0:i('custo_captacao',2025)/CDI[2025]}}</td></tr>
+      </tbody>
+    </table></div>
+    <p>Em 2024 o custo médio era {{p2:i('custo_captacao',2024)}} ({{p0:i('custo_captacao',2024)/CDI[2024]}} do CDI). Crédito ÷ captação: {{p1:i('credito_captacao',2024)}} em 2024 e {{p1:i('credito_captacao',2025)}} em 2025. Os 10 maiores depositantes têm {{p1:n('top10_depositantes',2025)}} da captação (eram {{p1:n('top10_depositantes',2024)}}).</p>
+    <div class="leitura"><div class="up"><b>Se a captação sobe:</b> mais funding e mais liquidez, desde que o preço caiba. Captar caro para deixar parado piora a margem.</div><div class="down"><b>Se cai:</b> a liquidez aperta e pode faltar funding para o crédito. Olhe se saiu depósito à vista (barato) ou RDC (caro).</div></div>
+    <p><b>Régua didática:</b> custo médio da captação até 80% do CDI (depende muito do mix); 10 maiores depositantes abaixo de 15% da captação.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>Comparar custo entre anos sem olhar o CDI. O custo da Coop subiu de {{p1:i('custo_captacao',2024)}} para {{p1:i('custo_captacao',2025)}}, mas em % do CDI foi de {{p0:i('custo_captacao',2024)/CDI[2024]}} para {{p0:i('custo_captacao',2025)/CDI[2025]}}: quase toda a alta veio do CDI. O mix piorou (menos depósito à vista), mas a poupança ficou relativamente mais barata (a regra da poupança não acompanha o CDI quando ele sobe) e compensou.</li>
+      <li>Depósito à vista de 31/12 inflado por pagamentos de fim de ano.</li>
+      <li>RDC com liquidez diária é estável no dia a dia e volátil no estresse.</li>
+    </ul></div>
+    <p><b>Liga com:</b> margem financeira, spread, FTP, liquidez.</p>
+    <div class="box sicredi"><div class="t">🌱 No Sicredi</div><p>O transfer (FTP) de captação remunera cada produto pela tesouraria, e o simulador projeta o custo da captação em % do CDI. A poupança e a LCA têm transfer próprio por causa do direcionamento ao crédito rural.</p></div>
+    <p><a href="#ex-P13">Pratique: Exercício 13</a></p>
+  </div>
+
+  <!-- 7.4 margem financeira -->
+  <div class="card-ind" id="ind-mf">
+    <h3>7.4 Margem financeira <span class="fam">rentabilidade</span></h3>
+    <p class="pergunta">Quanto o balanço rende depois de pagar quem financia?</p>
+    <div class="formula">Margem financeira (R$) = receita de crédito + receita da liquidez - despesa de captação - despesa de repasses
+NIM (margem %)         = margem financeira ÷ ativo médio
+Margem após o risco    = (margem financeira - PDD líquida) ÷ ativo médio</div>
+    <div class="resolvido" id="r7"><span class="tag">Exercício resolvido 7</span>
+      <h4>Margem financeira e NIM de 2025</h4>
+      <ol class="passos">
+        <li>Margem = {{m:d('rend_credito',2025)}} + {{m:d('rend_liquidez',2025)}} - {{m:-d('desp_captacao',2025)}} - {{m:-d('desp_repasses',2025)}} = <b>R$ {{m:d('mf',2025)}} mil</b> ({{p1:ah(d('mf',2025),d('mf',2024))}} sobre 2024).</li>
+        <li>Ativo médio = ({{m:s('ativo',2024)}} + {{m:s('ativo',2025)}}) ÷ 2 = R$ {{m:i('ativo_medio',2025)}} mil ({{p1:ah(i('ativo_medio',2025),i('ativo_medio',2024))}} sobre 2024).</li>
+        <li>NIM = {{m:d('mf',2025)}} ÷ {{m:i('ativo_medio',2025)}} = <b>{{p2:i('nim',2025)}}</b> (2024: {{p2:i('nim',2024)}}).</li>
+        <li>Margem após o risco = ({{m:d('mf',2025)}} - {{m:-d('pdd_liquida',2025)}}) ÷ {{m:i('ativo_medio',2025)}} = <b>{{p2:(d('mf',2025)+d('pdd_liquida',2025))/i('ativo_medio',2025)}}</b> (2024: {{p2:(d('mf',2024)+d('pdd_liquida',2024))/i('ativo_medio',2024)}}).</li>
+      </ol>
+      <p><b>Conclusão:</b> a margem em reais cresceu {{p1:ah(d('mf',2025),d('mf',2024))}}, mas o ativo médio cresceu {{p1:ah(i('ativo_medio',2025),i('ativo_medio',2024))}}: o NIM caiu {{pp:(i('nim',2024)-i('nim',2025))*100}} p.p. Depois do risco, a queda é de {{pp:((d('mf',2024)+d('pdd_liquida',2024))/i('ativo_medio',2024)-(d('mf',2025)+d('pdd_liquida',2025))/i('ativo_medio',2025))*100}} p.p.</p>
+    </div>
+    <div class="leitura"><div class="up"><b>Se sobe:</b> carteira crescendo com boa taxa, captação mais barata, mix indo para linhas mais rentáveis ou menos liquidez parada.</div><div class="down"><b>Se cai:</b> captação reprecificando acima da carteira (CDI subindo com carteira pré), guerra de taxa, mais liquidez parada, mix indo para crédito subsidiado.</div></div>
+    <p><b>Régua didática:</b> NIM acima de 6,5% é confortável para cooperativas com carteira de varejo e rural; abaixo de 5% pede atenção ao mix e ao preço.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>A margem em reais sobe só porque o CDI subiu (a liquidez rende mais). Olhe sempre o percentual.</li>
+      <li>NIM de cooperativa e de banco não são comparáveis direto: o mix de ativos e a liquidez são diferentes.</li>
+      <li>A margem é antes da PDD. Uma margem alta comprada com crédito arriscado aparece depois, na provisão.</li>
+    </ul></div>
+    <p><b>Liga com:</b> spread, FTP, eficiência (é a maior parte da receita líquida), ROE.</p>
+    <div class="box sicredi"><div class="t">🌱 No Sicredi</div><p>É a "margem financeira %" da tela do simulador. Confira qual denominador o simulador usa (ativo médio, ativo rentável ou outro): o percentual muda bastante.</p></div>
+    <p><a href="#ex-P04">Pratique: Exercício 4</a></p>
+  </div>
+
+  <!-- 7.5 spread -->
+  <div class="card-ind" id="ind-spread">
+    <h3>7.5 Spread financeiro <span class="fam">preço</span></h3>
+    <p class="pergunta">Qual a diferença entre a taxa que a cooperativa cobra no crédito e a que paga na captação?</p>
+    <div class="formula">Taxa média da carteira  = receita de crédito ÷ carteira média
+Custo médio da captação = despesa de juros da captação ÷ captação média
+Spread de crédito (p.p.) = taxa média da carteira - custo médio da captação
+Spread ajustado ao risco = spread - custo do risco (PDD ÷ carteira média)</div>
+    <h4>Conta com a Coop Vale do Ipê</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Indicador</th><th>2024</th><th>2025</th></tr></thead>
+      <tbody>
+        <tr><td>Taxa média da carteira</td><td>{{p2:i('taxa_credito',2024)}}</td><td>{{p2:i('taxa_credito',2025)}}</td></tr>
+        <tr><td>Custo médio da captação (com depósito à vista)</td><td>{{p2:i('custo_captacao',2024)}}</td><td>{{p2:i('custo_captacao',2025)}}</td></tr>
+        <tr class="sub"><td>Spread de crédito</td><td>{{pp:i('spread_credito',2024)*100}} p.p.</td><td>{{pp:i('spread_credito',2025)*100}} p.p.</td></tr>
+        <tr><td>Custo do risco</td><td>{{p2:i('custo_risco',2024)}}</td><td>{{p2:i('custo_risco',2025)}}</td></tr>
+        <tr class="tot"><td>Spread ajustado ao risco</td><td>{{pp:(i('spread_credito',2024)-i('custo_risco',2024))*100}} p.p.</td><td>{{pp:(i('spread_credito',2025)-i('custo_risco',2025))*100}} p.p.</td></tr>
+        <tr><td>Taxa da carteira - CDI</td><td>{{pp:(i('taxa_credito',2024)-CDI[2024])*100}} p.p.</td><td>{{pp:(i('taxa_credito',2025)-CDI[2025])*100}} p.p.</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Spread x NIM:</b> o spread compara duas taxas (carteira e captação). O NIM divide a margem pelo ativo inteiro, que inclui a liquidez (rende o CDI) e é financiado também pelo PL (que não paga juros). Por isso o spread pode cair muito e o NIM cair pouco, como aconteceu aqui: o PL "sem custo" rende mais quando o CDI sobe.</p>
+    <div class="leitura"><div class="up"><b>Se sobe:</b> preço melhor, captação mais barata ou mix mais rentável. Confira se o risco subiu junto.</div><div class="down"><b>Se cai:</b> CDI subindo com carteira pré, concorrência no preço, migração para RDC.</div></div>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>Spread bruto não desconta risco nem custo de funcionar. Um spread alto com inadimplência alta pode render menos que um spread baixo com carteira boa: use o spread ajustado ao risco.</li>
+      <li>O "spread bancário" divulgado pelo Banco Central é calculado de outro jeito (taxa das novas concessões menos custo de captação). Não compare direto.</li>
+    </ul></div>
+    <p><b>Liga com:</b> margem financeira, FTP (que reparte o spread entre crédito, captação e tesouraria), RAROC.</p>
+    <p><a href="#ex-P05">Pratique: Exercício 5</a></p>
+  </div>
+
+  <!-- 7.6 eficiência -->
+  <div class="card-ind" id="ind-ie">
+    <h3>7.6 Eficiência operacional (cost-to-income) <span class="fam">custo</span></h3>
+    <p class="pergunta">Quanto custa funcionar para cada real de receita?</p>
+    <div class="formula">Receita líquida = margem financeira + serviços e tarifas + outras receitas - outras despesas - tributárias ± contingências
+Índice de eficiência (IE) = despesas administrativas ÷ receita líquida            (menor é melhor)
+IEAR (ajustado ao risco)  = (despesas administrativas + PDD líquida) ÷ receita líquida
+Regra de bolso: 1 - IEAR = resultado operacional ÷ receita líquida</div>
+    <h4>Conta com a Coop Vale do Ipê</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Indicador</th><th>2024</th><th>2025</th></tr></thead>
+      <tbody>
+        <tr><td>Despesas administrativas (R$ mil)</td><td>{{m:-d('desp_adm',2024)}}</td><td>{{m:-d('desp_adm',2025)}}</td></tr>
+        <tr><td>Receita líquida (R$ mil)</td><td>{{m:d('receita_liquida',2024)}}</td><td>{{m:d('receita_liquida',2025)}}</td></tr>
+        <tr class="sub"><td>IE</td><td>{{p1:i('ie',2024)}}</td><td>{{p1:i('ie',2025)}}</td></tr>
+        <tr><td>IE recorrente (sem PDV e sem reversão de contingência)</td><td>{{p1:i('ie_recorrente',2024)}}</td><td>{{p1:i('ie_recorrente',2025)}}</td></tr>
+        <tr class="sub"><td>IEAR</td><td>{{p1:i('iear',2024)}}</td><td>{{p1:i('iear',2025)}}</td></tr>
+        <tr><td>IEAR - IE (peso do risco)</td><td>{{pp1:(i('iear',2024)-i('ie',2024))*100}} p.p.</td><td>{{pp1:(i('iear',2025)-i('ie',2025))*100}} p.p.</td></tr>
+        <tr><td>Serviços e tarifas ÷ despesas de pessoal</td><td>{{p1:(d('servicos',2024)+d('tarifas',2024))/-d('pessoal',2024)}}</td><td>{{p1:(d('servicos',2025)+d('tarifas',2025))/-d('pessoal',2025)}}</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Leitura da Coop:</b> o IE contábil quase não mexeu, mas o recorrente piorou {{pp1:(i('ie_recorrente',2025)-i('ie_recorrente',2024))*100}} p.p. O que mais piorou foi o IEAR (+{{pp1:(i('iear',2025)-i('iear',2024))*100}} p.p.): o peso do risco sobre a receita foi de {{pp1:(i('iear',2024)-i('ie',2024))*100}} para {{pp1:(i('iear',2025)-i('ie',2025))*100}} pontos. O problema de 2025 é mais crédito que custo. Os rateios do sistema somam R$ {{m:n('rateios',2025)}} mil, {{p0:n('rateios',2025)/-d('desp_adm',2025)}} das despesas administrativas, e não são decisão da singular.</p>
+    <div class="leitura"><div class="up"><b>Se o IE sobe (piora):</b> despesas crescendo mais que a receita (agências, pessoal, tecnologia, rateios) ou receita caindo.</div><div class="down"><b>Se o IE cai (melhora):</b> a receita cresce mais rápido que o custo. Confira se foi gestão ou só o CDI inflando a margem.</div></div>
+    <p><b>Régua didática:</b> IE até 55% é eficiente; acima de 65% pede plano de custo. IEAR acima de 100% significa prejuízo.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>O IE pode melhorar só porque o CDI subiu: a receita da liquidez infla o denominador sem nenhum ganho de gestão.</li>
+      <li>Itens não recorrentes nos dois lados (PDV na despesa, reversões na receita) mudam o índice. Calcule o recorrente.</li>
+      <li>Expansão de agências piora o IE nos primeiros anos e pode melhorar depois. Olhe a tendência de 3 anos.</li>
+    </ul></div>
+    <p><b>Liga com:</b> margem financeira e serviços (denominador), PDD (no IEAR), resultado e ROE.</p>
+    <div class="box sicredi"><div class="t">🌱 No Sicredi</div><p>IE e IEAR são calculados no simulador de resultado com a mesma lógica (as outras receitas e despesas abatem o denominador). Separe o que é controlável pela cooperativa do que vem de rateio da central e da confederação.</p></div>
+    <p><a href="#ex-P07">Pratique: Exercício 7</a></p>
+  </div>
+
+  <!-- 7.7 inadimplência -->
+  <div class="card-ind" id="ind-inad">
+    <h3>7.7 Inadimplência <span class="fam">risco de crédito</span></h3>
+    <p class="pergunta">Quanto da carteira está com atraso, e está piorando?</p>
+    <div class="formula">NPL 90 (inadimplência acima de 90 dias) = saldo de operações com atraso > 90 dias ÷ carteira
+Inadimplência de 15 a 90 dias            = saldo com atraso de 15 a 90 dias ÷ carteira   (sinal antecedente)
+Estágio 2 ÷ carteira  |  Estágio 3 ÷ carteira  |  Renegociadas ÷ carteira
+NPL defasado = vencidos > 90 dias de hoje ÷ carteira de 12 meses atrás</div>
+    <h4>Conta com a Coop Vale do Ipê</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Indicador</th><th>2024</th><th>2025</th></tr></thead>
+      <tbody>
+        <tr><td>NPL 90</td><td>{{p2:i('npl90',2024)}}</td><td>{{p2:i('npl90',2025)}}</td></tr>
+        <tr><td>Inadimplência de 15 a 90 dias</td><td>{{p2:i('inad15_90',2024)}}</td><td>{{p2:i('inad15_90',2025)}}</td></tr>
+        <tr><td>Estágio 2 ÷ carteira</td><td>{{p2:est('e2',2024)/s('carteira',2024)}}</td><td>{{p2:est('e2',2025)/s('carteira',2025)}}</td></tr>
+        <tr><td>Estágio 3 ÷ carteira</td><td>{{p2:i('e3_pct',2024)}}</td><td>{{p2:i('e3_pct',2025)}}</td></tr>
+        <tr><td>Renegociadas ÷ carteira</td><td>{{p2:n('renegociadas',2024)/s('carteira',2024)}}</td><td>{{p2:n('renegociadas',2025)/s('carteira',2025)}}</td></tr>
+        <tr><td>NPL defasado (atraso de hoje ÷ carteira de um ano antes)</td><td>{{p2:at('d90',2024)/s('carteira',2023)}}</td><td>{{p2:at('d90',2025)/s('carteira',2024)}}</td></tr>
+      </tbody>
+    </table></div>
+    {{html:svg_atraso()}}
+    <p><b>Leitura da Coop:</b> todas as faixas de atraso subiram, o estágio 2 subiu (é o atraso de amanhã) e as renegociações cresceram {{p0:ah(n('renegociadas',2025),n('renegociadas',2024))}}. Quando os sinais antecedentes e o NPL sobem juntos, a piora é de carteira, não de regra.</p>
+    <div class="leitura"><div class="up"><b>Se sobe:</b> safras ruins, piora da economia regional (clima, preço de commodities, desemprego), política de crédito frouxa ou cobrança fraca.</div><div class="down"><b>Se cai:</b> melhora real, ou baixas para prejuízo e renegociações "limpando" o índice. Confira as duas antes de comemorar.</div></div>
+    <p><b>Régua didática:</b> NPL 90 até 2,5% é bom para uma carteira com peso rural; acima de 4% é preocupante. O nível certo depende do mix: crédito pessoal e cartão têm atraso estruturalmente maior que rural e consignado.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li><b>Arrasto:</b> quando uma parcela atrasa, o saldo inteiro da operação vai para a faixa de atraso. O índice é por saldo, não por parcela.</li>
+      <li><b>Baixas:</b> operação baixada como prejuízo sai da carteira e do NPL. Uma cooperativa que baixa muito tem NPL bonito. Olhe NPL + baixas do ano.</li>
+      <li><b>Renegociação:</b> renegociar zera o atraso. Pela 4.966, reestruturação de ativo problemático mantém o estágio 3 por um período, mas acompanhe o volume.</li>
+      <li><b>Carteira nova:</b> dilui o índice (veja o NPL defasado).</li>
+    </ul></div>
+    <p><b>Liga com:</b> PDD (provisão), receita de crédito (estágio 3 não gera juros), IEAR, resultado, BNDU.</p>
+    <div class="box sicredi"><div class="t">🌱 No Sicredi</div><p>O risco por operação (estágios, provisão, marcação manual) está nas bases de risco citadas na aula de dados. No simulador, as premissas de entrada e saída em prejuízo mexem direto na PDD projetada.</p></div>
+    <p><a href="#ex-P08">Pratique: Exercício 8</a></p>
+  </div>
+
+  <!-- 7.8 PDD -->
+  <div class="card-ind" id="ind-pdd">
+    <h3>7.8 PDD: provisão para perdas <span class="fam">risco de crédito</span></h3>
+    <p class="pergunta">A cooperativa reservou o suficiente para as perdas que espera, e quanto isso custou no ano?</p>
+    <div class="formula">Provisão (saldo no balanço) ≠ PDD (despesa do ano na DSP)
+Provisão final = provisão inicial + PDD do ano - baixas para prejuízo
+Provisão ÷ carteira  |  Cobertura = provisão ÷ vencidos > 90 dias  |  Cobertura do estágio 3
+Custo do risco = PDD ÷ carteira média      Custo do risco líquido = (PDD - recuperações) ÷ carteira média</div>
+    <div class="resolvido" id="r10"><span class="tag">Exercício resolvido 8</span>
+      <h4>Movimentação da provisão de 2025</h4>
+      <ol class="passos">
+        <li>Provisão inicial: R$ {{m:-s('provisao',2024)}} mil. Despesa de PDD do ano: R$ {{m:-d('pdd',2025)}} mil. Provisão final: R$ {{m:-s('provisao',2025)}} mil.</li>
+        <li>Baixas = {{m:-s('provisao',2024)}} + {{m:-d('pdd',2025)}} - {{m:-s('provisao',2025)}} = <b>R$ {{m:i('baixas',2025)}} mil</b> baixados como prejuízo ({{p2:i('baixas',2025)/i('carteira_media',2025)}} da carteira média).</li>
+        <li>Custo do risco = {{m:-d('pdd',2025)}} ÷ {{m:i('carteira_media',2025)}} = <b>{{p2:i('custo_risco',2025)}}</b>. Líquido das recuperações de R$ {{m:d('recuperacao',2025)}} mil: {{p2:i('custo_risco_liq',2025)}}.</li>
+        <li>Cobertura = {{m:-s('provisao',2025)}} ÷ {{m:at('d90',2025)}} = <b>{{p0:i('cobertura_npl',2025)}}</b> (era {{p0:i('cobertura_npl',2024)}}).</li>
+      </ol>
+      <p><b>Conclusão:</b> a provisão subiu {{p1:ah(s('provisao',2025),s('provisao',2024))}}, mas os vencidos acima de 90 dias subiram {{p1:ah(at('d90',2025),at('d90',2024))}}. A cobertura caiu: a provisão está correndo atrás da inadimplência. O custo do risco ({{p2:i('custo_risco',2025)}}) já come {{p0:i('custo_risco',2025)/(i('taxa_credito',2025)-CDI[2025])}} do prêmio da carteira sobre o CDI.</p>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Indicador</th><th>2024</th><th>2025</th></tr></thead>
+      <tbody>
+        <tr><td>Provisão ÷ carteira</td><td>{{p2:i('prov_carteira',2024)}}</td><td>{{p2:i('prov_carteira',2025)}}</td></tr>
+        <tr><td>Cobertura do NPL 90</td><td>{{p0:i('cobertura_npl',2024)}}</td><td>{{p0:i('cobertura_npl',2025)}}</td></tr>
+        <tr><td>Cobertura do estágio 3</td><td>{{p1:i('cob_e3',2024)}}</td><td>{{p1:i('cob_e3',2025)}}</td></tr>
+        <tr><td>Custo do risco</td><td>{{p2:i('custo_risco',2024)}}</td><td>{{p2:i('custo_risco',2025)}}</td></tr>
+        <tr><td>Custo do risco líquido</td><td>{{p2:i('custo_risco_liq',2024)}}</td><td>{{p2:i('custo_risco_liq',2025)}}</td></tr>
+        <tr><td>Baixas para prejuízo (R$ mil)</td><td>{{m:i('baixas',2024)}}</td><td>{{m:i('baixas',2025)}}</td></tr>
+        <tr><td>Provisão comercial ÷ carteira comercial</td><td>{{p1:n('prov_comercial',2024)/s('cred_comercial',2024)}}</td><td>{{p1:n('prov_comercial',2025)/s('cred_comercial',2025)}}</td></tr>
+        <tr><td>Provisão rural ÷ carteira rural</td><td>{{p1:n('prov_rural',2024)/s('cred_rural',2024)}}</td><td>{{p1:n('prov_rural',2025)/s('cred_rural',2025)}}</td></tr>
+      </tbody>
+    </table></div>
+    <div class="leitura"><div class="up"><b>Se a PDD sobe:</b> piora da carteira, migração para estágios 2 e 3, carteira nova (que nasce com provisão), marcação manual, mudança de regra.</div><div class="down"><b>Se cai:</b> melhora, recuperações ou carteira encolhendo. Queda forte de PDD sem queda da inadimplência é sinal de alerta.</div></div>
+    <p><b>Régua didática:</b> cobertura do NPL 90 acima de 200% é confortável; abaixo de 120% pede explicação. O custo do risco deve caber com folga no prêmio que a carteira paga acima do CDI.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>Provisão é a ferramenta mais fácil de "ajustar" o resultado. Compare a cobertura entre anos e com outras cooperativas.</li>
+      <li>Provisão alta pode ser prudência, não perda. Leia junto com atraso e estágios.</li>
+      <li>2024 (Res. 2.682) e 2025 (Res. 4.966) não são diretamente comparáveis. O efeito da adoção inicial foi direto para o PL.</li>
+    </ul></div>
+    <p><b>Liga com:</b> inadimplência, IEAR, resultado, PL e Basileia (perda reduz capital).</p>
+    <p><a href="#ex-P08">Pratique: Exercício 8</a></p>
+  </div>

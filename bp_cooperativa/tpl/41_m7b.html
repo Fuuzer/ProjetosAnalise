@@ -1,0 +1,265 @@
+
+  <!-- 7.9 resultado recorrente -->
+  <div class="card-ind" id="ind-recorrente">
+    <h3>7.9 Resultado recorrente <span class="fam">qualidade do resultado</span></h3>
+    <p class="pergunta">Quanto do resultado vai se repetir no ano que vem?</p>
+    <div class="formula">Resultado recorrente = resultado contábil - ganhos não recorrentes + perdas não recorrentes
+ROE recorrente = resultado recorrente ÷ PL médio</div>
+    <p><b>Como decidir se um item é recorrente:</b> faça três perguntas. (1) Vem da atividade normal da cooperativa? (2) Acontece todo ano? (3) O valor é previsível? Se a resposta for "não" para alguma delas, é candidato a não recorrente.</p>
+    <div class="tbl-wrap"><table class="txt">
+      <thead><tr><th>Normalmente não recorrente</th><th>Normalmente recorrente (mesmo que pareça extra)</th></tr></thead>
+      <tbody>
+        <tr><td>Venda de imóveis e de BNDU</td><td>Recuperação de créditos baixados no ritmo normal</td></tr>
+        <tr><td>Reversão de contingência por processo ganho</td><td>Tarifas e serviços, mesmo que tenham crescido muito</td></tr>
+        <tr><td>Recuperação extraordinária de um grande crédito</td><td>PDD de um ano ruim de ciclo (o ciclo volta)</td></tr>
+        <tr><td>Programa de desligamento voluntário</td><td>Rateios do sistema</td></tr>
+        <tr><td>Marcação a mercado de títulos em VJR</td><td>Juros ao capital recebidos das participações</td></tr>
+      </tbody>
+    </table></div>
+    <h4>Conta com a Coop Vale do Ipê</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Linha (R$ mil)</th><th>2024</th><th>2025</th><th>AH</th></tr></thead>
+      <tbody>
+        <tr><td>Resultado contábil</td><td>{{m:d('resultado',2024)}}</td><td>{{m:d('resultado',2025)}}</td><td>{{p1:ah(d('resultado',2025),d('resultado',2024))}}</td></tr>
+        <tr><td>(-) PDV (perda, soma de volta)</td><td>{{m:n('nr_pdv',2024)}}</td><td>-</td><td></td></tr>
+        <tr><td>(-) Venda de imóvel</td><td>{{m:n('nr_venda_imovel',2024)}}</td><td>{{m:n('nr_venda_imovel',2025)}}</td><td></td></tr>
+        <tr><td>(-) Reversão de contingência</td><td>-</td><td>{{m:n('nr_reversao_conting',2025)}}</td><td></td></tr>
+        <tr><td>(-) Recuperação extraordinária</td><td>-</td><td>{{m:n('nr_recuperacao_extra',2025)}}</td><td></td></tr>
+        <tr class="tot"><td>Resultado recorrente</td><td>{{m:i('resultado_recorrente',2024)}}</td><td>{{m:i('resultado_recorrente',2025)}}</td><td>{{p1:ah(i('resultado_recorrente',2025),i('resultado_recorrente',2024))}}</td></tr>
+        <tr><td>ROE contábil</td><td>{{p1:i('roe',2024)}}</td><td>{{p1:i('roe',2025)}}</td><td></td></tr>
+        <tr><td>ROE recorrente</td><td>{{p1:i('roe_recorrente',2024)}}</td><td>{{p1:i('roe_recorrente',2025)}}</td><td></td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Leitura:</b> o resultado contábil caiu {{p1:-ah(d('resultado',2025),d('resultado',2024))}}; o recorrente caiu {{p1:-ah(i('resultado_recorrente',2025),i('resultado_recorrente',2024))}}. Em 2024 um item ruim (PDV) escondia parte do resultado bom; em 2025 três itens bons escondem parte do resultado ruim. Comparar só o contábil esconde {{p0:1-(d('resultado',2024)-d('resultado',2025))/(i('resultado_recorrente',2024)-i('resultado_recorrente',2025))}} da piora.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li><b>Viés da diretoria:</b> tudo o que é ruim vira "não recorrente" e tudo o que é bom vira "recorrente". Exija o mesmo critério nos dois sentidos e nos dois anos.</li>
+      <li>Uma "PDD extraordinária" que aparece todo ano é recorrente.</li>
+      <li>Itens não recorrentes também mudam o IE (reversões na receita, PDV na despesa).</li>
+    </ul></div>
+    <p><b>Liga com:</b> ROE, IE, projeção do ano seguinte, capacidade de pagar juros ao capital.</p>
+    <p><a href="#ex-P06">Pratique: Exercício 6</a></p>
+  </div>
+
+  <!-- 7.10 ROE -->
+  <div class="card-ind" id="ind-roe">
+    <h3>7.10 ROE: retorno sobre o patrimônio líquido <span class="fam">rentabilidade</span></h3>
+    <p class="pergunta">Quanto o capital do associado rendeu no ano?</p>
+    <div class="formula">ROE = resultado antes dos juros ao capital ÷ PL médio
+ROA = resultado ÷ ativo médio
+DuPont: ROE = (resultado ÷ receita líquida) × (receita líquida ÷ ativo médio) × (ativo médio ÷ PL médio)
+                    margem                       giro                          alavancagem</div>
+    <p>Por que antes dos juros ao capital? Porque os juros ao capital são a remuneração da própria quota (como um dividendo). Tirar antes de medir o retorno do capital seria contar a remuneração do capital como custo.</p>
+    <div class="resolvido" id="r8"><span class="tag">Exercício resolvido 9</span>
+      <h4>ROE de 2025 e a decomposição DuPont</h4>
+      <ol class="passos">
+        <li>PL médio = ({{m:s('pl',2024)}} + {{m:s('pl',2025)}}) ÷ 2 = R$ {{m:i('pl_medio',2025)}} mil.</li>
+        <li>ROE = {{m:d('resultado',2025)}} ÷ {{m:i('pl_medio',2025)}} = <b>{{p2:i('roe',2025)}}</b> (2024: {{p2:i('roe',2024)}}).</li>
+        <li>Margem = {{m:d('resultado',2025)}} ÷ {{m:d('receita_liquida',2025)}} = {{p1:d('resultado',2025)/d('receita_liquida',2025)}} (2024: {{p1:d('resultado',2024)/d('receita_liquida',2024)}}).</li>
+        <li>Giro = {{m:d('receita_liquida',2025)}} ÷ {{m:i('ativo_medio',2025)}} = {{p2:d('receita_liquida',2025)/i('ativo_medio',2025)}} (2024: {{p2:d('receita_liquida',2024)/i('ativo_medio',2024)}}).</li>
+        <li>Alavancagem = {{m:i('ativo_medio',2025)}} ÷ {{m:i('pl_medio',2025)}} = {{x2:i('ativo_medio',2025)/i('pl_medio',2025)}} (2024: {{x2:i('ativo_medio',2024)/i('pl_medio',2024)}}).</li>
+        <li>Prova: {{p1:d('resultado',2025)/d('receita_liquida',2025)}} × {{p2:d('receita_liquida',2025)/i('ativo_medio',2025)}} × {{n2:i('ativo_medio',2025)/i('pl_medio',2025)}} = {{p2:i('roe',2025)}}.</li>
+      </ol>
+      <p><b>Conclusão:</b> a alavancagem quase não mudou. O ROE caiu porque a margem caiu (mais PDD e despesas comendo a receita) e porque o giro caiu (a receita líquida cresceu menos que o ativo, efeito da margem financeira comprimida).</p>
+    </div>
+    <p><b>Com o que comparar:</b> o custo de capital próprio (perto de 15% na aula de Análise de Viabilidade) e o CDI do ano ({{p1:CDI[2025]}}). O ROE recorrente de 2025 ({{p1:i('roe_recorrente',2025)}}) ficou abaixo dos dois.</p>
+    <div class="box pense"><div class="t">🤔 Pense antes de concluir: ROE de cooperativa não é ROE de banco</div>
+      <p>Parte do retorno do associado vem em preço: taxa de crédito menor, remuneração melhor na captação, tarifa menor. Um ROE mais baixo pode ser escolha. Mas há um piso que não é escolha: o PL precisa crescer junto com o risco. Uma conta útil é o crescimento sustentável:</p>
+      <div class="formula">crescimento sustentável do PL ≈ ROE × taxa de retenção (parte do resultado que fica no PL)</div>
+      <p>Para o RWA crescer {{p0:i('rwa',2025)/i('rwa',2024)-1}} ao ano sem o índice de Basileia cair, retendo 75% do resultado, a cooperativa precisaria de um ROE de cerca de {{p0:(i('rwa',2025)/i('rwa',2024)-1)/0.75}}. Com ROE recorrente de {{p1:i('roe_recorrente',2025)}}, ou cresce menos, ou retém mais, ou capta capital (quotas, LFS).</p>
+    </div>
+    <div class="leitura"><div class="up"><b>Se sobe:</b> mais resultado ou PL menor. Atenção: distribuir sobras também sobe o ROE, porque reduz o PL.</div><div class="down"><b>Se cai:</b> resultado menor ou PL crescendo rápido (capitalização forte dilui o ROE, e isso pode ser bom).</div></div>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>Usar o PL final em vez do médio: subestima o ROE de quem cresce.</li>
+      <li>ROE alto com Basileia baixa: pouco capital trabalhando muito. Leia sempre os dois juntos.</li>
+      <li>ROE contábil sem olhar o recorrente.</li>
+    </ul></div>
+    <p><b>Liga com:</b> todos os anteriores (pela DuPont), PL e Basileia.</p>
+    <div class="box sicredi"><div class="t">🌱 No Sicredi</div><p>No simulador de resultado o ROE usa sobra líquida + juros ao capital sobre um PL médio, a mesma lógica daqui.</p></div>
+    <p><a href="#ex-P06">Pratique: Exercício 6</a></p>
+  </div>
+
+  <!-- 7.11 RWA -->
+  <div class="card-ind" id="ind-rwa">
+    <h3>7.11 RWA: ativos ponderados pelo risco <span class="fam">capital</span></h3>
+    <p class="pergunta">Quanto risco o balanço carrega, medido em reais?</p>
+    <div class="formula">RWA = RWA de crédito + RWA de mercado + RWA operacional
+RWA de crédito = Σ (exposição × FPR)         (inclui fora do balanço, com fator de conversão)
+RWA operacional (simplificado, didático) = 15% × média da receita bruta de 3 anos ÷ 8%
+Densidade = RWA ÷ ativo total</div>
+    <p>O fator de ponderação de risco (FPR) diz quanto de cada real de exposição conta como risco: caixa e título público pesam 0%, exposições a instituições do sistema pesam pouco, crédito de varejo pesa por volta de 75% e crédito a empresas pesa 100% ou mais. A regra real (Resolução BCB 229/2022 para crédito) depende do tipo de cliente, da garantia e do prazo; aqui os FPR são ilustrativos.</p>
+    <h4>Conta com a Coop Vale do Ipê</h4>
+    {{html:tabela_rwa()}}
+    <p>RWA total de R$ {{m:i('rwa',2025)}} mil ({{p1:i('rwa',2025)/i('rwa',2024)-1}} sobre 2024). Densidade de {{p1:i('rwa',2025)/s('ativo',2025)}} do ativo. O crédito responde por {{p0:i('rwa_credito',2025)/i('rwa',2025)}} do RWA, e o risco operacional por {{p0:i('rwa_operacional',2025)/i('rwa',2025)}}.</p>
+    <div class="leitura"><div class="up"><b>Se sobe:</b> crédito crescendo (principalmente de FPR alto), mais garantias prestadas, receita maior (risco operacional).</div><div class="down"><b>Se cai:</b> carteira menor, mix indo para FPR menor (rural, imobiliário com boa garantia), mais liquidez.</div></div>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>Trocar R$ 100 de centralização (FPR 20%) por R$ 100 de crédito comercial (FPR 85%) aumenta o RWA em R$ 65, mesmo com o ativo igual.</li>
+      <li>Coobrigações e garantias prestadas não estão no ativo, mas estão no RWA.</li>
+      <li>O risco operacional cresce com a receita: crescer receita sem crescer capital também aperta o índice.</li>
+    </ul></div>
+    <p><b>Liga com:</b> Basileia (denominador), crescimento da carteira, RAROC (capital alocado).</p>
+    <p><a href="#ex-P09">Pratique: Exercício 9</a></p>
+  </div>
+
+  <!-- 7.12 Basileia -->
+  <div class="card-ind" id="ind-basileia">
+    <h3>7.12 Índice de Basileia <span class="fam">capital</span></h3>
+    <p class="pergunta">O capital é suficiente para o risco que a cooperativa corre?</p>
+    <div class="formula">Patrimônio de referência (PR) = Nível I (capital principal + complementar) + Nível II (por exemplo, LFS)
+Capital principal = PL - ajustes prudenciais (intangível, parte dos créditos tributários, outros)
+Índice de Basileia = PR ÷ RWA
+MM/RWA (folga, em p.p.) = Basileia - exigência total
+Margem de capital (R$) = PR - exigência × RWA
+Potencial de crédito até o piso de 2 p.p. (política, aula) = (PR ÷ 12,5% - RWA) ÷ 1,1</div>
+    <div class="tbl-wrap"><table class="txt">
+      <thead><tr><th>Exigência (S4)</th><th>Mínimo</th><th>+ Adicional de conservação</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Capital principal ÷ RWA</td><td>4,5%</td><td>2,5%</td><td>7,0%</td></tr>
+        <tr><td>Nível I ÷ RWA</td><td>6,0%</td><td>2,5%</td><td>8,5%</td></tr>
+        <tr><td>PR ÷ RWA (índice de Basileia)</td><td>8,0%</td><td>2,5%</td><td>10,5%</td></tr>
+      </tbody>
+    </table></div>
+    <p>O S5 usa metodologia simplificada (Resolução CMN 4.606), com outra régua. Confirme o segmento da cooperativa antes de comparar.</p>
+    <div class="resolvido" id="r9"><span class="tag">Exercício resolvido 10</span>
+      <h4>Basileia, folga e potencial de crédito de 2025</h4>
+      <ol class="passos">
+        <li>Capital principal = PL {{m:s('pl',2025)}} - intangível {{m:s('intangivel',2025)}} - outros ajustes {{m:n('ajuste_prudencial_outros',2025)}} = R$ {{m:i('capital_principal',2025)}} mil.</li>
+        <li>PR = {{m:i('capital_principal',2025)}} + LFS {{m:s('lfs',2025)}} = <b>R$ {{m:i('pr',2025)}} mil</b>.</li>
+        <li>Basileia = {{m:i('pr',2025)}} ÷ {{m:i('rwa',2025)}} = <b>{{p2:i('basileia',2025)}}</b> (2024: {{p2:i('basileia',2024)}}). Sem a LFS: {{p2:i('basileia_sem_lfs',2025)}}.</li>
+        <li>MM/RWA = {{p2:i('basileia',2025)}} - 10,5% = <b>{{pp:i('mm_rwa',2025)}} p.p.</b> Margem de capital = {{m:i('pr',2025)}} - 10,5% × {{m:i('rwa',2025)}} = R$ {{m:i('margem_capital',2025)}} mil.</li>
+        <li>Potencial de crédito = ({{m:i('pr',2025)}} ÷ 12,5% - {{m:i('rwa',2025)}}) ÷ 1,1 = <b>R$ {{m:i('potencial_credito',2025)}} mil</b>.</li>
+      </ol>
+      <p><b>Conclusão:</b> o índice subiu, mas só por causa da LFS: sem ela, teria ficado praticamente igual a 2024 ({{p2:i('basileia_sem_lfs',2025)}} contra {{p2:i('basileia',2024)}}). A folga de {{pp1:i('mm_rwa',2025)}} p.p. permite crescer cerca de R$ {{mi:i('potencial_credito',2025)}} milhões em crédito até o piso de 2 p.p., ou {{p0:i('potencial_credito',2025)/s('carteira',2025)}} da carteira atual.</p>
+    </div>
+    {{html:svg_basileia()}}
+    <div class="leitura"><div class="up"><b>Se sobe:</b> resultado retido, capitalização de quotas, LFS, carteira menor ou indo para FPR menor.</div><div class="down"><b>Se cai:</b> crédito crescendo mais que o capital, prejuízo, distribuição de sobras, juros ao capital altos, resgate de quotas.</div></div>
+    <p><b>Régua didática:</b> acima de 14,5% é confortável; entre 12,5% e 14,5% pede plano de capital; abaixo de 12,5% fica sem a folga de 2 p.p. da política de recursos corporativos.</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>Índice sustentado por LFS: dívida cara, com prazo, que compra tempo e não resultado.</li>
+      <li>Índice estável com PL crescendo só por quotas: capital que pode sair.</li>
+      <li>Olhar o índice do ano sem a projeção: com o resultado recorrente caindo e o crédito crescendo 14%, a folga encolhe rápido.</li>
+    </ul></div>
+    <div class="box sicredi"><div class="t">🌱 No Sicredi</div><p>A MM/RWA é o indicador que destrava ou bloqueia recursos corporativos (piso de 2 p.p., FPR de 110% na conta do potencial, como na aula de Recursos Corporativos). No simulador, o GAP de capital mostra em reais quanto faltaria para voltar à régua.</p></div>
+    <p><a href="#ex-P09">Pratique: Exercício 9</a></p>
+  </div>
+
+  <!-- 7.13 Liquidez -->
+  <div class="card-ind" id="ind-liq">
+    <h3>7.13 Liquidez: LCR e indicadores internos <span class="fam">liquidez</span></h3>
+    <p class="pergunta">A cooperativa aguenta uma onda de saques sem vender ativos às pressas?</p>
+    <div class="formula">LCR = ativos líquidos de alta qualidade ÷ saídas líquidas de caixa em 30 dias de estresse      (≥ 100%)
+Saídas líquidas = saídas - mínimo(entradas; 75% das saídas)
+Índice de liquidez interno = liquidez ÷ liquidez mínima (nível mínimo de liquidez × depósitos)
+Liquidez imediata = (caixa + centralização) ÷ depósitos à vista
+Crédito ÷ captação  |  Liquidez ÷ ativo  |  Concentração dos maiores depositantes</div>
+    <div class="box norma"><div class="t">📜 Norma</div><p>O LCR regulatório (Resolução CMN 4.401/2015 e Circular BCB 3.749/2015) é obrigatório para o segmento S1. Cooperativas S4 e S5 gerenciam o risco de liquidez com estrutura e réguas próprias (Resolução CMN 4.557/2017; simplificada no S5). O LCR aqui é uma régua interna didática, com a mesma lógica.</p></div>
+    <div class="resolvido" id="r11"><span class="tag">Exercício resolvido 11</span>
+      <h4>LCR didático e índice interno de 2025</h4>
+      {{html:tabela_lcr()}}
+      <ol class="passos">
+        <li>Ativos líquidos = caixa {{m:s('caixa',2025)}} + TVM {{m:s('tvm',2025)}} + centralização {{m:s('centralizacao',2025)}} = R$ {{m:i('hqla',2025)}} mil.</li>
+        <li>Saídas no estresse = R$ {{m:i('lcr_saidas',2025)}} mil. Entradas consideradas = R$ {{m:i('lcr_entradas',2025)}} mil (abaixo do teto de 75%).</li>
+        <li>LCR = {{m:i('hqla',2025)}} ÷ ({{m:i('lcr_saidas',2025)}} - {{m:i('lcr_entradas',2025)}}) = <b>{{p0:i('lcr',2025)}}</b>.</li>
+        <li>Índice interno = liquidez {{m:s('liquidez',2025)}} ÷ (30% × depósitos {{m:s('depositos',2025)}}) = <b>{{n2:i('indice_liquidez',2025)}} vezes</b> o mínimo.</li>
+      </ol>
+      <p><b>Conclusão:</b> liquidez sobrando. A pergunta deixa de ser "aguenta?" e passa a ser "quanto custa carregar isso?". A liquidez rende cerca de 100% do CDI e o RDC que a financia custa cerca de 101%: cada R$ 100 milhões de excesso custam perto de R$ {{n0:1e5*CDI[2025]*0.01}} mil por ano, fora o que deixariam de render em crédito.</p>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Indicador</th><th>2024</th><th>2025</th></tr></thead>
+      <tbody>
+        <tr><td>Liquidez ÷ ativo</td><td>{{p1:i('liquidez_ativo',2024)}}</td><td>{{p1:i('liquidez_ativo',2025)}}</td></tr>
+        <tr><td>Índice de liquidez interno</td><td>{{x2:i('indice_liquidez',2024)}}</td><td>{{x2:i('indice_liquidez',2025)}}</td></tr>
+        <tr><td>LCR didático</td><td>{{p0:i('lcr',2024)}}</td><td>{{p0:i('lcr',2025)}}</td></tr>
+        <tr><td>Liquidez imediata</td><td>{{x2:i('liq_imediata',2024)}}</td><td>{{x2:i('liq_imediata',2025)}}</td></tr>
+        <tr><td>Crédito ÷ captação</td><td>{{p1:i('credito_captacao',2024)}}</td><td>{{p1:i('credito_captacao',2025)}}</td></tr>
+        <tr><td>10 maiores depositantes ÷ captação</td><td>{{p1:n('top10_depositantes',2024)}}</td><td>{{p1:n('top10_depositantes',2025)}}</td></tr>
+      </tbody>
+    </table></div>
+    <div class="leitura"><div class="up"><b>Se sobe:</b> captação crescendo mais que o crédito, repasses tomados, carteira encolhendo. Mais segurança, mais custo.</div><div class="down"><b>Se cai:</b> crédito crescendo mais que a captação, saques, aplicações de prazo longo. Abaixo de 1 no índice interno, falta liquidez.</div></div>
+    <p><b>Régua didática:</b> índice interno entre 1,2 e 2,0; LCR acima de 100% (no Caderno de Finanças e Riscos, o apetite citado é de 130% numa régua de estresse de 30 dias).</p>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>Achar que mais liquidez é sempre melhor: o excesso tem custo de carregamento e reduz o NIM.</li>
+      <li>A centralização é líquida para a singular, mas é a liquidez do sistema que segura um estresse regional.</li>
+      <li>Poupança e LCA têm direcionamento: parte do dinheiro já tem destino obrigatório (crédito rural).</li>
+      <li>Concentração: poucos depositantes grandes podem sair juntos.</li>
+    </ul></div>
+    <div class="box sicredi"><div class="t">🌱 No Sicredi</div><p>Na aula de transfer de liquidez, a liquidez mínima é o nível mínimo de liquidez (NML) vezes a base de depósitos. O simulador mostra o índice de liquidez e o GAP de liquidez com essa lógica. O DI intrassistema é a ferramenta para aplicar a sobra (ou captar a falta) dentro do sistema.</p></div>
+    <p><a href="#ex-P10">Pratique: Exercício 10</a></p>
+  </div>
+
+  <!-- 7.14 FTP -->
+  <div class="card-ind" id="ind-ftp">
+    <h3>7.14 FTP: funds transfer pricing <span class="fam">gestão e preço</span></h3>
+    <p class="pergunta">Qual produto gera margem e qual destrói, depois de pagar o custo do dinheiro?</p>
+    <p><b>A ideia:</b> a cooperativa tem uma tesouraria central (no papel). Toda captação "vende" o dinheiro para a tesouraria e recebe uma taxa de transferência (FTP); todo crédito "compra" o dinheiro da tesouraria e paga a FTP. A taxa depende do prazo e do tipo de recurso (direcionado, livre, estável). Assim a margem financeira se divide em três pedaços que somam o total:</p>
+    <div class="formula">Margem do crédito   = receita de juros - saldo médio × FTP do crédito
+Margem da captação  = saldo médio × FTP da captação - despesa de juros
+Tesouraria (ALM)    = margem financeira - soma das margens dos produtos
+                      (descasamento de prazo e de taxa + ganho de financiar ativos com PL, que não paga juros)</div>
+    <div class="resolvido" id="r12"><span class="tag">Exercício resolvido 12</span>
+      <h4>Quem fez a margem financeira de 2025</h4>
+      {{html:tabela_ftp()}}
+      <ol class="passos">
+        <li><b>Crédito comercial:</b> receita {{m:d('rend_comercial',2025)}} - {{m:avg('cred_comercial',2025)}} × {{p1:M.FTP['comercial'][2025]}} = <b>R$ {{m:ftp('comercial',2025)}} mil</b>. É o motor da margem.</li>
+        <li><b>Crédito rural:</b> receita {{m:d('rend_rural',2025)}} - {{m:avg('cred_rural',2025)}} × {{p1:M.FTP['rural'][2025]}} = <b>R$ {{m:ftp('rural',2025)}} mil</b>. Margem fina: a taxa é baixa e a FTP já é a de recurso direcionado.</li>
+        <li><b>Depósito à vista:</b> {{m:avg('dep_vista',2025)}} × {{p1:M.FTP['dep_vista'][2025]}} - 0 = <b>R$ {{m:ftp('dep_vista',2025)}} mil</b>. O produto mais valioso do passivo.</li>
+        <li><b>RDC:</b> {{m:avg('rdc',2025)}} × {{p1:M.FTP['rdc'][2025]}} - {{m:-d('desp_rdc',2025)}} = <b>R$ {{m:ftp('rdc',2025)}} mil</b>. Negativo: paga mais que o CDI e recebe o CDI.</li>
+        <li><b>Tesouraria:</b> {{m:d('mf',2025)}} - {{m:ftp('soma_produtos',2025)}} = <b>R$ {{m:ftp('tesouraria',2025)}} mil</b>, a maior parte vinda de financiar ativos com o PL (sem custo de juros).</li>
+      </ol>
+      <p><b>Conclusão:</b> o RDC destrói margem, compensado pelo depósito à vista e pela poupança. Crescer RDC a mais de 100% do CDI só faz sentido se o dinheiro for para crédito com margem.</p>
+    </div>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>FTP mal calibrado distorce incentivos: FTP baixo demais no crédito faz qualquer operação parecer boa.</li>
+      <li>O depósito à vista não é todo estável: dar FTP de longo prazo para o saldo inteiro superestima o valor dele.</li>
+      <li>A soma das margens dos produtos não é o resultado da cooperativa: faltam custo, risco e capital (por isso existe o RAROC).</li>
+    </ul></div>
+    <div class="box sicredi"><div class="t">🌱 No Sicredi</div><p>É o transfer price da aula de Recursos Corporativos: transfer de liquidez para crédito e captação, e transfer próprio para poupança e LCA por causa do direcionamento ao rural. O DI intrassistema e a centralização são as pontas da tesouraria do sistema.</p></div>
+    <p><a href="#ex-P11">Pratique: Exercício 11</a></p>
+  </div>
+
+  <!-- 7.15 RAROC -->
+  <div class="card-ind" id="ind-raroc">
+    <h3>7.15 RAROC: retorno ajustado ao risco sobre o capital <span class="fam">gestão e preço</span></h3>
+    <p class="pergunta">Esta operação (ou carteira) paga o capital que consome, depois de descontar o risco?</p>
+    <div class="formula">RAROC = resultado ajustado ao risco ÷ capital alocado
+Resultado ajustado = receita - FTP - custo operacional - perda esperada + crédito do capital
+Perda esperada = exposição × PD × LGD
+Capital alocado = RWA da operação × (10,5% + folga gerencial)
+Crédito do capital = capital alocado × FTP   (a parte financiada com capital não paga juros)
+Cria valor se RAROC ≥ retorno mínimo exigido (hurdle, o custo de capital)</div>
+    <div class="resolvido" id="r13"><span class="tag">Exercício resolvido 13</span>
+      <h4>RAROC de um crédito pessoal e a taxa mínima</h4>
+      <p>Crédito pessoal de R$ 100 mil por 1 ano a 26% a.a. FTP de 15%, custo operacional de 3,5% a.a., PD de 4%, LGD de 50%, FPR de 75%, capital de 12,5% do RWA, hurdle de 15%.</p>
+      <ol class="passos">
+        <li>Perda esperada = 100 × 4% × 50% = <b>R$ 2,0 mil</b>.</li>
+        <li>Capital alocado = 100 × 75% × 12,5% = <b>R$ 9,375 mil</b>. Crédito do capital = 9,375 × 15% = R$ 1,406 mil.</li>
+        <li>Resultado ajustado = 26,0 - 15,0 - 3,5 - 2,0 + 1,406 = <b>R$ 6,906 mil</b>.</li>
+        <li>RAROC = 6,906 ÷ 9,375 = <b>73,7%</b>, bem acima do hurdle de 15%.</li>
+        <li>Taxa mínima: taxa × 100 = 15,0 + 3,5 + 2,0 - 1,406 + 15% × 9,375 = 20,5 → <b>20,5% a.a.</b></li>
+      </ol>
+      <p><b>Repare:</b> quando o hurdle é igual à FTP, o crédito do capital e a exigência de retorno se anulam, e a taxa mínima vira FTP + custo + perda esperada. O RAROC alto deste exemplo vem do capital pequeno (FPR de 75%): ele é muito sensível ao capital alocado.</p>
+    </div>
+    <h4>RAROC por carteira na Coop Vale do Ipê (2025, R$ mil)</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Componente</th><th>Comercial</th><th>Rural</th></tr></thead>
+      <tbody>
+        <tr><td>Saldo médio</td><td>{{m:rar('comercial','saldo_m')}}</td><td>{{m:rar('rural','saldo_m')}}</td></tr>
+        <tr><td>Margem após FTP</td><td>{{m:rar('comercial','margem_ftp')}}</td><td>{{m:rar('rural','margem_ftp')}}</td></tr>
+        <tr><td>(-) Custo operacional ({{p1:M.RAROC['custo_op']['comercial']}} e {{p1:M.RAROC['custo_op']['rural']}} do saldo)</td><td>{{m:-rar('comercial','custo_op')}}</td><td>{{m:-rar('rural','custo_op')}}</td></tr>
+        <tr><td>(-) Perda esperada ({{p1:M.RAROC['pe']['comercial']}} e {{p1:M.RAROC['pe']['rural']}})</td><td>{{m:-rar('comercial','pe')}}</td><td>{{m:-rar('rural','pe')}}</td></tr>
+        <tr><td>(+) Crédito do capital</td><td>{{m:rar('comercial','credito_capital')}}</td><td>{{m:rar('rural','credito_capital')}}</td></tr>
+        <tr class="sub"><td>Resultado ajustado ao risco</td><td>{{m:rar('comercial','resultado')}}</td><td>{{m:rar('rural','resultado')}}</td></tr>
+        <tr><td>Capital alocado (RWA × 12,5%)</td><td>{{m:rar('comercial','capital')}}</td><td>{{m:rar('rural','capital')}}</td></tr>
+        <tr class="tot"><td>RAROC</td><td>{{p1:rar('comercial','raroc')}}</td><td>{{p1:rar('rural','raroc')}}</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Leitura:</b> a carteira comercial cria valor ({{p1:rar('comercial','raroc')}} contra hurdle de 15%). A rural fica muito abaixo ({{p1:rar('rural','raroc')}}).</p>
+    <div class="box pense"><div class="t">🤔 Pense antes de concluir: então a cooperativa deve parar o crédito rural?</div><p>Não necessariamente. O rural é a missão de uma cooperativa em região agrícola, traz poupança e LCA (funding direcionado), vende seguros e consórcios, e fideliza o associado. O RAROC por produto não enxerga isso. A análise certa é o RAROC do relacionamento (todas as operações do associado juntas) e a pergunta certa é: dá para melhorar preço, custo ou perda esperada do rural?</p></div>
+    <div class="box armadilha"><div class="t">⚠️ Armadilhas</div><ul>
+      <li>PD e LGD otimistas inflam o RAROC. Calibre com a perda histórica.</li>
+      <li>Capital econômico não é o regulatório: o FPR não capta concentração nem risco de safra.</li>
+      <li>Esquecer o custo operacional: uma operação pequena pode ter RAROC negativo só pelo custo de atender.</li>
+    </ul></div>
+    <p><a href="#ex-P12">Pratique: Exercício 12</a></p>
+  </div>
+  <div class="mod-fim"><span></span><button class="btn sec marcar" data-mod="m7" type="button">Marcar módulo como concluído</button></div>
+</section>
