@@ -1,0 +1,1679 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copiloto FP&amp;A: An&#225;lise Estrat&#233;gica</title>
+<meta name="description" content="An&#225;lise cr&#237;tica de painel de especialistas sobre o Copiloto FP&A: problema, ICP, concorr&#234;ncia, moat, posicionamento, monetiza&#231;&#227;o, GTM, roadmap, riscos, plano de 12 meses e decis&#227;o de investimento.">
+<style>
+:root{
+  --bg:#f7f6f2; --surface:#ffffff; --surface-2:#f0eee8; --text:#1d1d1b; --muted:#5f5e58; --border:#dddad0;
+  --accent:#1f5f8b; --accent-soft:#e3eef6; --good:#2e7d4f; --good-soft:#e2f2e8; --warn:#a86a00; --warn-soft:#fbf0d9;
+  --bad:#b23a32; --bad-soft:#f8e2df; --bar2:#9db7cc;
+  --h2:#f6d8d4; --h3:#f8e2df; --h4:#fbeedd; --h5:#fbf5df; --h6:#eef4dc; --h7:#dcefe2; --h8:#c8e6d2; --h9:#acdabd; --h10:#8fcca6;
+  --radius:10px; --shadow:0 1px 2px rgba(0,0,0,.05),0 2px 8px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141412; --surface:#1d1d1a; --surface-2:#262622; --text:#ecebe6; --muted:#a8a69d; --border:#36352f;
+    --accent:#7fb4dc; --accent-soft:#1d2d3a; --good:#6fc394; --good-soft:#1b2e23; --warn:#e2b04f; --warn-soft:#33291a;
+    --bad:#ec8a80; --bad-soft:#3a201d; --bar2:#4e6b82;
+    --h2:#4a2622; --h3:#3f2420; --h4:#3d3020; --h5:#38341f; --h6:#2f3622; --h7:#233a2b; --h8:#1f4430; --h9:#1c5136; --h10:#195e3d;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141412; --surface:#1d1d1a; --surface-2:#262622; --text:#ecebe6; --muted:#a8a69d; --border:#36352f;
+  --accent:#7fb4dc; --accent-soft:#1d2d3a; --good:#6fc394; --good-soft:#1b2e23; --warn:#e2b04f; --warn-soft:#33291a;
+  --bad:#ec8a80; --bad-soft:#3a201d; --bar2:#4e6b82;
+  --h2:#4a2622; --h3:#3f2420; --h4:#3d3020; --h5:#38341f; --h6:#2f3622; --h7:#233a2b; --h8:#1f4430; --h9:#1c5136; --h10:#195e3d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);max-width:1320px;margin:0 auto}
+nav.toc{position:sticky;top:0;height:100vh;overflow:auto;padding:24px 16px 24px 20px;border-right:1px solid var(--border)}
+nav.toc .brand{font-weight:700;font-size:15px;margin-bottom:4px}
+nav.toc .sub{font-size:12px;color:var(--muted);margin-bottom:16px}
+nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:t}
+nav.toc li a{display:block;padding:5px 10px;border-radius:6px;color:var(--muted);text-decoration:none;font-size:13.5px;line-height:1.35}
+nav.toc li a:hover{background:var(--surface-2);color:var(--text)}
+nav.toc li a.active{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.toc-actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+button,.btn{font:inherit;font-size:13px;padding:6px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer}
+button:hover{background:var(--surface-2)}
+main{padding:32px 40px 80px;min-width:0}
+header.hero{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px 30px;box-shadow:var(--shadow);margin-bottom:28px}
+header.hero h1{margin:0 0 6px;font-size:30px;line-height:1.2;letter-spacing:-.01em}
+header.hero p.lead{margin:0;color:var(--muted);font-size:16px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{display:inline-block;font-size:12px;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+.kpi{background:var(--surface-2);border-radius:var(--radius);padding:14px}
+.kpi .v{font-size:24px;font-weight:700;line-height:1.1}
+.kpi .l{font-size:12.5px;color:var(--muted);margin-top:4px}
+section{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px 30px;margin-bottom:22px;box-shadow:var(--shadow)}
+section>h2{margin:0 0 14px;font-size:23px;line-height:1.25;display:flex;gap:10px;align-items:baseline}
+section>h2 .n{color:var(--accent);font-variant-numeric:tabular-nums}
+h3{font-size:17.5px;margin:22px 0 8px}
+h4{font-size:15.5px;margin:16px 0 6px}
+p{margin:8px 0}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin:3px 0}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+.callout.bad{border-color:var(--bad);background:var(--bad-soft)}
+.callout.good{border-color:var(--good);background:var(--good-soft)}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft)}
+.callout b:first-child{display:block;margin-bottom:2px}
+.tbl{width:100%;overflow-x:auto;margin:12px 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+th{background:var(--surface-2);font-weight:600;font-size:13px;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hl td{background:var(--accent-soft);font-weight:600}
+.h2c{background:var(--h2)}.h3c{background:var(--h3)}.h4c{background:var(--h4)}.h5c{background:var(--h5)}.h6c{background:var(--h6)}.h7c{background:var(--h7)}.h8c{background:var(--h8)}.h9c{background:var(--h9)}.h10c{background:var(--h10)}.h0c,.h1c{background:var(--h2)}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.b-crit{background:var(--bad);color:#fff}.b-alto{background:var(--bad-soft);color:var(--bad)}.b-med{background:var(--warn-soft);color:var(--warn)}.b-baixo{background:var(--good-soft);color:var(--good)}
+.b-yes{background:var(--good-soft);color:var(--good)}.b-no{background:var(--bad-soft);color:var(--bad)}.b-maybe{background:var(--warn-soft);color:var(--warn)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;background:var(--surface)}
+.card h4{margin-top:0}
+.card.verdict-no{border-top:4px solid var(--bad)}.card.verdict-yes{border-top:4px solid var(--good)}.card.verdict-maybe{border-top:4px solid var(--warn)}
+/* barras */
+.bars{display:flex;flex-direction:column;gap:7px;margin:12px 0}
+.bar-row{display:grid;grid-template-columns:230px minmax(0,1fr) 54px;gap:10px;align-items:center;font-size:13.5px}
+.bar-track{background:var(--surface-2);border-radius:5px;height:16px;overflow:hidden}
+.bar-fill{height:100%;background:var(--accent);border-radius:5px}
+.bar-fill.top{background:var(--good)}
+.bar-fill.low{background:var(--bar2)}
+.bar-val{font-variant-numeric:tabular-nums;text-align:right;font-weight:600}
+.pair{display:grid;grid-template-columns:200px minmax(0,1fr);gap:10px;align-items:center;font-size:13.5px;margin:6px 0}
+.pair .tracks{display:flex;flex-direction:column;gap:3px}
+.pair .t{display:flex;align-items:center;gap:8px}
+.pair .t .bar-track{flex:1;height:12px}
+.pair .t span{width:26px;text-align:right;font-variant-numeric:tabular-nums;font-size:12.5px}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--muted);flex-wrap:wrap;margin:6px 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-2px}
+/* gr&#225;fico de colunas MRR */
+.cols{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px;align-items:end;height:220px;padding:10px 4px 0;border-bottom:1px solid var(--border);margin-top:12px}
+.col{display:flex;gap:2px;align-items:end;height:100%;position:relative}
+.col .c1,.col .c2{flex:1;border-radius:3px 3px 0 0;min-height:2px}
+.col .c1{background:var(--accent)}.col .c2{background:var(--bar2)}
+.col .lbl{position:absolute;top:-20px;left:0;right:0;text-align:center;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.xaxis{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px;font-size:11.5px;color:var(--muted);text-align:center;padding:4px 4px 0}
+/* matriz de risco */
+.matrix{display:grid;grid-template-columns:90px repeat(3,minmax(0,1fr));gap:6px;margin:12px 0;font-size:13px}
+.matrix .ax{display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--muted);font-size:12.5px;text-align:center}
+.matrix .cell{border-radius:8px;padding:8px;min-height:70px;display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start}
+.matrix .r{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--surface);border:1px solid var(--border);font-weight:700;font-size:12.5px}
+.z1{background:var(--good-soft)}.z2{background:var(--warn-soft)}.z3{background:var(--bad-soft)}
+/* funil */
+.funnel{display:flex;flex-direction:column;gap:5px;margin:10px 0}
+.funnel div{background:var(--accent);color:#fff;padding:7px 12px;border-radius:6px;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+:root[data-theme="dark"] .funnel div{color:#0e1a24}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .funnel div{color:#0e1a24}}
+/* timeline */
+.timeline{position:relative;margin:14px 0;padding-left:22px;border-left:3px solid var(--border)}
+.timeline .step{position:relative;margin:0 0 16px}
+.timeline .step::before{content:"";position:absolute;left:-30px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:3px solid var(--surface)}
+.timeline .step h4{margin:0 0 4px}
+/* calculadora */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;margin-top:10px}
+.calc label{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;padding:5px 0;border-bottom:1px dashed var(--border)}
+.calc input{width:120px;font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface-2);color:var(--text);text-align:right}
+.calc .out{background:var(--surface-2);border-radius:var(--radius);padding:14px 16px}
+.calc .out div{display:flex;justify-content:space-between;gap:10px;padding:5px 0;font-size:14px;border-bottom:1px solid var(--border)}
+.calc .out div:last-child{border-bottom:0}
+.calc .out b{font-variant-numeric:tabular-nums}
+.formula{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;background:var(--surface-2);padding:10px 12px;border-radius:8px;overflow-x:auto;white-space:pre-wrap}
+blockquote{margin:12px 0;padding:12px 16px;border-left:4px solid var(--border);background:var(--surface-2);border-radius:0 8px 8px 0}
+.checklist li{list-style:none;margin-left:-22px}
+.checklist input{margin-right:8px;transform:scale(1.15)}
+details{border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;margin:10px 0;background:var(--surface)}
+details summary{cursor:pointer;font-weight:600}
+details[open] summary{margin-bottom:8px}
+.attack h4{display:flex;gap:8px;align-items:center}
+.small{font-size:13px;color:var(--muted)}
+footer{color:var(--muted);font-size:13px;text-align:center;margin-top:30px}
+.menu-btn{display:none}
+@media (max-width:980px){
+  .layout{grid-template-columns:1fr}
+  nav.toc{position:fixed;inset:0 auto 0 0;width:280px;z-index:20;background:var(--bg);transform:translateX(-100%);transition:transform .2s;box-shadow:0 0 30px rgba(0,0,0,.2)}
+  nav.toc.open{transform:none}
+  .menu-btn{display:inline-block;position:fixed;top:12px;right:12px;z-index:30;box-shadow:var(--shadow)}
+  main{padding:16px 16px 60px}
+  section{padding:20px 16px}
+  header.hero{padding:20px 16px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid2,.grid3,.calc{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:130px minmax(0,1fr) 44px;font-size:12.5px}
+  .pair{grid-template-columns:110px minmax(0,1fr)}
+  .matrix{grid-template-columns:62px repeat(3,minmax(0,1fr))}
+  .cols{height:170px}
+  header.hero h1{font-size:24px}
+}
+@media print{
+  nav.toc,.menu-btn,.toc-actions{display:none!important}
+  .layout{display:block}
+  main{padding:0}
+  section,header.hero{box-shadow:none;break-inside:auto;page-break-inside:auto}
+  details{display:block}
+  body{background:#fff}
+}
+
+/* abas */
+.tabs{position:sticky;top:0;z-index:15;display:flex;gap:8px;flex-wrap:wrap;padding:10px 0 12px;margin:-8px 0 18px;background:var(--bg);border-bottom:1px solid var(--border)}
+.tab{font:inherit;font-size:14px;font-weight:600;padding:9px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer}
+.tab:hover{color:var(--text)}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .tab[aria-selected="true"]{color:#0e1a24}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tab[aria-selected="true"]{color:#0e1a24}}
+.is-hidden{display:none!important}
+.toc-title{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:4px 10px 6px;font-weight:600}
+.stackchart{position:relative}
+.col.stack{flex-direction:column;justify-content:flex-end;align-items:stretch;gap:0;padding:0 16%}
+.col.stack .s1{background:var(--accent)}
+.col.stack .s2{background:var(--good);border-radius:3px 3px 0 0}
+.col.stack>.s1:nth-child(2){border-radius:3px 3px 0 0}
+.goal{position:absolute;left:0;right:0;border-top:2px dashed var(--bad);z-index:1;pointer-events:none}
+@media (max-width:980px){.tabs{padding-right:96px}.tab{font-size:12.5px;padding:7px 9px}}
+@media print{.tabs{display:none}.tabpanel.is-hidden{display:block!important}.toc-list.is-hidden{display:block!important}}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn" aria-label="Abrir &#237;ndice">&#9776; &#205;ndice</button>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="&#205;ndice">
+  <div class="brand">Copiloto FP&amp;A</div>
+  <div class="sub">An&#225;lise estrat&#233;gica &#183; 12/11/2026</div>
+  <div class="toc-list" data-tab="1">
+  <div class="toc-title">1&#186; prompt</div>
+  <ol>
+    <li><a href="#s0">0. Veredito em 30 segundos</a></li>
+    <li><a href="#s1">1. Premissas assumidas</a></li>
+    <li><a href="#s2">2. Problema</a></li>
+    <li><a href="#s3">3. Cliente ideal (ICP)</a></li>
+    <li><a href="#s4">4. Product Market Fit</a></li>
+    <li><a href="#s5">5. Concorr&#234;ncia</a></li>
+    <li><a href="#s6">6. Diferencial e moat</a></li>
+    <li><a href="#s7">7. Posicionamento</a></li>
+    <li><a href="#s8">8. Monetiza&#231;&#227;o</a></li>
+    <li><a href="#s8b">8b. Calculadora de ROI</a></li>
+    <li><a href="#s9">9. Go-to-market</a></li>
+    <li><a href="#s10">10. Roadmap de produto</a></li>
+    <li><a href="#s11">11. Os 20 maiores riscos</a></li>
+    <li><a href="#s12">12. Plano de 12 meses</a></li>
+    <li><a href="#s13">13. Vis&#227;o de longo prazo</a></li>
+    <li><a href="#s14">14. Decis&#227;o do investidor</a></li>
+    <li><a href="#s15">15. Se eu fosse seu concorrente</a></li>
+    <li><a href="#s16">16. Pr&#243;ximos 14 dias</a></li>
+    <li><a href="#s17">17. Roteiro de entrevista</a></li>
+    <li><a href="#s18">18. Gloss&#225;rio</a></li>
+    <li><a href="#s19">19. Fontes</a></li>
+  </ol>
+</div>
+<div class="toc-list is-hidden" data-tab="2">
+  <div class="toc-title">2&#186; prompt</div>
+  <ol>
+    <li><a href="#p2-0">0. Resposta direta</a></li>
+    <li><a href="#p2-1">1. Limites e m&#233;todo</a></li>
+    <li><a href="#p2-2">2. O que mudou</a></li>
+    <li><a href="#p2-3">3. Quanto faturar</a></li>
+    <li><a href="#p2-4">4. Caminhos avaliados</a></li>
+    <li><a href="#p2-5">5. Avalia&#231;&#227;o iterativa</a></li>
+    <li><a href="#p2-6">6. Produto item a item</a></li>
+    <li><a href="#p2-7">7. Caminho mais f&#225;cil</a></li>
+    <li><a href="#p2-8">8. Caminho escal&#225;vel</a></li>
+    <li><a href="#p2-9">9. Consultoria + produto?</a></li>
+    <li><a href="#p2-10">10. Proje&#231;&#227;o 12 meses</a></li>
+    <li><a href="#p2-11">11. Os R$ 5 mil</a></li>
+    <li><a href="#p2-12">12. Plano de 90 dias</a></li>
+    <li><a href="#p2-13">13. Indicadores e gatilhos</a></li>
+    <li><a href="#p2-14">14. Riscos do caminho</a></li>
+    <li><a href="#p2-15">15. Veredito revisado</a></li>
+  </ol>
+</div>
+  <div class="toc-actions">
+    <button id="themeBtn" type="button">Alternar tema</button>
+    <button type="button" onclick="window.print()">Imprimir / PDF</button>
+  </div>
+</nav>
+
+<main>
+<div class="tabs" role="tablist" aria-label="Respostas">
+  <button class="tab" role="tab" data-tab="1" aria-selected="true">1&#186; prompt &#183; An&#225;lise estrat&#233;gica</button>
+  <button class="tab" role="tab" data-tab="2" aria-selected="false">2&#186; prompt &#183; Caminho para R$ 20 mil/m&#234;s</button>
+</div>
+<div class="tabpanel" id="tab-1" role="tabpanel">
+<header class="hero">
+  <h1>Copiloto FP&amp;A: avalia&#231;&#227;o de painel e decis&#227;o de investimento</h1>
+  <p class="lead">An&#225;lise cr&#237;tica feita por um painel simulado: ex-s&#243;cio McKinsey, investidor de VC em SaaS B2B, fundador SaaS com PMF, especialista em vendas B2B de alto ticket, especialista em FP&amp;A e CFO as a Service, especialista em RevOps e especialista em precifica&#231;&#227;o.</p>
+  <div class="meta">
+    <span class="chip">Data: 12/11/2026</span>
+    <span class="chip">Mercado: Brasil</span>
+    <span class="chip">Est&#225;gio avaliado: ideia / pr&#233;-receita</span>
+    <span class="chip">Moeda: R$ (c&#226;mbio assumido R$ 5,50 por US$)</span>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="v">4,1 / 10</div><div class="l">Nota m&#233;dia do investidor para a proposta atual</div></div>
+    <div class="kpi"><div class="v">6,3 / 10</div><div class="l">Nota m&#233;dia se reposicionar e cumprir marcos</div></div>
+    <div class="kpi"><div class="v">R$ 85 mil</div><div class="l">MRR meta no m&#234;s 12 (cen&#225;rio base, 48 clientes)</div></div>
+    <div class="kpi"><div class="v">R$ 0</div><div class="l">Investimento hoje. R$ 0,8 a 1,5 mi na tese reposicionada, com marcos</div></div>
+  </div>
+</header>
+
+<!-- 0 -->
+<section id="s0">
+  <h2><span class="n">0.</span> Veredito em 30 segundos</h2>
+  <ol>
+    <li><b>A ideia, como est&#225;, eu n&#227;o financiaria.</b> Ela junta duas verticais, fala em plataforma e p&#245;e no centro a resposta ao vivo durante a reuni&#227;o. Essa &#233; a parte mais vistosa, a mais arriscada e a mais f&#225;cil de copiar.</li>
+    <li><b>Existe um neg&#243;cio real escondido na ideia.</b> N&#227;o &#233; "responder perguntas na hora". &#201; preparar, conduzir e dar continuidade &#224; reuni&#227;o mensal de resultados de <b>firmas que atendem v&#225;rias empresas</b>: CFO as a Service, consultorias financeiras, controladoria terceirizada e BPOs que querem vender servi&#231;o consultivo. O ganho para o comprador &#233; capacidade: cada consultor passa a atender mais clientes, e analistas menos experientes entregam mais.</li>
+    <li><b>O Copiloto Comercial &#233; a pior decis&#227;o poss&#237;vel agora.</b> A premissa de "mesma tecnologia" &#233; falsa. A parte compartilhada (transcri&#231;&#227;o, RAG e LLM) &#233; commodity, e &#233; justamente a parte que os concorrentes j&#225; t&#234;m. As partes dif&#237;ceis das duas verticais n&#227;o t&#234;m nada em comum.</li>
+    <li><b>Hoje n&#227;o h&#225; moat.</b> Uma defesa pode surgir de quatro coisas, nesta ordem: profundidade no fluxo de trabalho, hist&#243;rico mensal de cada empresa, especificidade brasileira e canal de distribui&#231;&#227;o.</li>
+    <li><b>O desfecho realista</b> &#233; uma empresa lucrativa de R$ 3 a 10 milh&#245;es por ano, com boa chance de ser vendida para um player local de ERP ou FP&amp;A. Chegar a R$ 100 milh&#245;es exige outra tese (se&#231;&#227;o 13).</li>
+  </ol>
+  <div class="callout bad"><b>Onde a proposta atual erra</b>Foco no ao vivo, duas verticais ao mesmo tempo, ambi&#231;&#227;o de plataforma antes de PMF e LLM calculando n&#250;meros.</div>
+  <div class="callout good"><b>Onde est&#225; o neg&#243;cio</b>Sistema da reuni&#227;o mensal de resultados para firmas multi-cliente, cobrado por empresa atendida, com n&#250;meros determin&#237;sticos e rastre&#225;veis e mem&#243;ria m&#234;s a m&#234;s.</div>
+</section>
+
+<!-- 1 -->
+<section id="s1">
+  <h2><span class="n">1.</span> Premissas assumidas</h2>
+  <p>Alguns pontos n&#227;o foram informados. Assumi o seguinte; se algo estiver errado, parte da an&#225;lise muda:</p>
+  <ul>
+    <li>Voc&#234; &#233; consultor financeiro e n&#227;o tem cofundador t&#233;cnico confirmado.</li>
+    <li>Ainda n&#227;o h&#225; cliente pagante. No m&#225;ximo existe um prot&#243;tipo.</li>
+    <li>O mercado inicial &#233; o Brasil, em PT-BR, com PMEs de R$ 10 a 300 milh&#245;es de faturamento por ano.</li>
+    <li>O capital pr&#243;prio &#233; limitado, e o objetivo &#233; chegar a receita antes de captar.</li>
+  </ul>
+  <h3>Perguntas que mudam a an&#225;lise</h3>
+  <ol type="a">
+    <li>J&#225; existe c&#243;digo? Quem o escreve?</li>
+    <li>Quantas firmas de CFOaaS ou BPO voc&#234; conhece pessoalmente?</li>
+    <li>O material que entra no sistema hoje &#233; o PPT pronto ou o balancete cru?</li>
+    <li>Quanto voc&#234; consegue investir e por quanto tempo?</li>
+  </ol>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <h2><span class="n">2.</span> Problema</h2>
+  <h3>O problema existe?</h3>
+  <p>Sim, mas est&#225; mal recortado. Na verdade s&#227;o tr&#234;s dores diferentes, com valores muito diferentes:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Dor</th><th>Frequ&#234;ncia</th><th>Intensidade</th><th>Quanto se paga para resolver</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Preparar a reuni&#227;o</b> (montar DRE gerencial, explicar varia&#231;&#245;es, montar o PPT, antecipar perguntas)</td><td>Todo m&#234;s, em cada cliente</td><td>Alta, consome horas</td><td><span class="badge b-yes">Alta</span> custo direto e limite de capacidade da firma</td></tr>
+      <tr><td><b>Pergunta inesperada ao vivo</b></td><td>1 a 5 vezes por reuni&#227;o</td><td>Alta no emocional, baixa no preju&#237;zo real</td><td><span class="badge b-maybe">Baixa a m&#233;dia</span></td></tr>
+      <tr><td><b>P&#243;s-reuni&#227;o</b> (ata, pend&#234;ncias, follow-up)</td><td>Todo m&#234;s</td><td>M&#233;dia</td><td><span class="badge b-maybe">M&#233;dia</span> e virando commodity</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout warn"><b>A premissa mais fr&#225;gil</b>Voc&#234; parte do princ&#237;pio de que n&#227;o responder na hora &#233; grave. Em finan&#231;as, n&#227;o &#233;. "Deixa eu confirmar esse n&#250;mero e te mando hoje" &#233; aceito e at&#233; passa imagem de rigor. J&#225; dizer <b>um n&#250;mero errado com confian&#231;a</b> ao s&#243;cio destr&#243;i a credibilidade da consultoria. O risco &#233; assim&#233;trico: a camada ao vivo entrega pouco quando acerta e causa muito estrago quando erra.</div>
+
+  <div class="grid3">
+    <div class="card"><h4>&#201; frequente?</h4><p>Reuni&#227;o de resultado &#233; mensal por cliente, mas um consultor faz de 6 a 30 por m&#234;s. A pergunta inesperada aparece de 1 a 5 vezes por reuni&#227;o. <b>O preparo &#233; a dor frequente.</b></p></div>
+    <div class="card"><h4>&#201; intenso?</h4><p>Intenso no emocional (reputa&#231;&#227;o), raro no dano. Mais intenso para juniores e para BPOs que tentam vender servi&#231;o consultivo sem profundidade anal&#237;tica.</p></div>
+    <div class="card"><h4>Quem pagaria?</h4><p><b>O dono da firma</b>, e n&#227;o o consultor individual nem a PME atendida. Ele paga por margem e por capacidade da carteira.</p></div>
+  </div>
+
+  <h3>Quem mais sofre</h3>
+  <ol>
+    <li><b>Donos de firmas multi-cliente</b> (CFOaaS, consultoria e controladoria). O s&#234;nior &#233; o gargalo, e a firma n&#227;o cresce sem contratar caro.</li>
+    <li><b>Consultores juniores e plenos</b> que conduzem reuni&#245;es com s&#243;cios sem a experi&#234;ncia do s&#234;nior.</li>
+    <li><b>BPOs financeiros que querem cobrar mais</b>, passando de contas a pagar e receber para gest&#227;o.</li>
+  </ol>
+  <div class="callout"><b>Insight central</b>O maior valor pode n&#227;o ser "responder r&#225;pido", e sim <b>alavancar talento menos experiente</b>: transformar um analista de BPO em algu&#233;m capaz de conduzir uma reuni&#227;o de resultados com um s&#243;cio. O ROI &#233; de capacidade, n&#227;o de conveni&#234;ncia.</div>
+
+  <h3>O que o desenho atual erra no produto</h3>
+  <div class="grid2">
+    <div class="card verdict-no"><h4>A Camada 1 &#233; uma anti-funcionalidade</h4><p>Gerar "&#243;tima pergunta, vamos analisar&#8230;" &#233; fala de preenchimento automatizada. Qualquer consultor faz isso sozinho, e o recurso passa a imagem de "compet&#234;ncia fingida", o mesmo problema de reputa&#231;&#227;o que a Cluely enfrentou. <b>Corte a Camada 1.</b></p></div>
+    <div class="card verdict-no"><h4>As Camadas 2 e 3 s&#227;o vis&#227;o de engenharia</h4><p>Quem est&#225; falando com um s&#243;cio n&#227;o l&#234; tr&#234;s blocos de texto em 15 segundos. O usu&#225;rio precisa de <b>um &#250;nico cart&#227;o</b>: resposta, n&#250;mero, fonte (arquivo e c&#233;lula), confian&#231;a e bot&#227;o para expandir.</p></div>
+    <div class="card verdict-maybe"><h4>70% a 80% das perguntas d&#225; para prever</h4><p>A an&#225;lise profunda deve ser pr&#233;-calculada. Durante a reuni&#227;o, o sistema recupera a resposta pronta ou consulta um modelo estruturado. Mais r&#225;pido, mais barato e mais seguro.</p></div>
+    <div class="card verdict-maybe"><h4>O input define o valor</h4><p>Se o sistema recebe o PPT pronto, o consultor j&#225; fez 70% do trabalho. Se recebe o <b>balancete cru ou o export do ERP</b> e devolve DRE gerencial com an&#225;lise, economiza as horas que importam. O valor capturado &#233; proporcional a qu&#227;o cedo no processo voc&#234; entra.</p></div>
+    <div class="card verdict-no"><h4>O LLM n&#227;o pode calcular n&#250;meros</h4><p>A arquitetura precisa de um modelo de dados financeiro (plano de contas mapeado para um padr&#227;o gerencial) e de um motor de c&#225;lculo determin&#237;stico. O LLM serve s&#243; para a narrativa. Isso &#233; o dif&#237;cil e tamb&#233;m a sua poss&#237;vel defesa.</p></div>
+    <div class="card verdict-maybe"><h4>Reuni&#245;es presenciais</h4><p>Muitas reuni&#245;es com s&#243;cios de PME s&#227;o presenciais. Captar &#225;udio na mesa e consultar o notebook durante a conversa &#233; desconfort&#225;vel. O ao vivo funciona bem em videochamada e mal na sala do cliente.</p></div>
+  </div>
+
+  <h4>Exemplo do cart&#227;o &#250;nico que substitui as 3 camadas</h4>
+  <div class="formula">Pergunta detectada: "Por que a margem bruta caiu em setembro?"
+Resposta: margem bruta caiu de 38,2% para 34,9% (-3,3 p.p.).
+Principal driver: CMV do insumo X +R$ 412 mil (explica ~70% da queda).
+Fonte: DRE_set.xlsx &#8250; aba DRE &#8250; C45 | Confian&#231;a: alta | [Expandir an&#225;lise]</div>
+  <p class="small">N&#250;meros ilustrativos.</p>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <h2><span class="n">3.</span> Cliente ideal (notas de 0 a 10)</h2>
+  <p>A coluna "Facilidade" considera <b>voc&#234;</b> como vendedor, com rede em finan&#231;as. Cores: verde = melhor, vermelho = pior.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Segmento</th><th class="num">Dor</th><th class="num">Urg&#234;ncia</th><th class="num">Ticket</th><th class="num">Facilidade</th><th class="num">Escala</th><th class="num">Total /50</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>CFO as a Service</td><td class="num h9c">9</td><td class="num h8c">8</td><td class="num h7c">7</td><td class="num h8c">8</td><td class="num h7c">7</td><td class="num">39</td></tr>
+      <tr><td>Consultorias financeiras boutique</td><td class="num h8c">8</td><td class="num h6c">6</td><td class="num h7c">7</td><td class="num h7c">7</td><td class="num h6c">6</td><td class="num">34</td></tr>
+      <tr><td>FP&amp;A as a Service</td><td class="num h8c">8</td><td class="num h7c">7</td><td class="num h7c">7</td><td class="num h7c">7</td><td class="num h5c">5</td><td class="num">34</td></tr>
+      <tr><td>Controladoria terceirizada</td><td class="num h7c">7</td><td class="num h6c">6</td><td class="num h6c">6</td><td class="num h7c">7</td><td class="num h7c">7</td><td class="num">33</td></tr>
+      <tr><td>BPO Financeiro (proposta de "subir de valor")</td><td class="num h6c">6</td><td class="num h6c">6</td><td class="num h5c">5</td><td class="num h6c">6</td><td class="num h9c">9</td><td class="num">32</td></tr>
+      <tr><td>Equipes de vendas B2B (gestor)</td><td class="num h6c">6</td><td class="num h6c">6</td><td class="num h6c">6</td><td class="num h3c">3</td><td class="num h8c">8</td><td class="num">29</td></tr>
+      <tr><td>Account Executives</td><td class="num h7c">7</td><td class="num h6c">6</td><td class="num h5c">5</td><td class="num h3c">3</td><td class="num h7c">7</td><td class="num">28</td></tr>
+      <tr><td>Diretorias financeiras internas</td><td class="num h6c">6</td><td class="num h4c">4</td><td class="num h8c">8</td><td class="num h3c">3</td><td class="num h6c">6</td><td class="num">27</td></tr>
+      <tr><td>Consultores independentes</td><td class="num h8c">8</td><td class="num h5c">5</td><td class="num h2c">2</td><td class="num h8c">8</td><td class="num h3c">3</td><td class="num">26</td></tr>
+      <tr><td>Escrit&#243;rios cont&#225;beis</td><td class="num h5c">5</td><td class="num h4c">4</td><td class="num h4c">4</td><td class="num h4c">4</td><td class="num h9c">9</td><td class="num">26</td></tr>
+      <tr><td>Customer Success</td><td class="num h5c">5</td><td class="num h4c">4</td><td class="num h4c">4</td><td class="num h4c">4</td><td class="num h6c">6</td><td class="num">23</td></tr>
+      <tr><td>RevOps</td><td class="num h4c">4</td><td class="num h4c">4</td><td class="num h6c">6</td><td class="num h3c">3</td><td class="num h5c">5</td><td class="num">22</td></tr>
+      <tr><td>SDRs</td><td class="num h4c">4</td><td class="num h5c">5</td><td class="num h2c">2</td><td class="num h4c">4</td><td class="num h5c">5</td><td class="num">20</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Ranking por pontua&#231;&#227;o total</h3>
+  <div class="bars">
+    <div class="bar-row"><span>CFO as a Service</span><div class="bar-track"><div class="bar-fill top" style="width:78%"></div></div><span class="bar-val">39</span></div>
+    <div class="bar-row"><span>Consultorias boutique</span><div class="bar-track"><div class="bar-fill top" style="width:68%"></div></div><span class="bar-val">34</span></div>
+    <div class="bar-row"><span>FP&amp;A as a Service</span><div class="bar-track"><div class="bar-fill top" style="width:68%"></div></div><span class="bar-val">34</span></div>
+    <div class="bar-row"><span>Controladoria terceirizada</span><div class="bar-track"><div class="bar-fill top" style="width:66%"></div></div><span class="bar-val">33</span></div>
+    <div class="bar-row"><span>BPO Financeiro</span><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><span class="bar-val">32</span></div>
+    <div class="bar-row"><span>Vendas B2B (gestor)</span><div class="bar-track"><div class="bar-fill low" style="width:58%"></div></div><span class="bar-val">29</span></div>
+    <div class="bar-row"><span>Account Executives</span><div class="bar-track"><div class="bar-fill low" style="width:56%"></div></div><span class="bar-val">28</span></div>
+    <div class="bar-row"><span>Diretorias financeiras internas</span><div class="bar-track"><div class="bar-fill low" style="width:54%"></div></div><span class="bar-val">27</span></div>
+    <div class="bar-row"><span>Consultores independentes</span><div class="bar-track"><div class="bar-fill low" style="width:52%"></div></div><span class="bar-val">26</span></div>
+    <div class="bar-row"><span>Escrit&#243;rios cont&#225;beis</span><div class="bar-track"><div class="bar-fill low" style="width:52%"></div></div><span class="bar-val">26</span></div>
+    <div class="bar-row"><span>Customer Success</span><div class="bar-track"><div class="bar-fill low" style="width:46%"></div></div><span class="bar-val">23</span></div>
+    <div class="bar-row"><span>RevOps</span><div class="bar-track"><div class="bar-fill low" style="width:44%"></div></div><span class="bar-val">22</span></div>
+    <div class="bar-row"><span>SDRs</span><div class="bar-track"><div class="bar-fill low" style="width:40%"></div></div><span class="bar-val">20</span></div>
+  </div>
+
+  <h3>Leituras importantes</h3>
+  <ul>
+    <li><b>CFOaaS e consultorias:</b> a dor &#233; multiplicada pelo n&#250;mero de clientes. Uma firma com 30 empresas faz 30 reuni&#245;es de resultado por m&#234;s, ent&#227;o o uso &#233; di&#225;rio e o pre&#231;o pode ser cobrado por empresa atendida.</li>
+    <li><b>BPO financeiro:</b> a dor de hoje &#233; m&#233;dia, mas o argumento de venda &#233; forte: "venda reuni&#227;o de resultados e cobre R$ 2 a 4 mil a mais por cliente". &#201; a segunda onda, com escala grande.</li>
+    <li><b>Diretorias financeiras internas:</b> fazem uma reuni&#227;o por m&#234;s, conhecem a fundo os pr&#243;prios n&#250;meros, t&#234;m ciclo de venda longo, exig&#234;ncias de TI e seguran&#231;a, e frequentemente j&#225; pagam Microsoft 365 Copilot. Ficam para depois.</li>
+    <li><b>Consultores independentes:</b> servem como early adopters e para gerar conte&#250;do, n&#227;o como base de receita. Ticket baixo e churn alto.</li>
+    <li><b>Escrit&#243;rios cont&#225;beis:</b> h&#225; muitos, mas s&#227;o conservadores, sens&#237;veis a pre&#231;o e s&#243; se alcan&#231;am em escala por canal (ERP cont&#225;bil, associa&#231;&#245;es). Fase 3.</li>
+    <li><b>Todos os segmentos de vendas:</b> a dor existe, mas o mercado j&#225; est&#225; ocupado por Gong, Clari, HubSpot e outros, e voc&#234; n&#227;o tem vantagem para vender ali.</li>
+  </ul>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <h2><span class="n">4.</span> Product Market Fit: onde atacar</h2>
+  <div class="callout good"><b>Atacar primeiro</b>Firmas de CFO as a Service, consultoria financeira e controladoria terceirizada com <b>3 a 30 consultores</b>, atendendo <b>15 a 150 PMEs</b>, que fazem reuni&#227;o mensal de resultados com s&#243;cios.</div>
+  <h3>Por qu&#234;</h3>
+  <ol>
+    <li>Voc&#234; conhece o problema por dentro (founder-market fit) e j&#225; tem rede nesse grupo.</li>
+    <li>O ROI d&#225; para calcular, em horas e em capacidade da carteira (se&#231;&#227;o 8).</li>
+    <li>O mercado &#233; fragmentado e n&#227;o h&#225; software dominante para "reuni&#227;o de resultados".</li>
+    <li>Quem decide &#233; o dono, em uma ou duas reuni&#245;es, sem comit&#234; de compras.</li>
+    <li>Como cada firma atende muitos clientes, o uso &#233; frequente e o pre&#231;o por empresa cresce com o cliente.</li>
+  </ol>
+  <div class="callout bad"><b>N&#227;o atacar agora</b>Qualquer segmento de vendas, diretorias financeiras internas, escrit&#243;rios cont&#225;beis (s&#243; depois, via canal) e consultores independentes como base de receita.</div>
+  <h3>Crit&#233;rio objetivo de PMF (em 6 meses)</h3>
+  <div class="grid3">
+    <div class="kpi"><div class="v">&gt; 40%</div><div class="l">dos usu&#225;rios "muito decepcionados" sem o produto (teste de Sean Ellis)</div></div>
+    <div class="kpi"><div class="v">&gt; 90%</div><div class="l">logo retention em 90 dias</div></div>
+    <div class="kpi"><div class="v">&#8805; 80%</div><div class="l">das empresas cadastradas com pack gerado todo m&#234;s</div></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <h2><span class="n">5.</span> Concorr&#234;ncia</h2>
+  <div class="callout bad"><b>O concorrente que voc&#234; n&#227;o listou e que &#233; o mais perigoso</b>ChatGPT, Claude ou Gemini com upload de arquivo, a US$ 20 por m&#234;s. Muitos consultores j&#225; sobem a DRE nessas ferramentas 30 minutos antes da reuni&#227;o. Se voc&#234; n&#227;o explicar em uma frase por que seu produto &#233; melhor do que isso, n&#227;o h&#225; neg&#243;cio.</div>
+  <p>Argumentos poss&#237;veis contra o "ChatGPT + Excel":</p>
+  <ul>
+    <li>Mem&#243;ria estruturada por empresa e por m&#234;s.</li>
+    <li>N&#250;meros calculados de forma determin&#237;stica e rastre&#225;veis at&#233; a c&#233;lula de origem.</li>
+    <li>Templates da pr&#243;pria firma.</li>
+    <li>Revis&#227;o do j&#250;nior pelo s&#234;nior e painel da carteira.</li>
+    <li><b>Governan&#231;a:</b> acabar com analistas subindo DRE de cliente no ChatGPT pessoal.</li>
+  </ul>
+
+  <h3>Os concorrentes listados</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Player</th><th>Faz bem</th><th>Faz mal</th><th>Onde voc&#234; &#233; melhor</th><th>Onde voc&#234; &#233; pior</th><th>Como competir</th></tr></thead>
+    <tbody>
+      <tr><td><b>Gong</b></td><td>An&#225;lise de calls, deals e forecast; marca e escala</td><td>Caro e focado em grandes times de vendas; coaching p&#243;s-call (fev/2026)</td><td>Finan&#231;as, PME, PT-BR, pre&#231;o</td><td>Dados, seguran&#231;a, integra&#231;&#245;es, marca</td><td>N&#227;o entre em vendas. Em FP&amp;A ele n&#227;o compete</td></tr>
+      <tr><td><b>Chorus (ZoomInfo)</b></td><td>Conversation intelligence dentro do ZoomInfo</td><td>Perdeu tra&#231;&#227;o e depende do ecossistema ZoomInfo</td><td>Tudo que n&#227;o &#233; vendas</td><td>Base instalada em vendas</td><td>Ignore</td></tr>
+      <tr><td><b>Microsoft Copilot</b></td><td>Distribui&#231;&#227;o; Copilot no Excel e no Teams; agente Facilitator detecta perguntas na reuni&#227;o</td><td>Gen&#233;rico; licen&#231;a cara por usu&#225;rio; limita&#231;&#245;es em reuni&#245;es fora da pr&#243;pria organiza&#231;&#227;o; sem vis&#227;o multi-cliente</td><td>Fluxo entre v&#225;rias empresas, sem&#226;ntica cont&#225;bil brasileira, PMEs sem M365 Copilot</td><td>Seguran&#231;a percebida, distribui&#231;&#227;o, pre&#231;o marginal zero para quem j&#225; tem</td><td>Atenda quem trabalha com 30 empresas diferentes. Depois, integre com Teams e Excel</td></tr>
+      <tr><td><b>Fireflies</b></td><td>Notetaker barato, muitas integra&#231;&#245;es, Live Assist</td><td>Raso; n&#227;o entende DRE; responde a partir de reuni&#245;es, n&#227;o de modelos financeiros</td><td>Profundidade financeira</td><td>Pre&#231;o, maturidade, integra&#231;&#245;es</td><td>N&#227;o venda como notetaker: o pre&#231;o de refer&#234;ncia vira US$ 10 a 20</td></tr>
+      <tr><td><b>Avoma</b></td><td>Notas, agenda e coaching para vendas de PME e mid-market</td><td>Feito para vendas</td><td>Finan&#231;as</td><td>Recursos de vendas</td><td>Ignore</td></tr>
+      <tr><td><b>Otter</b></td><td>Transcri&#231;&#227;o; Meeting Agent por voz (2025) e Live Assist (2026)</td><td>Base &#233; o hist&#243;rico de reuni&#245;es, n&#227;o n&#250;meros; foco em ingl&#234;s</td><td>N&#250;meros estruturados, PT-BR</td><td>Qualidade e escala de transcri&#231;&#227;o</td><td>Use transcri&#231;&#227;o de terceiros e diferencie na an&#225;lise</td></tr>
+      <tr><td><b>Clari Copilot</b></td><td>Cart&#245;es ao vivo em calls de vendas e forecast</td><td>S&#243; vendas</td><td>Finan&#231;as</td><td>Ao vivo j&#225; maduro</td><td>Prova de que ao vivo em vendas j&#225; &#233; commodity</td></tr>
+      <tr><td><b>Salesforce Einstein / Agentforce</b></td><td>Dados do CRM, agentes, base enterprise</td><td>Caro, complexo, longe de consultorias PME</td><td>Simplicidade, nicho</td><td>Tudo em vendas enterprise</td><td>N&#227;o entre em vendas</td></tr>
+      <tr><td><b>HubSpot AI (Breeze)</b></td><td>IA inclu&#237;da nos planos; rede forte de ag&#234;ncias parceiras no Brasil</td><td>S&#243; dados de marketing e vendas</td><td>Finan&#231;as</td><td>Distribui&#231;&#227;o em PME</td><td>N&#227;o entre em vendas de PME</td></tr>
+      <tr><td><b>Zoom AI Companion 3.0</b></td><td>Inclu&#237;do sem custo extra nos planos Workplace; perguntas e respostas em tempo real; add-on avulso de ~US$ 10/m&#234;s</td><td>Gen&#233;rico, sem modelo financeiro</td><td>Profundidade e c&#225;lculo</td><td>Pre&#231;o zero e distribui&#231;&#227;o</td><td>O ao vivo gen&#233;rico vale zero; cobre pela an&#225;lise</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Fora da lista, mas relevantes</h3>
+  <ul>
+    <li><b>Accountfy:</b> plataforma brasileira de gest&#227;o financeira "AI-first", com controladoria e FP&amp;A, alian&#231;a com a KPMG e movimento em dire&#231;&#227;o a servi&#231;os financeiros. Candidato mais prov&#225;vel a lan&#231;ar um recurso como o seu.</li>
+    <li><b>ERPs de PME</b> (Omie, Conta Azul, Nibo, Totvs e similares): t&#234;m os dados e o canal.</li>
+    <li><b>Cluely:</b> prova de que "assistente invis&#237;vel ao vivo" gera aten&#231;&#227;o, mas tamb&#233;m risco de reputa&#231;&#227;o. O CEO admitiu em mar&#231;o de 2026 que tinha inflado n&#250;meros de receita.</li>
+    <li><b>Outros notetakers</b> (Google Meet com Gemini, Read.ai, tl;dv, Granola): pressionam ainda mais o pre&#231;o do ao vivo gen&#233;rico.</li>
+  </ul>
+  <div class="callout warn"><b>Conclus&#227;o</b>O ao vivo gen&#233;rico j&#225; &#233; oferecido de gra&#231;a ou quase de gra&#231;a por Microsoft, Zoom, Otter e Fireflies. <b>N&#227;o construa sua defesa ali.</b></div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <h2><span class="n">6.</span> Diferencial e moat</h2>
+  <p><b>Hoje o moat &#233; zero.</b> Transcri&#231;&#227;o, diariza&#231;&#227;o, detec&#231;&#227;o de perguntas e RAG com LLM s&#227;o APIs que qualquer pessoa contrata.</p>
+  <p><b>O que impede os gigantes de copiar?</b> Tecnicamente, nada. O que os impede &#233; <b>prioridade</b>: o nicho de firmas brasileiras de CFOaaS &#233; pequeno demais para Microsoft ou Gong se importarem, e grande o bastante para voc&#234;. Essa defesa &#233; real, mas acaba quando um player local (Accountfy ou um ERP) decide entrar.</p>
+  <h3>Como criar barreiras, em ordem de for&#231;a</h3>
+  <div class="bars">
+    <div class="bar-row"><span>1. Custo de troca pelo hist&#243;rico</span><div class="bar-track"><div class="bar-fill top" style="width:95%"></div></div><span class="bar-val">Forte</span></div>
+    <div class="bar-row"><span>2. Biblioteca de mapeamento cont&#225;bil</span><div class="bar-track"><div class="bar-fill top" style="width:88%"></div></div><span class="bar-val">Forte</span></div>
+    <div class="bar-row"><span>3. Encaixe no servi&#231;o entregue</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><span class="bar-val">M&#233;dia</span></div>
+    <div class="bar-row"><span>4. Especificidade brasileira</span><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div><span class="bar-val">M&#233;dia</span></div>
+    <div class="bar-row"><span>5. Confian&#231;a medida</span><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><span class="bar-val">M&#233;dia</span></div>
+    <div class="bar-row"><span>6. Canal</span><div class="bar-track"><div class="bar-fill low" style="width:56%"></div></div><span class="bar-val">M&#233;dia</span></div>
+    <div class="bar-row"><span>7. Efeito de rede de dados</span><div class="bar-track"><div class="bar-fill low" style="width:40%"></div></div><span class="bar-val">Futuro</span></div>
+  </div>
+  <ol>
+    <li><b>Custo de troca pelo hist&#243;rico.</b> Cada empresa atendida acumula meses de an&#225;lises, explica&#231;&#245;es j&#225; dadas, decis&#245;es e pend&#234;ncias. Migrar significa perder a mem&#243;ria da carteira.</li>
+    <li><b>Biblioteca de mapeamento cont&#225;bil.</b> Um de-para de planos de contas dos ERPs brasileiros para o plano gerencial, que fica mais preciso a cada cliente. Vantagem de dados, de precis&#227;o e de tempo de onboarding.</li>
+    <li><b>Encaixe no servi&#231;o entregue.</b> O pack sai com a marca da firma e, no futuro, o s&#243;cio da PME acessa um portal. A firma n&#227;o troca de ferramenta sem que o cliente final perceba.</li>
+    <li><b>Especificidade brasileira.</b> Simples Nacional, Lucro Presumido e Lucro Real, DRE gerencial no padr&#227;o local, jarg&#227;o em PT-BR, ERPs locais, dados hospedados no Brasil. Players estrangeiros n&#227;o v&#227;o priorizar isso.</li>
+    <li><b>Confian&#231;a medida.</b> Conjunto pr&#243;prio de mais de 500 perguntas financeiras com gabarito e taxa de acerto publicada. Em finan&#231;as, confian&#231;a &#233; o produto.</li>
+    <li><b>Canal.</b> Parcerias exclusivas ou preferenciais com comunidades de BPO e ERPs, para virar o padr&#227;o de "reuni&#227;o de resultados".</li>
+    <li><b>Futuro: efeito de rede de dados.</b> Benchmarks setoriais an&#244;nimos, com consentimento e base contratual.</li>
+  </ol>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <h2><span class="n">7.</span> Posicionamento</h2>
+  <h3>Os cen&#225;rios A a E</h3>
+  <div class="grid2">
+    <div class="card verdict-maybe"><h4>A. S&#243; FP&amp;A</h4><p>Dire&#231;&#227;o certa, recorte errado. "FP&amp;A" &#233; jarg&#227;o que o dono de BPO n&#227;o usa, e o foco no ao vivo &#233; o lado fraco.</p></div>
+    <div class="card verdict-no"><h4>B. S&#243; Comercial</h4><p><b>Pior op&#231;&#227;o.</b> Mercado ocupado, distribui&#231;&#227;o nas m&#227;os dos CRMs e nenhuma vantagem sua.</p></div>
+    <div class="card verdict-no"><h4>C. Dois produtos separados</h4><p>Dobra o esfor&#231;o comercial de uma equipe que ainda n&#227;o tem um produto validado. A restri&#231;&#227;o hoje &#233; foco, n&#227;o c&#243;digo.</p></div>
+    <div class="card verdict-no"><h4>D. Plataforma de copilotos</h4><p>Erro cl&#225;ssico de plataforma antes do PMF. Copiloto horizontal &#233; o que Microsoft, Zoom e Google oferecem de gra&#231;a.</p></div>
+    <div class="card verdict-yes" style="grid-column:1/-1"><h4>E. Recomendado</h4><p><b>Sistema da reuni&#227;o mensal de resultados para firmas que atendem v&#225;rias empresas.</b> O ao vivo vira um recurso, n&#227;o a manchete.</p></div>
+  </div>
+
+  <h3>Por que "mesma tecnologia, duas verticais" &#233; falso</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Camada</th><th>FP&amp;A</th><th>Comercial</th><th>Compartilhada?</th></tr></thead>
+    <tbody>
+      <tr><td>Transcri&#231;&#227;o, diariza&#231;&#227;o, detec&#231;&#227;o de pergunta, RAG, LLM</td><td>Sim</td><td>Sim</td><td><span class="badge b-maybe">Sim, mas &#233; commodity</span></td></tr>
+      <tr><td>Parte dif&#237;cil</td><td>Normaliza&#231;&#227;o cont&#225;bil, motor de c&#225;lculo, sem&#226;ntica financeira, mem&#243;ria por per&#237;odo</td><td>Integra&#231;&#227;o com CRM, metodologia de vendas, coaching, forecast, telefonia</td><td><span class="badge b-no">N&#227;o</span></td></tr>
+      <tr><td>Comprador e canal</td><td>Dono de firma de servi&#231;os financeiros</td><td>VP de vendas, RevOps</td><td><span class="badge b-no">N&#227;o</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>Reaproveitar a tecnologia economiza talvez 20% do esfor&#231;o de produto e dobra o esfor&#231;o comercial.</p>
+
+  <h3>Compara&#231;&#227;o por crit&#233;rio (0 a 10)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Crit&#233;rio</th><th class="num">FP&amp;A gen&#233;rico</th><th class="num">Comercial</th><th class="num">Plataforma de especialistas</th><th class="num">Intelig&#234;ncia para reuni&#245;es</th><th class="num">E (recomendado)</th></tr></thead>
+    <tbody>
+      <tr><td>Diferencia&#231;&#227;o</td><td class="num h6c">6</td><td class="num h2c">2</td><td class="num h2c">2</td><td class="num h1c">1</td><td class="num h8c"><b>8</b></td></tr>
+      <tr><td>Ticket m&#233;dio</td><td class="num h6c">6</td><td class="num h5c">5</td><td class="num h4c">4</td><td class="num h2c">2</td><td class="num h7c"><b>7</b></td></tr>
+      <tr><td>Menor concorr&#234;ncia</td><td class="num h6c">6</td><td class="num h1c">1</td><td class="num h2c">2</td><td class="num h0c">0</td><td class="num h8c"><b>8</b></td></tr>
+      <tr><td>Margem</td><td class="num h7c">7</td><td class="num h6c">6</td><td class="num h5c">5</td><td class="num h4c">4</td><td class="num h8c"><b>8</b></td></tr>
+      <tr><td>Crescimento r&#225;pido</td><td class="num h5c">5</td><td class="num h5c">5*</td><td class="num h2c">2</td><td class="num h3c">3</td><td class="num h6c"><b>6</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">* No papel, o Comercial cresce mais porque o mercado &#233; maior. Na pr&#225;tica, o custo de aquisi&#231;&#227;o e a concorr&#234;ncia derrubam a chance.</p>
+
+  <div class="callout good"><b>Frase de posicionamento sugerida</b>"A reuni&#227;o de resultados de toda a sua carteira preparada em 1 hora, n&#227;o em 1 dia. Com cada n&#250;mero rastre&#225;vel e as perguntas do s&#243;cio j&#225; respondidas."</div>
+  <p><b>Nome:</b> "Copiloto" est&#225; saturado e &#233; muito associado &#224; Microsoft, que tem a marca "Copilot". Confirme o risco de conflito de marca com um advogado. Prefira um nome ligado ao resultado entregue, como reuni&#227;o, resultado ou carteira.</p>
+</section>
+
+<!-- 8 -->
+<section id="s8">
+  <h2><span class="n">8.</span> Monetiza&#231;&#227;o</h2>
+  <h3>Conta de valor para o cliente (premissas a validar)</h3>
+  <div class="formula">Custo do consultor (com encargos) ........ R$ 18.000/m&#234;s
+Custo por hora .......................... R$ 18.000 &#247; 160h = R$ 112,50/h
+Preparo + p&#243;s hoje ...................... 8h por empresa/m&#234;s
+Com o produto ........................... 3h por empresa/m&#234;s  &#8594;  economia de 5h
+Economia por empresa .................... 5h &#215; R$ 112,50 = R$ 562,50/m&#234;s
+
+Capacidade: consultor com 8 empresas libera 8 &#215; 5h = 40h (~25% do m&#234;s)
+            &#8594; +2 empresas &#215; R$ 7.000 de honor&#225;rio = R$ 14.000/m&#234;s por consultor
+
+Pre&#231;o proposto: R$ 189 por empresa
+  captura &#8776; 34% da economia de custo (189 &#247; 562,50)
+  captura &#8776; 11% do ganho de capacidade (8 &#215; 189 = R$ 1.512 &#247; R$ 14.000)</div>
+  <div class="callout good"><b>O pre&#231;o se defende</b>Mesmo capturando 1/3 da economia de custo, o cliente fica com 2/3. Pelo &#226;ngulo de capacidade, a captura &#233; de ~11%. Use a calculadora da se&#231;&#227;o 8b para testar outras premissas.</div>
+
+  <h3>Custo de entrega por empresa por m&#234;s (estimativa)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Item</th><th>C&#225;lculo</th><th>Custo</th></tr></thead>
+    <tbody>
+      <tr><td>Transcri&#231;&#227;o</td><td>1,5h &#215; US$ 0,40</td><td>US$ 0,60</td></tr>
+      <tr><td>LLM (preparo, ao vivo e p&#243;s)</td><td>estimativa</td><td>US$ 3 a 6</td></tr>
+      <tr><td>Infraestrutura e armazenamento</td><td>estimativa</td><td>US$ 1</td></tr>
+      <tr class="hl"><td>Total</td><td>c&#226;mbio R$ 5,50</td><td>R$ 25 a 42</td></tr>
+    </tbody>
+  </table></div>
+  <p>Margem bruta do software sobre R$ 189: de (189 &#8722; 42) &#247; 189 = <b>78%</b> at&#233; (189 &#8722; 25) &#247; 189 = <b>87%</b>. No in&#237;cio, o onboarding manual derruba a margem real para 50% a 60%. Por isso o setup precisa ser cobrado.</p>
+
+  <h3>Modelos de cobran&#231;a</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Modelo</th><th>Pr&#243;s</th><th>Contras</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr><td>SaaS puro</td><td>Escala e margem</td><td>Onboarding de dados sujos n&#227;o se faz sozinho no in&#237;cio</td><td><span class="badge b-maybe">Fase 3 em diante</span></td></tr>
+      <tr><td>SaaS + servi&#231;o</td><td>Paga o onboarding e garante sucesso</td><td>Margem menor no come&#231;o</td><td><span class="badge b-yes">Fases 1 e 2</span></td></tr>
+      <tr><td>Consultoria + software</td><td>Gera caixa e aprendizado</td><td>Vira consultoria e n&#227;o escala</td><td><span class="badge b-maybe">S&#243; primeiros 5 a 10</span></td></tr>
+      <tr><td>Por usu&#225;rio</td><td>Simples</td><td>Desalinhado: valor cresce com empresas, n&#227;o com logins</td><td><span class="badge b-no">N&#227;o</span></td></tr>
+      <tr><td>Por empresa (a firma)</td><td>Simples</td><td>Firma de 5 e de 100 clientes pagam igual</td><td><span class="badge b-maybe">S&#243; como piso</span></td></tr>
+      <tr class="hl"><td>Por empresa atendida</td><td>Acompanha o valor e como a pr&#243;pria firma fatura</td><td>Exige definir "empresa ativa"</td><td><span class="badge b-yes">Recomendado</span></td></tr>
+      <tr><td>Consumo, cr&#233;ditos ou por reuni&#227;o</td><td>Acompanha o custo</td><td>Usu&#225;rio economiza no uso e o h&#225;bito n&#227;o se forma</td><td><span class="badge b-maybe">S&#243; add-on</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Planos sugeridos (a partir de 10 clientes)</h3>
+  <div class="grid3">
+    <div class="card"><h4>Solo</h4><div class="kpi" style="background:none;padding:0"><div class="v">R$ 490/m&#234;s</div></div><p class="small">Consultor independente</p><ul><li>1 usu&#225;rio</li><li>3 empresas</li><li>Empresa extra: R$ 160</li></ul></div>
+    <div class="card verdict-yes"><h4>Firma</h4><div class="kpi" style="background:none;padding:0"><div class="v">R$ 1.890/m&#234;s</div></div><p class="small">2 a 10 consultores</p><ul><li>5 usu&#225;rios</li><li>10 empresas</li><li>Empresa extra: R$ 150</li><li>Templates da firma</li><li>Fluxo de revis&#227;o</li></ul></div>
+    <div class="card"><h4>Carteira</h4><div class="kpi" style="background:none;padding:0"><div class="v">a partir de R$ 5.900/m&#234;s</div></div><p class="small">Firmas e BPOs com mais de 10 consultores</p><ul><li>Usu&#225;rios ilimitados</li><li>40 empresas</li><li>Empresa extra: R$ 120</li><li>White-label, painel da carteira, SSO, SLA</li></ul></div>
+  </div>
+  <ul>
+    <li><b>Setup</b> (Firma e Carteira): R$ 3.000 a 15.000, com mapeamento das primeiras empresas, templates e treinamento.</li>
+    <li><b>Add-ons futuros:</b> portal do s&#243;cio, or&#231;amento e forecast, de R$ 60 a 90 por empresa.</li>
+    <li>Contrato anual, com cobran&#231;a mensal ou pagamento antecipado com 15% de desconto.</li>
+  </ul>
+
+  <h3>Modelo por fase</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Fase</th><th>Modelo</th><th>Pre&#231;o</th><th>Objetivo</th></tr></thead>
+    <tbody>
+      <tr><td><b>0 a 10</b></td><td>Concierge: consultoria + software</td><td>Setup de R$ 2.500 + R$ 1.200/m&#234;s fixo, travado por 12 meses, em troca de feedback quinzenal e um case</td><td>Aprender, gerar caixa e provar ROI. <b>Nada de piloto gratuito</b></td></tr>
+      <tr><td><b>10 a 50</b></td><td>SaaS + servi&#231;o</td><td>Planos acima, por empresa, com setup pago</td><td>Padronizar onboarding e medir reten&#231;&#227;o</td></tr>
+      <tr><td><b>50 a 200</b></td><td>SaaS com onboarding padronizado; Solo em self-serve; parceiros</td><td>Planos, add-ons e comiss&#227;o de 20% para parceiros por 12 meses</td><td>Escalar por canal</td></tr>
+      <tr><td><b>200+</b></td><td>Plataforma, white-label e API para redes de BPO, cont&#225;beis e ERPs</td><td>Desconto por volume e revenue share</td><td>Escala; avaliar servi&#231;os financeiros (se&#231;&#227;o 13)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 8b -->
+<section id="s8b">
+  <h2><span class="n">8b.</span> Calculadora de ROI (interativa)</h2>
+  <p>Ajuste as premissas com os n&#250;meros das suas entrevistas. Use tamb&#233;m na demo com o prospect.</p>
+  <div class="calc">
+    <div>
+      <label>Custo mensal do consultor (R$) <input type="number" id="c_custo" value="18000" step="500"></label>
+      <label>Horas &#250;teis por m&#234;s <input type="number" id="c_horas" value="160" step="1"></label>
+      <label>Horas de preparo + p&#243;s hoje, por empresa <input type="number" id="c_antes" value="8" step="0.5"></label>
+      <label>Horas com o produto, por empresa <input type="number" id="c_depois" value="3" step="0.5"></label>
+      <label>Empresas por consultor <input type="number" id="c_emp" value="8" step="1"></label>
+      <label>Horas totais de servi&#231;o por empresa/m&#234;s <input type="number" id="c_htot" value="20" step="1"></label>
+      <label>Honor&#225;rio m&#233;dio por empresa (R$) <input type="number" id="c_hon" value="7000" step="500"></label>
+      <label>Pre&#231;o do produto por empresa (R$) <input type="number" id="c_preco" value="189" step="10"></label>
+    </div>
+    <div class="out" aria-live="polite">
+      <div><span>Custo por hora</span><b id="o_hora">-</b></div>
+      <div><span>Economia por empresa/m&#234;s</span><b id="o_econ">-</b></div>
+      <div><span>Horas liberadas por consultor/m&#234;s</span><b id="o_hlib">-</b></div>
+      <div><span>% da capacidade liberada</span><b id="o_cap">-</b></div>
+      <div><span>Empresas adicionais poss&#237;veis</span><b id="o_add">-</b></div>
+      <div><span>Receita potencial adicional/consultor</span><b id="o_rec">-</b></div>
+      <div><span>Custo do produto por consultor</span><b id="o_custo">-</b></div>
+      <div><span>Captura da economia de custo</span><b id="o_cap1">-</b></div>
+      <div><span>Captura do ganho de capacidade</span><b id="o_cap2">-</b></div>
+      <div><span>ROI sobre economia de custo</span><b id="o_roi">-</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="s9">
+  <h2><span class="n">9.</span> Go-to-market</h2>
+  <h3>Funis de refer&#234;ncia (premissas)</h3>
+  <div class="grid2">
+    <div>
+      <h4>Rede quente</h4>
+      <div class="funnel">
+        <div style="width:100%">60 contatos</div>
+        <div style="width:72%">25 entrevistas</div>
+        <div style="width:54%">12 packs entregues</div>
+        <div style="width:42%">6 propostas</div>
+        <div style="width:34%">4 a 5 clientes</div>
+      </div>
+    </div>
+    <div>
+      <h4>Contato frio (por 100)</h4>
+      <div class="funnel">
+        <div style="width:100%">100 contatos</div>
+        <div style="width:62%">8 a 12 respostas</div>
+        <div style="width:50%">5 calls</div>
+        <div style="width:40%">2 a 3 demos com dados</div>
+        <div style="width:32%">0,8 a 1 cliente</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout warn"><b>Conclus&#227;o do funil</b>De 20 para 50 clientes em cerca de 4 meses s&#243; com contato frio seriam necess&#225;rios ~3.000 contatos. Por isso <b>o canal &#233; obrigat&#243;rio a partir do cliente 20</b>.</div>
+
+  <div class="callout good"><b>A arma principal: demo com os dados do pr&#243;prio prospect</b>Com NDA assinado, o prospect envia uma DRE anonimizada de um cliente dele. Em 48h voc&#234; devolve o pack completo: varia&#231;&#245;es explicadas, pontos de aten&#231;&#227;o e as 15 perguntas prov&#225;veis do s&#243;cio, j&#225; respondidas. Para filtrar quem n&#227;o vai comprar, ofere&#231;a s&#243; a firmas com 5 ou mais clientes.</div>
+
+  <div class="timeline">
+    <div class="step"><h4>Clientes 1 a 5 (meses 1 a 3)</h4>
+      <ul>
+        <li>Liste 60 nomes da sua rede: ex-colegas, firmas parceiras e at&#233; concorrentes amig&#225;veis.</li>
+        <li>Pe&#231;a 30 minutos de <b>entrevista, n&#227;o de pitch</b>. Me&#231;a horas de preparo por cliente, n&#250;mero de clientes por consultor, como montam o pack e qual foi a pior pergunta que j&#225; receberam (roteiro na se&#231;&#227;o 17).</li>
+        <li>No fim da entrevista, ofere&#231;a o pack em 48h. Depois, fa&#231;a a devolutiva e apresente a proposta de design partner.</li>
+        <li>Fa&#231;a o trabalho manual nos bastidores (concierge, ou "wizard of Oz"). &#201; aceit&#225;vel nessa fase.</li>
+      </ul></div>
+    <div class="step"><h4>Clientes 6 a 10 (meses 4 e 5)</h4>
+      <ul>
+        <li>Pe&#231;a duas indica&#231;&#245;es a cada cliente. Ofere&#231;a um m&#234;s gr&#225;tis por indica&#231;&#227;o que fechar.</li>
+        <li>Fa&#231;a o primeiro case com n&#250;meros ("de 8h para 2h30 por cliente").</li>
+        <li>LinkedIn: 3 posts por semana (um caso com n&#250;meros; bastidores de uma reuni&#227;o de resultados; um educativo, como "as 10 perguntas que todo s&#243;cio faz quando a margem cai").</li>
+        <li>Comente todo dia em 10 posts de pessoas do seu p&#250;blico-alvo.</li>
+        <li>Webinar 1 com um cliente-case: "A reuni&#227;o de resultados que o s&#243;cio n&#227;o esquece", com demo ao vivo.</li>
+      </ul></div>
+    <div class="step"><h4>Clientes 11 a 20 (meses 6 a 8)</h4>
+      <ul>
+        <li><b>Contato frio estruturado:</b> lista de 400 firmas no Sales Navigator ("CFO as a Service", "BPO financeiro", "consultoria financeira", "controladoria", de 2 a 50 funcion&#225;rios). Sequ&#234;ncia de 4 toques: conex&#227;o, mensagem, e-mail e v&#237;deo curto personalizado. Volume: 80 novos contatos por semana.</li>
+        <li><b>Comunidades:</b> grupos de donos de BPO financeiro (WhatsApp, Telegram, mentorias e cursos de BPO), IBEF para credibilidade e entidades cont&#225;beis (CRCs, Sescon, Fenacon) para conte&#250;do.</li>
+        <li><b>Parcerias com educadores de BPO:</b> afilia&#231;&#227;o com 20% recorrente por 12 meses. Eles ensinam milhares de donos de BPO a vender gest&#227;o; voc&#234; entrega a ferramenta.</li>
+        <li><b>Isca de capta&#231;&#227;o:</b> "Checklist das 40 perguntas que s&#243;cios fazem na reuni&#227;o de resultados", em troca do e-mail.</li>
+      </ul></div>
+    <div class="step"><h4>Clientes 21 a 50 (meses 9 a 12)</h4>
+      <ul>
+        <li>Parceria com 1 ou 2 ERPs que o seu p&#250;blico usa: integra&#231;&#227;o, marketplace e marketing conjunto. Antes, descubra nas entrevistas qual ERP aparece mais.</li>
+        <li>Programa de parceiros com consultorias de implanta&#231;&#227;o.</li>
+        <li>Webinar mensal e presen&#231;a em eventos de contabilidade e BPO.</li>
+        <li>Primeira contrata&#231;&#227;o comercial: um SDR, ou uma pessoa de CS e onboarding. Voc&#234; continua fechando as vendas.</li>
+      </ul></div>
+  </div>
+
+  <h3>Cad&#234;ncia semanal sugerida (a partir do m&#234;s 6)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Atividade</th><th>Volume semanal</th><th>Respons&#225;vel</th></tr></thead>
+    <tbody>
+      <tr><td>Novos contatos frios (LinkedIn + e-mail)</td><td>80</td><td>Fundador (depois SDR)</td></tr>
+      <tr><td>Posts no LinkedIn</td><td>3</td><td>Fundador</td></tr>
+      <tr><td>Coment&#225;rios em posts do ICP</td><td>50 (10/dia)</td><td>Fundador</td></tr>
+      <tr><td>Calls de descoberta</td><td>4 a 6</td><td>Fundador</td></tr>
+      <tr><td>Demos com dados do prospect</td><td>2 a 3</td><td>Fundador + t&#233;cnico</td></tr>
+      <tr><td>Pedidos de indica&#231;&#227;o</td><td>Todo cliente com 60 dias de uso</td><td>Fundador / CS</td></tr>
+      <tr><td>Contato com parceiros de canal</td><td>2</td><td>Fundador</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Mensagem de abordagem fria (pronta para usar)</h3>
+  <blockquote>Oi, [Nome]. Vi que a [Firma] atende [n] empresas com CFO terceirizado. Pergunta direta: quantas horas sua equipe gasta preparando cada reuni&#227;o mensal de resultados?<br><br>Estou testando um sistema que recebe a DRE ou o balancete do cliente e entrega, em 1 hora, o pack da reuni&#227;o: varia&#231;&#245;es explicadas, pontos de aten&#231;&#227;o e as perguntas que o s&#243;cio provavelmente vai fazer, j&#225; respondidas e com a fonte de cada n&#250;mero.<br><br>Se quiser, rodo com uma DRE anonimizada de um cliente seu (com NDA) e te mostro o resultado em 48h. Faz sentido?</blockquote>
+
+  <h3>Metas de efici&#234;ncia</h3>
+  <ul>
+    <li>Custo de aquisi&#231;&#227;o (CAC) abaixo de R$ 6.000.</li>
+    <li>Contribui&#231;&#227;o por cliente: ticket m&#233;dio de R$ 1.900 &#215; 80% de margem = R$ 1.520/m&#234;s.</li>
+    <li>Payback: R$ 6.000 &#247; R$ 1.520 &#8776; <b>4 meses</b>, com meta de ficar abaixo de 6.</li>
+  </ul>
+</section>
+
+<!-- 10 -->
+<section id="s10">
+  <h2><span class="n">10.</span> Roadmap de produto</h2>
+  <h3><span class="badge b-crit">Obrigat&#243;rias</span> sem elas n&#227;o h&#225; venda</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Funcionalidade</th><th>Por qu&#234; (ROI e impacto comercial)</th></tr></thead>
+    <tbody>
+      <tr><td>Ingest&#227;o de Excel e PDF de balancete ou DRE, com mapeamento para plano gerencial padr&#227;o e valida&#231;&#227;o humana</td><td>&#201; onde est&#227;o as horas economizadas. Sem isso, o produto &#233; "ChatGPT com outra cara"</td></tr>
+      <tr><td>Motor de c&#225;lculo determin&#237;stico (AH, AV, or&#231;ado x realizado, m&#234;s x m&#234;s, ano x ano, trimestre)</td><td>Elimina a alucina&#231;&#227;o num&#233;rica. Sem isso, a firma n&#227;o confia</td></tr>
+      <tr><td>Pack pr&#233;-reuni&#227;o com rastreabilidade (cada n&#250;mero com link para arquivo e c&#233;lula)</td><td>Principal entreg&#225;vel e base da demo</td></tr>
+      <tr><td>Perguntas prov&#225;veis com respostas j&#225; preparadas</td><td>Entrega 80% do valor do ao vivo, com risco zero</td></tr>
+      <tr><td>P&#243;s-reuni&#227;o: ata, plano de a&#231;&#227;o e respons&#225;veis (grava&#231;&#227;o enviada ou bot)</td><td>Esperado pelo cliente e barato com fornecedores</td></tr>
+      <tr><td>Mem&#243;ria por empresa: pend&#234;ncias do m&#234;s anterior entram no pack seguinte</td><td>Cria custo de troca e reten&#231;&#227;o</td></tr>
+      <tr><td>Seguran&#231;a e LGPD b&#225;sicas: isolamento por cliente, criptografia, n&#227;o treinar modelos com dados do cliente, DPA, consentimento de grava&#231;&#227;o</td><td>Sem isso, nenhuma firma s&#233;ria envia dados</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="badge b-alto">Importantes</span> de 10 a 30 clientes</h3>
+  <ul>
+    <li><b>Busca r&#225;pida ao vivo:</b> um &#250;nico cart&#227;o com resposta, n&#250;mero e fonte em menos de 5 segundos, com possibilidade de digitar a pergunta. Substitui as 3 camadas.</li>
+    <li><b>Exporta&#231;&#227;o para PPT e Excel no template da firma.</b> Consultores vivem no PowerPoint; acelera a ado&#231;&#227;o.</li>
+    <li><b>Painel da carteira:</b> quais clientes t&#234;m alertas este m&#234;s. Fala diretamente com o dono da firma, que &#233; quem compra.</li>
+    <li><b>Fluxo de revis&#227;o:</b> o s&#234;nior aprova o pack do j&#250;nior. &#201; o argumento da alavancagem de talento.</li>
+    <li><b>Integra&#231;&#227;o com os 2 ERPs mais usados pelo seu p&#250;blico.</b> Automatiza a ingest&#227;o mensal.</li>
+    <li><b>Or&#231;amento e forecast simples, com cen&#225;rios.</b> Aumenta o ticket.</li>
+  </ul>
+
+  <h3><span class="badge b-med">Futuras</span> com 50 clientes ou mais</h3>
+  <ul>
+    <li>Portal do s&#243;cio da PME, com a marca da firma, para perguntas entre reuni&#245;es.</li>
+    <li>Benchmarks setoriais an&#244;nimos.</li>
+    <li>Integra&#231;&#245;es com Teams e Excel.</li>
+    <li>Espanhol e Am&#233;rica Latina.</li>
+  </ul>
+
+  <h3><span class="badge b-no">N&#227;o desenvolver agora</span></h3>
+  <ul>
+    <li>A Camada 1 ("enrola&#231;&#227;o").</li>
+    <li>Identifica&#231;&#227;o de participantes por voz: &#233; biometria, dado sens&#237;vel na LGPD. Use os nomes do calend&#225;rio ou da plataforma.</li>
+    <li>Diariza&#231;&#227;o ou transcri&#231;&#227;o pr&#243;pria: use fornecedores.</li>
+    <li>Overlay invis&#237;vel estilo Cluely, ou um agente que fala na reuni&#227;o.</li>
+    <li>Vertical comercial, jur&#237;dica ou de RH, e integra&#231;&#227;o com CRM.</li>
+    <li>Fine-tuning ou modelos pr&#243;prios.</li>
+    <li>Aplicativo mobile.</li>
+  </ul>
+
+  <h3>Arquitetura recomendada (vis&#227;o simplificada)</h3>
+  <div class="formula">Balancete / DRE / export ERP
+  &#8594; Ingest&#227;o + mapeamento (de-para para plano gerencial, validado por humano)
+  &#8594; Modelo financeiro estruturado por empresa e por m&#234;s
+  &#8594; Motor de c&#225;lculo determin&#237;stico (varia&#231;&#245;es, AH/AV, or&#231;ado x realizado)
+  &#8594; LLM apenas para narrativa, perguntas prov&#225;veis e ata (sempre citando a fonte)
+  &#8594; Pack pr&#233;-reuni&#227;o | Cart&#227;o ao vivo (respostas pr&#233;-calculadas + consulta ao modelo) | Ata e plano de a&#231;&#227;o
+  &#8594; Mem&#243;ria: pend&#234;ncias e explica&#231;&#245;es alimentam o pack do m&#234;s seguinte</div>
+</section>
+
+<!-- 11 -->
+<section id="s11">
+  <h2><span class="n">11.</span> Os 20 maiores riscos</h2>
+  <h3>Matriz impacto &#215; probabilidade</h3>
+  <div class="matrix">
+    <div></div><div class="ax">Prob. baixa</div><div class="ax">Prob. m&#233;dia</div><div class="ax">Prob. alta</div>
+    <div class="ax">Cr&#237;tico</div>
+    <div class="cell z2"><span class="r" title="Vazamento entre clientes">11</span></div>
+    <div class="cell z3"></div>
+    <div class="cell z3"><span class="r" title="N&#250;mero errado">2</span><span class="r" title="Dispers&#227;o do fundador">20</span></div>
+    <div class="ax">Alto</div>
+    <div class="cell z1"></div>
+    <div class="cell z2"><span class="r">5</span><span class="r">8</span><span class="r">9</span><span class="r">19</span></div>
+    <div class="cell z3"><span class="r">1</span><span class="r">3</span><span class="r">4</span><span class="r">7</span><span class="r">15</span></div>
+    <div class="ax">M&#233;dio</div>
+    <div class="cell z1"></div>
+    <div class="cell z1"><span class="r">10</span><span class="r">12</span><span class="r">13</span><span class="r">14</span><span class="r">16</span><span class="r">18</span></div>
+    <div class="cell z2"><span class="r">6</span><span class="r">17</span></div>
+  </div>
+  <p class="small">Os n&#250;meros correspondem &#224; tabela abaixo. Canto superior direito = prioridade m&#225;xima.</p>
+
+  <div class="tbl"><table>
+    <thead><tr><th>#</th><th>Risco</th><th>Categoria</th><th>Impacto</th><th>Prob.</th><th>Mitiga&#231;&#227;o</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>O ao vivo &#233; "bom ter", e ningu&#233;m paga por ele</td><td>Mercado</td><td><span class="badge b-alto">Alto</span></td><td><span class="badge b-alto">Alta</span></td><td>Testar disposi&#231;&#227;o a pagar separando preparo de ao vivo; vender o preparo</td></tr>
+      <tr><td>2</td><td>N&#250;mero errado dito ao s&#243;cio</td><td>IA</td><td><span class="badge b-crit">Cr&#237;tico</span></td><td><span class="badge b-alto">Alta</span></td><td>Motor determin&#237;stico, cita&#231;&#227;o obrigat&#243;ria, sistema que diz "n&#227;o sei" quando n&#227;o tem certeza</td></tr>
+      <tr><td>3</td><td>Erro de sem&#226;ntica cont&#225;bil (n&#227;o recorrentes, caixa x compet&#234;ncia)</td><td>Produto</td><td><span class="badge b-alto">Alto</span></td><td><span class="badge b-alto">Alta</span></td><td>Mapeamento validado por humano e gloss&#225;rio por cliente</td></tr>
+      <tr><td>4</td><td>Cada cliente tem um Excel diferente, e o onboarding fica caro</td><td>Produto</td><td><span class="badge b-alto">Alto</span></td><td><span class="badge b-alto">Alta</span></td><td>Templates, setup cobrado, formatos limitados no in&#237;cio</td></tr>
+      <tr><td>5</td><td>Microsoft Copilot (Excel e Teams) fica "bom o suficiente"</td><td>Concorr&#234;ncia</td><td><span class="badge b-alto">Alto</span></td><td><span class="badge b-med">M&#233;dia</span></td><td>Fluxo multi-cliente e foco em PMEs sem M365 Copilot</td></tr>
+      <tr><td>6</td><td>Zoom, Otter e Fireflies com ao vivo + arquivos derrubam o pre&#231;o de refer&#234;ncia</td><td>Concorr&#234;ncia</td><td><span class="badge b-med">M&#233;dio</span></td><td><span class="badge b-alto">Alta</span></td><td>N&#227;o se posicionar como ferramenta de reuni&#227;o</td></tr>
+      <tr><td>7</td><td>ChatGPT ou Claude com upload como substituto</td><td>Concorr&#234;ncia</td><td><span class="badge b-alto">Alto</span></td><td><span class="badge b-alto">Alta</span></td><td>Mem&#243;ria, rastreabilidade, governan&#231;a e fluxo de equipe</td></tr>
+      <tr><td>8</td><td>Accountfy ou um ERP lan&#231;a o mesmo recurso</td><td>Concorr&#234;ncia</td><td><span class="badge b-alto">Alto</span></td><td><span class="badge b-med">M&#233;dia</span></td><td>Velocidade, canal e base instalada; ser ativo atraente para aquisi&#231;&#227;o</td></tr>
+      <tr><td>9</td><td>Grava&#231;&#227;o sem consentimento e base legal fr&#225;gil (cadeia controlador/operador)</td><td>LGPD</td><td><span class="badge b-alto">Alto</span></td><td><span class="badge b-med">M&#233;dia</span></td><td>Consentimento expl&#237;cito, DPA com a firma, minimiza&#231;&#227;o de dados</td></tr>
+      <tr><td>10</td><td>Biometria de voz como dado sens&#237;vel</td><td>LGPD</td><td><span class="badge b-med">M&#233;dio</span></td><td><span class="badge b-med">M&#233;dia</span></td><td>N&#227;o identificar participantes por voz</td></tr>
+      <tr><td>11</td><td>Vazamento entre clientes ou quebra de sigilo</td><td>Seguran&#231;a</td><td><span class="badge b-crit">Cr&#237;tico</span></td><td><span class="badge b-baixo">Baixa</span></td><td>Isolamento por cliente, pentest, logs, testes automatizados</td></tr>
+      <tr><td>12</td><td>Prompt injection por documentos enviados</td><td>Seguran&#231;a</td><td><span class="badge b-med">M&#233;dio</span></td><td><span class="badge b-med">M&#233;dia</span></td><td>Separar instru&#231;&#245;es de dados, sanitizar, nunca executar instru&#231;&#245;es vindas de arquivos</td></tr>
+      <tr><td>13</td><td>Depend&#234;ncia das APIs de LLM (pre&#231;o, mudan&#231;as, queda durante a reuni&#227;o)</td><td>APIs</td><td><span class="badge b-med">M&#233;dio</span></td><td><span class="badge b-med">M&#233;dia</span></td><td>Camada multi-fornecedor, fallback e cache das respostas preparadas</td></tr>
+      <tr><td>14</td><td>Plataformas de reuni&#227;o bloqueiam ou mudam bots</td><td>APIs</td><td><span class="badge b-med">M&#233;dio</span></td><td><span class="badge b-med">M&#233;dia</span></td><td>Fornecedor de bot, upload de grava&#231;&#227;o como alternativa, captura local de &#225;udio</td></tr>
+      <tr><td>15</td><td>Lat&#234;ncia ou falha ao vivo</td><td>Confiabilidade</td><td><span class="badge b-alto">Alto</span></td><td><span class="badge b-alto">Alta</span></td><td>Respostas pr&#233;-calculadas e degrada&#231;&#227;o controlada</td></tr>
+      <tr><td>16</td><td>Transcri&#231;&#227;o ruim de n&#250;meros e jarg&#227;o em PT-BR ("um v&#237;rgula dois milh&#245;es")</td><td>Confiabilidade</td><td><span class="badge b-med">M&#233;dio</span></td><td><span class="badge b-med">M&#233;dia</span></td><td>Vocabul&#225;rio customizado e valida&#231;&#227;o cruzada com o modelo financeiro</td></tr>
+      <tr><td>17</td><td>Reuni&#227;o presencial e constrangimento com uso vis&#237;vel de IA</td><td>Produto</td><td><span class="badge b-med">M&#233;dio</span></td><td><span class="badge b-alto">Alta</span></td><td>Foco em preparo e p&#243;s; transpar&#234;ncia como argumento</td></tr>
+      <tr><td>18</td><td>Uso mensal gera pouco h&#225;bito e mais churn</td><td>Mercado</td><td><span class="badge b-med">M&#233;dio</span></td><td><span class="badge b-med">M&#233;dia</span></td><td>Foco em firmas multi-cliente, alertas entre reuni&#245;es, portal</td></tr>
+      <tr><td>19</td><td>Nicho inicial pequeno</td><td>Mercado</td><td><span class="badge b-alto">Alto</span></td><td><span class="badge b-med">M&#233;dia</span></td><td>Plano de expans&#227;o para BPO e cont&#225;beis (se&#231;&#227;o 13)</td></tr>
+      <tr><td>20</td><td>Fundador disperso entre verticais e sem cofundador t&#233;cnico</td><td>Execu&#231;&#227;o</td><td><span class="badge b-crit">Cr&#237;tico</span></td><td><span class="badge b-alto">Alta</span></td><td>Uma vertical s&#243;; cofundador t&#233;cnico com equity relevante</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 12 -->
+<section id="s12">
+  <h2><span class="n">12.</span> Plano de 12 meses</h2>
+  <p>Sup&#245;e voc&#234; mais um cofundador t&#233;cnico. Ticket m&#233;dio sobe de R$ 1.200 (design partners) para cerca de R$ 1.800.</p>
+  <h3>Evolu&#231;&#227;o de MRR (R$ mil)</h3>
+  <div class="legend"><span><i style="background:var(--accent)"></i>Cen&#225;rio base</span><span><i style="background:var(--bar2)"></i>Cen&#225;rio conservador (-40%)</span></div>
+  <div class="cols" role="img" aria-label="Gr&#225;fico de MRR mensal, base e conservador">
+    <div class="col"><span class="lbl" style="top:auto;bottom:4px">0</span><div class="c1" style="height:0%"></div><div class="c2" style="height:0%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(4.2% + 4px)">3,6</span><div class="c1" style="height:4.2%"></div><div class="c2" style="height:2.6%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(7.1% + 4px)">6</span><div class="c1" style="height:7.1%"></div><div class="c2" style="height:4.2%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(10.6% + 4px)">9</span><div class="c1" style="height:10.6%"></div><div class="c2" style="height:6.4%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(16.5% + 4px)">14</span><div class="c1" style="height:16.5%"></div><div class="c2" style="height:9.9%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(23.5% + 4px)">20</span><div class="c1" style="height:23.5%"></div><div class="c2" style="height:14.1%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(31.8% + 4px)">27</span><div class="c1" style="height:31.8%"></div><div class="c2" style="height:19.1%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(42.4% + 4px)">36</span><div class="c1" style="height:42.4%"></div><div class="c2" style="height:25.4%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(52.9% + 4px)">45</span><div class="c1" style="height:52.9%"></div><div class="c2" style="height:31.8%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(65.9% + 4px)">56</span><div class="c1" style="height:65.9%"></div><div class="c2" style="height:39.5%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(82.4% + 4px)">70</span><div class="c1" style="height:82.4%"></div><div class="c2" style="height:49.4%"></div></div>
+    <div class="col"><span class="lbl" style="top:auto;bottom:calc(92% + 4px)">85</span><div class="c1" style="height:92%"></div><div class="c2" style="height:55.2%"></div></div>
+  </div>
+  <div class="xaxis"><span>M1</span><span>M2</span><span>M3</span><span>M4</span><span>M5</span><span>M6</span><span>M7</span><span>M8</span><span>M9</span><span>M10</span><span>M11</span><span>M12</span></div>
+
+  <h3>M&#234;s a m&#234;s</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>M&#234;s</th><th>Entregas</th><th>M&#233;tricas e metas</th><th>Crit&#233;rio para seguir (gate)</th><th class="num">Clientes</th><th class="num">MRR</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>30 entrevistas; pack manual para 5 empresas reais</td><td>Horas de preparo medidas; 5 cartas de inten&#231;&#227;o</td><td>&#8805; 60% relatam 4h+ de preparo por cliente. <b>Se &lt; 30% citam preparo como dor top 3, pivote</b></td><td class="num">0*</td><td class="num">R$ 0</td></tr>
+      <tr><td>2</td><td>MVP 0: ingest&#227;o, mapeamento, motor de c&#225;lculo, pack em PDF</td><td>Tempo da DRE ao pack &lt; 2h</td><td>3 design partners pagando</td><td class="num">3</td><td class="num">R$ 3,6 mil</td></tr>
+      <tr><td>3</td><td>P&#243;s-reuni&#227;o e mem&#243;ria mensal</td><td>Redu&#231;&#227;o do tempo de preparo &#8805; 50% (antes x depois)</td><td>Clientes usam no 2&#186; m&#234;s sem voc&#234; pedir</td><td class="num">5</td><td class="num">R$ 6 mil</td></tr>
+      <tr><td>4</td><td>Busca r&#225;pida ao vivo em beta com 2 ou 3 clientes</td><td>% de reuni&#245;es em que o ao vivo &#233; usado</td><td>Se uso &lt; 30%, rebaixar o ao vivo</td><td class="num">7</td><td class="num">R$ 9 mil</td></tr>
+      <tr><td>5</td><td>Exporta&#231;&#227;o de PPT no template da firma; painel da carteira</td><td>Primeiro case com n&#250;meros</td><td>Teste de pre&#231;o por empresa</td><td class="num">10</td><td class="num">R$ 14 mil</td></tr>
+      <tr class="hl"><td>6</td><td><b>Checkpoint de PMF</b></td><td>Sean Ellis &gt; 40%; reten&#231;&#227;o 90 dias &gt; 90%; pack mensal &#8805; 80% das empresas</td><td>Decidir: captar pre-seed ou seguir com recursos pr&#243;prios</td><td class="num">13</td><td class="num">R$ 20 mil</td></tr>
+      <tr><td>7</td><td>Integra&#231;&#227;o com o ERP mais citado; onboarding semi-autom&#225;tico</td><td>Tempo at&#233; o primeiro valor &lt; 7 dias</td><td>Setup cai pela metade</td><td class="num">17</td><td class="num">R$ 27 mil</td></tr>
+      <tr><td>8</td><td>2 parcerias de canal (educador de BPO e ERP)</td><td>&#8805; 30% dos leads vindos de canal</td><td>CAC &lt; R$ 6 mil</td><td class="num">22</td><td class="num">R$ 36 mil</td></tr>
+      <tr><td>9</td><td>Or&#231;amento e forecast simples; fluxo de revis&#227;o</td><td>NRR &gt; 100%</td><td>Upsell funciona</td><td class="num">27</td><td class="num">R$ 45 mil</td></tr>
+      <tr><td>10</td><td>Pacote de seguran&#231;a e LGPD (DPA, pentest, pol&#237;ticas) e 3 cases</td><td>Ciclo de venda &lt; 30 dias</td><td>Nenhuma venda perdida por seguran&#231;a</td><td class="num">33</td><td class="num">R$ 56 mil</td></tr>
+      <tr><td>11</td><td>Plano Solo em self-serve; programa de parceiros</td><td>Churn mensal &lt; 2%</td><td>Self-serve converte</td><td class="num">40</td><td class="num">R$ 70 mil</td></tr>
+      <tr><td>12</td><td>Consolida&#231;&#227;o; contratar SDR ou CS</td><td>Margem bruta &gt; 70%</td><td>ARR de ~R$ 1 milh&#227;o</td><td class="num">48</td><td class="num">R$ 85 mil</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">* M&#234;s 1: 2 setups pagos, cerca de R$ 5 mil em receita n&#227;o recorrente.</p>
+  <div class="grid2">
+    <div class="callout"><b>Cen&#225;rio conservador</b>40% abaixo: 28 a 30 clientes e MRR de ~R$ 50 mil no m&#234;s 12. Ainda &#233; um resultado que se sustenta.</div>
+    <div class="callout"><b>Custo e breakeven</b>Custo mensal estimado (dois s&#243;cios com pr&#243;-labore enxuto e ferramentas): R$ 40 a 60 mil. Breakeven entre os meses 9 e 11 no cen&#225;rio base.</div>
+  </div>
+</section>
+
+<!-- 13 -->
+<section id="s13">
+  <h2><span class="n">13.</span> Vis&#227;o de longo prazo</h2>
+  <h3>Tamanho do mercado (hip&#243;teses a validar no Sales Navigator e com dados do CFC)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Segmento</th><th class="num">Firmas (hip&#243;tese)</th><th class="num">Endere&#231;&#225;vel</th><th class="num">Ticket mensal</th><th class="num">Receita anual poss&#237;vel (SAM)</th></tr></thead>
+    <tbody>
+      <tr><td>CFOaaS, consultorias e controladoria</td><td class="num">3.000</td><td class="num">30% = 900</td><td class="num">R$ 1.900</td><td class="num">900 &#215; 1.900 &#215; 12 = R$ 20,5 mi</td></tr>
+      <tr><td>BPO financeiro</td><td class="num">5.000</td><td class="num">40% = 2.000</td><td class="num">R$ 1.200</td><td class="num">R$ 28,8 mi</td></tr>
+      <tr><td>Cont&#225;beis com servi&#231;o consultivo</td><td class="num">70.000</td><td class="num">10% = 7.000</td><td class="num">R$ 800</td><td class="num">R$ 67,2 mi</td></tr>
+      <tr class="hl"><td>Total</td><td></td><td></td><td></td><td class="num">~R$ 116 mi</td></tr>
+    </tbody>
+  </table></div>
+  <div class="bars">
+    <div class="bar-row"><span>CFOaaS / consultorias</span><div class="bar-track"><div class="bar-fill" style="width:30.5%"></div></div><span class="bar-val">20,5</span></div>
+    <div class="bar-row"><span>BPO financeiro</span><div class="bar-track"><div class="bar-fill" style="width:42.9%"></div></div><span class="bar-val">28,8</span></div>
+    <div class="bar-row"><span>Cont&#225;beis consultivos</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">67,2</span></div>
+  </div>
+  <p class="small">R$ milh&#245;es por ano.</p>
+  <div class="callout warn"><b>Leitura</b>O nicho inicial sozinho, com 15% de participa&#231;&#227;o, d&#225; ~R$ 3 milh&#245;es de ARR. Para passar disso &#233; preciso entrar em BPO e cont&#225;beis. Para chegar a R$ 100 milh&#245;es seria preciso ~90% de todo esse mercado, o que &#233; invi&#225;vel. Logo, R$ 100 milh&#245;es exige outra tese.</div>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Desfecho</th><th>Receita</th><th>O que precisa acontecer</th><th>Probabilidade (se houver PMF)</th></tr></thead>
+    <tbody>
+      <tr><td><b>Lifestyle</b></td><td>R$ 0,5 a 1 mi/ano</td><td>25 a 45 firmas, 1 a 3 pessoas, churn baixo, fundador vendendo</td><td><span class="badge b-yes">Alta</span></td></tr>
+      <tr><td><b>Pequena lucrativa</b></td><td>R$ 3 a 5 mi/ano</td><td>130 a 220 firmas, onboarding semi-autom&#225;tico, 1 ou 2 canais, 10 a 20 pessoas, margem EBITDA de 25% a 35%</td><td><span class="badge b-maybe">M&#233;dia</span></td></tr>
+      <tr><td><b>R$ 10 mi/ano</b></td><td>R$ 10 mi</td><td>~450 firmas ou ~4.000 empresas atendidas; entrar em BPO e cont&#225;beis; integra&#231;&#227;o com os principais ERPs; ticket m&#233;dio acima de R$ 2.500 com forecast e portal</td><td><span class="badge b-maybe">M&#233;dia-baixa</span></td></tr>
+      <tr><td><b>R$ 100 mi/ano</b></td><td>R$ 100 mi</td><td>Virar a <b>camada de IA financeira das PMEs</b>, distribu&#237;da por contadores e BPOs, mais produto direto para PME, mais <b>servi&#231;os financeiros</b> (cr&#233;dito e antecipa&#231;&#227;o com os dados, com consentimento), mais Am&#233;rica Latina</td><td><span class="badge b-no">Baixa (&lt; 5%)</span></td></tr>
+      <tr><td><b>Venture-backed</b></td><td>Trajet&#243;ria para R$ 100 mi+</td><td>S&#243; com a tese anterior. A ferramenta de reuni&#227;o sozinha n&#227;o tem escala de VC</td><td><span class="badge b-maybe">Depende da tese</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Sa&#237;da mais prov&#225;vel:</b> venda estrat&#233;gica para um player de ERP, FP&amp;A ou contabilidade digital no Brasil. &#201; um desfecho leg&#237;timo e muitas vezes mais r&#225;pido do que a rota de VC.</p>
+</section>
+
+<!-- 14 -->
+<section id="s14">
+  <h2><span class="n">14.</span> Decis&#227;o do investidor</h2>
+  <div class="legend"><span><i style="background:var(--bad)"></i>Como est&#225; hoje</span><span><i style="background:var(--good)"></i>Reposicionado e com marcos cumpridos</span></div>
+  <div id="pairs">
+    <div class="pair"><span>Mercado</span><div class="tracks"><div class="t"><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--bad)"></div></div><span>5</span></div><div class="t"><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--good)"></div></div><span>6</span></div></div></div>
+    <div class="pair"><span>Produto</span><div class="tracks"><div class="t"><div class="bar-track"><div class="bar-fill" style="width:40%;background:var(--bad)"></div></div><span>4</span></div><div class="t"><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--good)"></div></div><span>7</span></div></div></div>
+    <div class="pair"><span>Diferencial</span><div class="tracks"><div class="t"><div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--bad)"></div></div><span>3</span></div><div class="t"><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--good)"></div></div><span>6</span></div></div></div>
+    <div class="pair"><span>Escalabilidade</span><div class="tracks"><div class="t"><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--bad)"></div></div><span>5</span></div><div class="t"><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--good)"></div></div><span>6</span></div></div></div>
+    <div class="pair"><span>Defensabilidade</span><div class="tracks"><div class="t"><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--bad)"></div></div><span>2</span></div><div class="t"><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div><span>5</span></div></div></div>
+    <div class="pair"><span>Monetiza&#231;&#227;o</span><div class="tracks"><div class="t"><div class="bar-track"><div class="bar-fill" style="width:40%;background:var(--bad)"></div></div><span>4</span></div><div class="t"><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--good)"></div></div><span>7</span></div></div></div>
+    <div class="pair"><span>Go-to-market</span><div class="tracks"><div class="t"><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--bad)"></div></div><span>5</span></div><div class="t"><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--good)"></div></div><span>7</span></div></div></div>
+    <div class="pair"><span>Potencial de crescimento</span><div class="tracks"><div class="t"><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--bad)"></div></div><span>5</span></div><div class="t"><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--good)"></div></div><span>6</span></div></div></div>
+    <div class="pair"><span><b>M&#233;dia</b></span><div class="tracks"><div class="t"><div class="bar-track"><div class="bar-fill" style="width:41%;background:var(--bad)"></div></div><span><b>4,1</b></span></div><div class="t"><div class="bar-track"><div class="bar-fill" style="width:63%;background:var(--good)"></div></div><span><b>6,3</b></span></div></div></div>
+  </div>
+
+  <div class="grid2" style="margin-top:16px">
+    <div class="card verdict-no"><h4>Eu investiria?</h4><p>Na proposta atual (duas verticais, plataforma, ao vivo como centro): <b>n&#227;o, R$ 0.</b></p></div>
+    <div class="card verdict-yes"><h4>Quanto e em que condi&#231;&#245;es</h4><p>Na tese reposicionada: <b>R$ 800 mil a R$ 1,5 milh&#227;o</b> em pre-seed, valuation pre-money de R$ 6 a 10 milh&#245;es, em duas parcelas.</p></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Parcela</th><th>Condi&#231;&#245;es</th></tr></thead>
+    <tbody>
+      <tr><td><b>1</b></td><td>Cofundador t&#233;cnico com &#8805; 20% de equity; foco exclusivo em firmas multi-cliente; 10 clientes pagantes; MRR de R$ 15 a 20 mil</td></tr>
+      <tr><td><b>2</b></td><td>30 clientes; MRR &#8805; R$ 50 mil; churn mensal &lt; 2%; primeiro canal funcionando</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>M&#233;tricas que eu exigiria</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>M&#233;trica</th><th>Meta</th></tr></thead>
+    <tbody>
+      <tr><td>MRR e NRR</td><td>Crescimento m&#234;s a m&#234;s; NRR &gt; 100%</td></tr>
+      <tr><td>Reten&#231;&#227;o de logos em 90 e 180 dias</td><td>&gt; 90%</td></tr>
+      <tr><td>% de empresas cadastradas com pack gerado no m&#234;s</td><td>&#8805; 80%</td></tr>
+      <tr><td>Horas economizadas (antes x depois)</td><td>&#8805; 50%</td></tr>
+      <tr><td>CAC payback</td><td>&lt; 6 meses</td></tr>
+      <tr><td>Margem bruta</td><td>&#8805; 70%</td></tr>
+      <tr><td>Precis&#227;o no conjunto de testes</td><td>100% dos n&#250;meros rastre&#225;veis; &lt; 1 erro reportado a cada 50 packs</td></tr>
+      <tr><td>Tempo at&#233; o primeiro valor</td><td>&lt; 7 dias</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>O que precisa mudar para a chance de sucesso subir muito</h3>
+  <ol>
+    <li>Um p&#250;blico e um problema: a reuni&#227;o de resultados de firmas multi-cliente.</li>
+    <li>O ao vivo sai da manchete e vira recurso.</li>
+    <li>Motor num&#233;rico determin&#237;stico e rastreabilidade como funda&#231;&#227;o.</li>
+    <li>Cobran&#231;a por empresa atendida.</li>
+    <li>Cofundador t&#233;cnico.</li>
+    <li>Abandonar agora a vertical comercial e a ideia de plataforma.</li>
+  </ol>
+</section>
+
+<!-- 15 -->
+<section id="s15" class="attack">
+  <h2><span class="n">15.</span> Se eu fosse seu concorrente</h2>
+  <div class="grid2">
+    <div class="card verdict-no">
+      <h4>Microsoft <span class="badge b-crit">mais perigoso em FP&amp;A</span></h4>
+      <p><b>Ataque:</b> "Voc&#234; j&#225; paga o M365. O Copilot no Excel analisa a DRE, e o Teams detecta e responde perguntas na reuni&#227;o." Venda em pacote, com custo marginal zero para quem j&#225; tem.</p>
+      <p><b>Como eu roubaria seus clientes:</b> levando o argumento ao TI e ao compliance ("os dados n&#227;o saem do seu ambiente") e incentivando parceiros a montar um agente "Board Prep" no Copilot Studio em semanas.</p>
+      <p><b>Sua vulnerabilidade:</b> se o seu valor for "ler arquivos e responder", eu j&#225; fa&#231;o isso.</p>
+      <p><b>Sua defesa:</b> trabalhar com 30 empresas de clientes diferentes, o que o M365 resolve mal porque &#233; centrado em uma organiza&#231;&#227;o. Somar sem&#226;ntica cont&#225;bil brasileira e PMEs que n&#227;o pagam o Copilot. Mais tarde, integrar em vez de competir (app no Teams, suplemento no Excel).</p>
+    </div>
+    <div class="card verdict-maybe">
+      <h4>Gong</h4>
+      <p>"Em FP&amp;A eu te ignoro. Se voc&#234; entrar em vendas, eu te esmago: tenho milh&#245;es de calls, quadros de oportunidades, forecast e certifica&#231;&#245;es de seguran&#231;a. Seu copiloto comercial &#233; uma funcionalidade minha. Ofere&#231;o desconto e migra&#231;&#227;o e pergunto ao seu prospect se ele confia dados de vendas a uma startup sem SOC 2."</p>
+      <p><b>Defesa:</b> n&#227;o entrar em vendas.</p>
+    </div>
+    <div class="card verdict-maybe">
+      <h4>Salesforce</h4>
+      <p>"Gravidade dos dados: o CRM est&#225; comigo. Atualiza&#231;&#227;o do CRM, pr&#243;ximos passos e follow-up s&#227;o nativos no Agentforce. Voc&#234; seria um aplicativo fr&#225;gil no meu marketplace."</p>
+      <p><b>Defesa:</b> idem. Em PMEs brasileiras de servi&#231;os financeiros, a Salesforce n&#227;o est&#225; presente.</p>
+    </div>
+    <div class="card verdict-maybe">
+      <h4>HubSpot</h4>
+      <p>"Dou a IA de gra&#231;a dentro do Sales Hub e uso minha rede de ag&#234;ncias parceiras no Brasil para distribuir. Seu ticket em vendas de PME vai a zero."</p>
+      <p><b>Defesa:</b> n&#227;o entrar em vendas de PME.</p>
+    </div>
+    <div class="card verdict-maybe">
+      <h4>Clari</h4>
+      <p>"Cart&#245;es de apoio ao vivo em calls eu j&#225; tenho, junto com forecast. Voc&#234; seria uma c&#243;pia tardia."</p>
+      <p><b>Li&#231;&#227;o:</b> o ao vivo em vendas j&#225; &#233; commodity. O ao vivo em finan&#231;as vai pelo mesmo caminho.</p>
+    </div>
+    <div class="card verdict-no">
+      <h4>O ataque mais prov&#225;vel n&#227;o vem dessa lista</h4>
+      <ol>
+        <li>ChatGPT ou Claude, usados pelos seus pr&#243;prios clientes.</li>
+        <li>Accountfy ou um ERP de PME lan&#231;ando "reuni&#227;o de resultados com IA" para uma base j&#225; instalada.</li>
+        <li>Um ex-s&#243;cio de CFOaaS com cofundador t&#233;cnico, copiando o seu posicionamento em seis meses.</li>
+      </ol>
+    </div>
+  </div>
+  <h3>O que fazer hoje para se defender</h3>
+  <ol>
+    <li>Cortar a vertical comercial e o discurso de plataforma.</li>
+    <li>Reposicionar de "responde ao vivo" para "prepara e conduz a reuni&#227;o de resultados de toda a carteira".</li>
+    <li>Construir primeiro a camada de dados: mapeamento cont&#225;bil e motor determin&#237;stico. &#201; o que gringos e generalistas n&#227;o v&#227;o fazer para PMEs brasileiras.</li>
+    <li>Fechar 10 design partners com contrato anual e pre&#231;o por empresa.</li>
+    <li>Ser dono de um canal (educadores de BPO ou um ERP) antes dos concorrentes.</li>
+    <li>Ter credibilidade em seguran&#231;a e LGPD desde o primeiro dia.</li>
+    <li>Montar o conjunto de 500 perguntas com gabarito e publicar a taxa de acerto.</li>
+  </ol>
+</section>
+
+<!-- 16 -->
+<section id="s16">
+  <h2><span class="n">16.</span> Pr&#243;ximos 14 dias</h2>
+  <p class="small">Marque conforme avan&#231;a (as marca&#231;&#245;es valem s&#243; nesta visualiza&#231;&#227;o).</p>
+  <ul class="checklist">
+    <li><label><input type="checkbox">Listar 60 nomes da sua rede e marcar 15 entrevistas.</label></li>
+    <li><label><input type="checkbox">Perguntar em todas: horas de preparo por cliente, n&#250;mero de clientes por consultor, qual &#233; o material de entrada e "quanto voc&#234; pagaria por empresa para cortar isso pela metade?".</label></li>
+    <li><label><input type="checkbox">Fazer 3 packs manuais (concierge) com DREs reais anonimizadas.</label></li>
+    <li><label><input type="checkbox">Definir se vai buscar um cofundador t&#233;cnico e com quanto de equity.</label></li>
+    <li><label><input type="checkbox">Escrever em uma frase por que o seu produto &#233; melhor do que "subir a DRE no ChatGPT". Se n&#227;o conseguir, volte ao passo 2.</label></li>
+  </ul>
+</section>
+
+<!-- 17 -->
+<section id="s17">
+  <h2><span class="n">17.</span> Roteiro de entrevista de descoberta</h2>
+  <p>Complemento ao plano: perguntas para as 30 entrevistas do m&#234;s 1. Regra: entrevista n&#227;o &#233; pitch. Fale no m&#225;ximo 20% do tempo e pe&#231;a n&#250;meros, n&#227;o opini&#245;es.</p>
+  <details open><summary>Bloco 1 &#183; Contexto da firma (5 min)</summary>
+    <ol>
+      <li>Quantos consultores e quantas empresas atendidas voc&#234;s t&#234;m hoje?</li>
+      <li>Quanto cobram, em m&#233;dia, por empresa por m&#234;s?</li>
+      <li>Quantas reuni&#245;es de resultado fazem por m&#234;s? Presenciais ou por v&#237;deo?</li>
+    </ol>
+  </details>
+  <details open><summary>Bloco 2 &#183; Preparo da reuni&#227;o (10 min)</summary>
+    <ol start="4">
+      <li>Me conte, passo a passo, como foi o preparo da &#250;ltima reuni&#227;o de resultados.</li>
+      <li>Qual &#233; o material de entrada: balancete, raz&#227;o, export do ERP, DRE pronta?</li>
+      <li>Quantas horas isso levou? Quem fez? Quem revisou?</li>
+      <li>Que ferramentas usam (Excel, Power BI, ChatGPT, outro sistema)?</li>
+    </ol>
+  </details>
+  <details open><summary>Bloco 3 &#183; A reuni&#227;o em si (10 min)</summary>
+    <ol start="8">
+      <li>Qual foi a pior pergunta que um s&#243;cio j&#225; fez e voc&#234;s n&#227;o souberam responder? O que aconteceu depois?</li>
+      <li>Com que frequ&#234;ncia isso acontece?</li>
+      <li>Quanto dessas perguntas daria para prever antes da reuni&#227;o?</li>
+      <li>Algu&#233;m da sua equipe tem receio de conduzir reuni&#227;o com s&#243;cio? Por qu&#234;?</li>
+    </ol>
+  </details>
+  <details open><summary>Bloco 4 &#183; P&#243;s-reuni&#227;o e continuidade (5 min)</summary>
+    <ol start="12">
+      <li>Como registram decis&#245;es e pend&#234;ncias? Elas voltam na reuni&#227;o seguinte?</li>
+      <li>J&#225; perderam cliente por falha de acompanhamento?</li>
+    </ol>
+  </details>
+  <details open><summary>Bloco 5 &#183; Valor e compra (5 min)</summary>
+    <ol start="14">
+      <li>Se o preparo ca&#237;sse pela metade, o que voc&#234;s fariam com o tempo liberado?</li>
+      <li>Quanto pagariam por empresa atendida por m&#234;s para isso? (deixe a pessoa falar o n&#250;mero primeiro)</li>
+      <li>Quem mais precisaria aprovar a compra?</li>
+      <li>Toparia me enviar uma DRE anonimizada (com NDA) para eu devolver o pack em 48h?</li>
+    </ol>
+  </details>
+  <div class="callout"><b>Como registrar</b>Uma linha por entrevista numa planilha com: n&#186; consultores, n&#186; empresas, honor&#225;rio m&#233;dio, horas de preparo, input usado, frequ&#234;ncia de pergunta inesperada, disposi&#231;&#227;o a pagar declarada, aceitou enviar DRE (sim/n&#227;o). Esses campos alimentam a calculadora da se&#231;&#227;o 8b e o gate do m&#234;s 1.</div>
+</section>
+
+<!-- 18 -->
+<section id="s18">
+  <h2><span class="n">18.</span> Gloss&#225;rio</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Termo</th><th>Significado</th></tr></thead>
+    <tbody>
+      <tr><td>MRR / ARR</td><td>Receita recorrente mensal / anual (ARR = MRR &#215; 12)</td></tr>
+      <tr><td>NRR</td><td>Net Revenue Retention: receita da base atual ap&#243;s expans&#227;o, redu&#231;&#227;o e churn, comparada a 12 meses antes</td></tr>
+      <tr><td>CAC / Payback</td><td>Custo para adquirir um cliente / meses de margem de contribui&#231;&#227;o para recuperar esse custo</td></tr>
+      <tr><td>PMF</td><td>Product Market Fit: o mercado puxa o produto (reten&#231;&#227;o alta, indica&#231;&#245;es, uso sem esfor&#231;o de venda)</td></tr>
+      <tr><td>Teste de Sean Ellis</td><td>Pergunta "como voc&#234; se sentiria se n&#227;o pudesse mais usar o produto?"; &gt; 40% "muito decepcionado" indica PMF</td></tr>
+      <tr><td>SAM</td><td>Serviceable Addressable Market: parte do mercado que o produto consegue atender de fato</td></tr>
+      <tr><td>ICP</td><td>Ideal Customer Profile: perfil de cliente ideal</td></tr>
+      <tr><td>Concierge / Wizard of Oz</td><td>Entregar manualmente o resultado que o software vai automatizar, para validar valor antes de construir</td></tr>
+      <tr><td>Design partner</td><td>Cliente inicial que paga (com desconto) e participa ativamente da constru&#231;&#227;o do produto</td></tr>
+      <tr><td>RAG</td><td>Retrieval-Augmented Generation: o LLM busca trechos de documentos antes de responder</td></tr>
+      <tr><td>Diariza&#231;&#227;o</td><td>Separar a transcri&#231;&#227;o por falante (A, B, C) sem necessariamente identificar quem &#233;</td></tr>
+      <tr><td>Motor determin&#237;stico</td><td>C&#225;lculo feito por c&#243;digo/f&#243;rmula, sempre com o mesmo resultado, sem depender do LLM</td></tr>
+      <tr><td>DPA</td><td>Data Processing Agreement: contrato de tratamento de dados entre controlador e operador (LGPD)</td></tr>
+      <tr><td>SOC 2</td><td>Certifica&#231;&#227;o de controles de seguran&#231;a muito exigida por empresas nos EUA</td></tr>
+      <tr><td>White-label</td><td>Produto entregue com a marca do cliente (a firma), n&#227;o com a sua</td></tr>
+      <tr><td>Prompt injection</td><td>Instru&#231;&#245;es maliciosas escondidas em documentos para manipular o comportamento do LLM</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 19 -->
+<section id="s19">
+  <h2><span class="n">19.</span> Fontes (estado da concorr&#234;ncia em 2026)</h2>
+  <ul>
+    <li><a href="https://mc.merill.net/message/MC1409304">Microsoft Teams: Facilitator detecta e responde lacunas de conhecimento (MC1409304)</a></li>
+    <li><a href="https://mc.merill.net/message/RM558341">Roadmap Microsoft RM558341: Facilitator detecta e responde perguntas</a></li>
+    <li><a href="https://wus.prod.support.services.microsoft.com/en-gb/office/use-copilot-in-microsoft-teams-meetings-0bf9dd3c-96f7-44e2-8bb8-790bedf066b1">Microsoft: usar o Copilot em reuni&#245;es do Teams</a></li>
+    <li><a href="https://community.zoom.com/customer-success-forum-23/from-conversation-to-completion-zoom-ai-companion-3-0-73615">Zoom AI Companion 3.0 (comunidade Zoom)</a></li>
+    <li><a href="https://www.computerweekly.com/news/366631736/Zoom-includes-AI-at-no-extra-cost-to-crack-enterprise-adoption-puzzle">ComputerWeekly: Zoom inclui IA sem custo extra</a></li>
+    <li><a href="https://venturebeat.com/technology/gong-launches-mission-andromeda-with-ai-sales-coaching-chatbot-and-open-mcp">VentureBeat: Gong Mission Andromeda</a></li>
+    <li><a href="https://www.uctoday.com/unified-communications/otter-revolutionises-meetings-with-ai-agent-that-speaks-up-during-calls/">UC Today: Otter Meeting Agent</a></li>
+    <li><a href="https://fireflies.ai/blog/best-ai-meeting-assistant">Fireflies: comparativo de assistentes de reuni&#227;o 2026</a></li>
+    <li><a href="https://www.outlookbusiness.com/artificial-intelligence/andreessen-horowitz-bets-15-mn-on-viral-cheat-on-everything-ai-start-up">Outlook Business: a16z investe US$ 15 mi na Cluely</a></li>
+    <li><a href="https://wiki.krisyotam.com/content/wikipedia_en_all_nopic_2026-03/Cluely">Cluely (resumo, incluindo a admiss&#227;o de n&#250;meros inflados em 2026)</a></li>
+    <li><a href="https://finsidersbrasil.com.br/reportagem-exclusiva-fintechs/accountfy-dobra-receita-e-vai-entrar-de-vez-em-servicos-financeiros">Finsiders: Accountfy dobra receita e entra em servi&#231;os financeiros</a></li>
+    <li><a href="https://kpmg.com/br/pt/home/servicos/aliancas-estrategicas-kpmg/accountfy-kpmg.html">KPMG Brasil: alian&#231;a com a Accountfy</a></li>
+  </ul>
+  <p class="small">Pre&#231;os, tamanhos de mercado e premissas de custo s&#227;o estimativas a validar. Informa&#231;&#245;es de concorrentes refletem fontes p&#250;blicas consultadas em 12/11/2026.</p>
+</section>
+
+</div>
+<div class="tabpanel is-hidden" id="tab-2" role="tabpanel">
+<header class="hero">
+  <h1>2&#186; prompt: o caminho para R$ 20 mil por m&#234;s</h1>
+  <p class="lead">Revis&#227;o da an&#225;lise com as suas respostas: c&#243;digo j&#225; existente, rede de 5 firmas, at&#233; R$ 5 mil para investir, meta de R$ 20 mil l&#237;quidos por m&#234;s e opera&#231;&#227;o com no m&#225;ximo 2 pessoas. Inclui avalia&#231;&#227;o iterativa de caminhos e do produto, item a item, at&#233; estabilizar.</p>
+  <div class="meta">
+    <span class="chip">Data: 12/11/2026</span>
+    <span class="chip">Meta: R$ 20 mil l&#237;quidos/m&#234;s</span>
+    <span class="chip">Equipe: voc&#234; + 1 no m&#225;ximo</span>
+    <span class="chip">Caixa: at&#233; R$ 5 mil</span>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="v">&#8776; R$ 25 mil</div><div class="l">Faturamento mensal necess&#225;rio para sobrar R$ 20 mil para voc&#234;</div></div>
+    <div class="kpi"><div class="v">&#8776; 28 empresas</div><div class="l">no servi&#231;o a R$ 890 cada, ou ~3 CFOs com "analista dedicado"</div></div>
+    <div class="kpi"><div class="v">M&#234;s 10</div><div class="l">em que o cen&#225;rio base chega a R$ 20 mil l&#237;quidos (conservador: m&#234;s 15 a 18)</div></div>
+    <div class="kpi"><div class="v">&#8804; R$ 4,5 mil</div><div class="l">investimento nos 3 primeiros meses, sem empr&#233;stimo</div></div>
+  </div>
+</header>
+
+<section id="p2-0">
+  <h2><span class="n">0.</span> Resposta direta</h2>
+  <div class="grid2">
+    <div class="card verdict-yes"><h4>Caminho mais f&#225;cil</h4><p><b>Vender um servi&#231;o produtizado para CFOs e firmas de CFOaaS: "analista de reuni&#245;es FP&amp;A"</b>, com o Copiloto como motor interno. Voc&#234; prepara as reuni&#245;es semanais e o comit&#234; mensal das empresas da carteira deles (briefing, DRE gerencial, an&#225;lise, PPT, perguntas prov&#225;veis, roteiro de falas) e entrega ao CFO o apoio ao vivo. &#201; exatamente o trabalho que voc&#234; fazia, agora com uma ferramenta que multiplica sua capacidade.</p><p><b>Primeiro real em ~30 dias. R$ 20 mil l&#237;quidos em ~10 meses no cen&#225;rio base.</b></p></div>
+    <div class="card verdict-yes"><h4>Caminho f&#225;cil e escal&#225;vel</h4><p><b>O mesmo come&#231;o, e a partir do m&#234;s 6 o Copiloto vira software por assinatura</b> para CFOs independentes e firmas que preferem fazer sozinhas. O servi&#231;o paga as contas e valida o produto. O software cresce sem depender das suas horas.</p><p><b>&#201; o &#250;nico dos caminhos avaliados que leva a R$ 100 mil/m&#234;s com no m&#225;ximo 2 pessoas.</b></p></div>
+  </div>
+  <div class="callout warn"><b>O que eu n&#227;o faria</b>Pegar dinheiro emprestado para construir software; vender SaaS puro antes de ter clientes de servi&#231;o; virar CFO de PMEs ao mesmo tempo em que vende para firmas de CFO, porque isso faz de voc&#234; concorrente dos seus pr&#243;prios clientes; e sair do emprego antes do gatilho da se&#231;&#227;o 13.</div>
+</section>
+
+<section id="p2-1">
+  <h2><span class="n">1.</span> Limites desta an&#225;lise e m&#233;todo usado</h2>
+  <h3>O que eu n&#227;o consegui acessar</h3>
+  <ul>
+    <li><b>Mem&#243;ria e chats anteriores:</b> n&#227;o tenho acesso a eles nesta sess&#227;o.</li>
+    <li><b>C&#243;digo do Copiloto:</b> os reposit&#243;rios conectados (ProjetosAnalise, TibiaSurvivors e central-empresa) n&#227;o cont&#234;m o c&#243;digo. O "central-empresa" &#233; uma base de conhecimento do Painel de Canais. Avaliei o produto pelas funcionalidades descritas. Se voc&#234; conectar o reposit&#243;rio do Copiloto, consigo avaliar o c&#243;digo item a item.</li>
+  </ul>
+  <h3>O m&#233;todo ("jev")</h3>
+  <p>N&#227;o encontrei "jev" em skills, mem&#243;ria ou reposit&#243;rios. Tratei como um <b>ciclo de avalia&#231;&#227;o iterativo</b>. Se for um m&#233;todo espec&#237;fico, me diga e eu refa&#231;o com ele.</p>
+  <ol>
+    <li>Definir crit&#233;rios e pesos a partir do seu objetivo (R$ 20 mil, at&#233; 2 pessoas, at&#233; R$ 5 mil).</li>
+    <li>Dar nota de 0 a 10 para cada op&#231;&#227;o em cada crit&#233;rio.</li>
+    <li>Achar o crit&#233;rio mais fraco das op&#231;&#245;es l&#237;deres.</li>
+    <li>Mudar o desenho da op&#231;&#227;o para corrigir esse ponto.</li>
+    <li>Reavaliar. <b>Parar quando a melhora for menor que 0,5 ponto</b> ou quando um ajuste piorar a nota.</li>
+  </ol>
+  <p>Apliquei esse ciclo em duas frentes: nos <b>caminhos de neg&#243;cio</b> (se&#231;&#227;o 5) e nas <b>funcionalidades do produto</b> (se&#231;&#227;o 6).</p>
+</section>
+
+<section id="p2-2">
+  <h2><span class="n">2.</span> O que mudou com as suas respostas</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Ponto</th><th>Na 1&#170; an&#225;lise</th><th>Agora</th><th>Por qu&#234;</th></tr></thead>
+    <tbody>
+      <tr><td><b>Frequ&#234;ncia do "ao vivo"</b></td><td>Baixa a m&#233;dia (assumi reuni&#227;o mensal)</td><td><span class="badge b-yes">M&#233;dia a alta</span></td><td>10 empresas por CFO, com reuni&#227;o semanal de cada uma, d&#227;o 40 ou mais reuni&#245;es por m&#234;s por CFO. Voc&#234; tem raz&#227;o: nesse contexto o uso &#233; quase di&#225;rio.</td></tr>
+      <tr><td><b>Confus&#227;o entre empresas</b></td><td>N&#227;o considerada</td><td><span class="badge b-yes">Dor forte e nova</span></td><td>Misturar n&#250;meros de uma empresa com os de outra &#233; um erro real e frequente. Aqui a compara&#231;&#227;o justa n&#227;o &#233; "consultor perfeito contra IA", e sim "consultor cansado com 10 empresas contra consultor com briefing". Isso fortalece o produto.</td></tr>
+      <tr><td><b>Risco do n&#250;mero errado</b></td><td>Cr&#237;tico</td><td><span class="badge b-alto">Continua alto</span></td><td>O produto tamb&#233;m pode misturar empresas, se os dados n&#227;o estiverem isolados. Isolamento por empresa e base oficial de n&#250;meros viram obrigat&#243;rios.</td></tr>
+      <tr><td><b>C&#243;digo</b></td><td>Assumi que n&#227;o havia</td><td><span class="badge b-yes">J&#225; existe</span></td><td>Reduz o custo de construir. O gargalo passa a ser vender e garantir a confiabilidade.</td></tr>
+      <tr><td><b>Caixa</b></td><td>Pr&#233;-seed com investidor</td><td><span class="badge b-alto">At&#233; R$ 5 mil</span></td><td>O neg&#243;cio precisa se pagar desde o in&#237;cio. Servi&#231;o primeiro, software depois.</td></tr>
+      <tr><td><b>Meta</b></td><td>Cen&#225;rios de empresa (R$ 0,5 a 100 mi/ano)</td><td><span class="badge b-yes">R$ 20 mil/m&#234;s para voc&#234;</span></td><td>R$ 20 mil l&#237;quidos exigem ~R$ 300 mil de faturamento por ano: menos que o menor cen&#225;rio anterior. &#201; uma meta muito mais alcan&#231;&#225;vel.</td></tr>
+      <tr><td><b>Input</b></td><td>PPT ou balancete?</td><td><span class="badge b-maybe">Qualquer material</span></td><td>Bom para o uso, mas arriscado para os n&#250;meros. Qualquer material pode servir de contexto, mas os n&#250;meros das respostas devem vir s&#243; de uma base oficial validada por empresa.</td></tr>
+      <tr><td><b>Falas para menos experientes</b></td><td>Tratado como "cola"</td><td><span class="badge b-yes">Diferencial real</span></td><td>Para quem compra (o CFO ou o dono da firma), permitir que um analista conduza reuni&#245;es &#233; ganho direto de capacidade. Avalia&#231;&#227;o completa na se&#231;&#227;o 6.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><b>Por que os cen&#225;rios anteriores pareciam distantes</b>Eles mediam o faturamento de uma <b>empresa com equipe</b>. Sua meta &#233; <b>renda pessoal</b>. R$ 20 mil l&#237;quidos para voc&#234; correspondem a cerca de R$ 25 mil de faturamento por m&#234;s, ou R$ 300 mil por ano. R$ 100 mil por m&#234;s para voc&#234; seriam algo como R$ 130 a 150 mil de faturamento por m&#234;s: s&#243; alcan&#231;&#225;vel com software (se&#231;&#227;o 8).</div>
+</section>
+
+<section id="p2-3">
+  <h2><span class="n">3.</span> Quanto voc&#234; precisa faturar</h2>
+  <p>Premissas (confirme com um contador): empresa ME no Simples Nacional, com pr&#243;-labore de pelo menos 28% do faturamento para enquadrar no Anexo III pelo fator R. Consultoria n&#227;o pode ser MEI.</p>
+  <div class="formula">Faturamento mensal ...................................... R$ 25.000
+Faturamento anual (RBT12) ................................ R$ 300.000
+Simples Anexo III, faixa 2: (300.000 &#215; 11,2% &#8722; 9.360) &#247; 300.000 = 8,08%
+  Impostos ............................................... &#8722; R$ 2.020
+Pr&#243;-labore m&#237;nimo (28%) = R$ 7.000
+  INSS (11%) + IR estimado sobre pr&#243;-labore .............. &#8722; R$ 1.270
+Custos fixos (contador, IA, transcri&#231;&#227;o, hospedagem) ..... &#8722; R$ 1.500
+-----------------------------------------------------------------------
+Sobra para voc&#234; (pr&#243;-labore l&#237;quido + lucro distribu&#237;do) &#8776; R$ 20.210</div>
+  <div class="callout warn"><b>Aten&#231;&#227;o</b>As al&#237;quotas e o IR sobre o pr&#243;-labore mudam com a faixa de faturamento e com a legisla&#231;&#227;o (inclusive a transi&#231;&#227;o da reforma tribut&#225;ria). Use os n&#250;meros como ordem de grandeza e valide com um contador antes de precificar.</div>
+
+  <h3>Calculadora de renda e capacidade (interativa)</h3>
+  <div class="calc">
+    <div>
+      <label>Empresas atendidas no servi&#231;o <input type="number" id="r_emp" value="28" step="1"></label>
+      <label>Pre&#231;o do servi&#231;o por empresa (R$) <input type="number" id="r_preco" value="890" step="10"></label>
+      <label>Clientes do software (CFOs) <input type="number" id="r_saas" value="0" step="1"></label>
+      <label>Pre&#231;o do software por CFO (R$) <input type="number" id="r_psaas" value="400" step="10"></label>
+      <label>Al&#237;quota efetiva do Simples (%) <input type="number" id="r_aliq" value="8" step="0.5"></label>
+      <label>INSS + IR do pr&#243;-labore (% do fat.) <input type="number" id="r_inss" value="5" step="0.5"></label>
+      <label>Custos fixos mensais (R$) <input type="number" id="r_fixo" value="1500" step="100"></label>
+      <label>Horas suas por empresa/m&#234;s <input type="number" id="r_h" value="5" step="0.5"></label>
+      <label>Empresas delegadas ao ajudante <input type="number" id="r_deleg" value="0" step="1"></label>
+      <label>Custo do ajudante por empresa (R$) <input type="number" id="r_cdeleg" value="250" step="10"></label>
+      <label>Horas de vendas e suporte/m&#234;s <input type="number" id="r_hextra" value="20" step="1"></label>
+    </div>
+    <div class="out" aria-live="polite">
+      <div><span>Faturamento</span><b id="r_o_fat">-</b></div>
+      <div><span>Impostos (Simples)</span><b id="r_o_imp">-</b></div>
+      <div><span>INSS + IR do pr&#243;-labore</span><b id="r_o_inss">-</b></div>
+      <div><span>Custos fixos + ajudante</span><b id="r_o_custos">-</b></div>
+      <div><span><b>Sobra para voc&#234;</b></span><b id="r_o_liq">-</b></div>
+      <div><span>Meta de R$ 20 mil</span><b id="r_o_meta">-</b></div>
+      <div><span>Suas horas por m&#234;s</span><b id="r_o_h">-</b></div>
+      <div><span>Suas horas por semana</span><b id="r_o_hs">-</b></div>
+      <div><span>Ganho por hora trabalhada</span><b id="r_o_hora">-</b></div>
+    </div>
+  </div>
+  <p class="small">Horas por empresa: ~4 briefings semanais revisados (~30 min cada) + pack do comit&#234; mensal (~3h com a ferramenta) &#8776; 5h. Cada empresa delegada ainda consome ~1h sua de revis&#227;o.</p>
+</section>
+
+<section id="p2-4">
+  <h2><span class="n">4.</span> Os caminhos avaliados</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>#</th><th>Caminho</th><th>Como funciona</th><th>Para R$ 25 mil/m&#234;s</th></tr></thead>
+    <tbody>
+      <tr><td>C1</td><td><b>SaaS puro para firmas</b></td><td>O plano da 1&#170; an&#225;lise: software por empresa atendida</td><td>~130 empresas a R$ 189, ou 13 a 14 firmas</td></tr>
+      <tr><td>C2</td><td><b>Consultoria direta (voc&#234; como CFO de PMEs)</b></td><td>Voc&#234; vende CFO as a Service a PMEs e usa o Copiloto como apoio</td><td>6 a 8 PMEs a R$ 3 a 4 mil</td></tr>
+      <tr><td>C3</td><td><b>Analista de reuni&#245;es as a Service</b></td><td>Voc&#234; atende CFOs e firmas de CFOaaS, preparando as reuni&#245;es das empresas deles com o Copiloto</td><td>~28 empresas a R$ 890, ou 3 a 4 CFOs</td></tr>
+      <tr><td>C4</td><td><b>H&#237;brido: C3 e depois SaaS</b></td><td>Come&#231;a como C3; a partir do m&#234;s 6 vende o software a quem prefere fazer sozinho</td><td>Servi&#231;o + software (se&#231;&#227;o 10)</td></tr>
+      <tr><td>C5</td><td><b>Licen&#231;a barata para CFOs independentes</b></td><td>Self-service a R$ 300 a 400 por m&#234;s</td><td>65 a 85 assinantes</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="p2-5">
+  <h2><span class="n">5.</span> Avalia&#231;&#227;o iterativa dos caminhos</h2>
+  <h3>Crit&#233;rios e pesos (derivados da sua meta)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Crit&#233;rio</th><th class="num">Peso</th><th>O que mede</th></tr></thead>
+    <tbody>
+      <tr><td>Chance de R$ 20 mil em 12 meses</td><td class="num">20</td><td>Probabilidade realista de atingir a meta</td></tr>
+      <tr><td>Tempo at&#233; o primeiro real</td><td class="num">15</td><td>Quanto antes entra dinheiro</td></tr>
+      <tr><td>Escalabilidade (rumo a R$ 100 mil)</td><td class="num">15</td><td>Receita cresce sem crescer suas horas na mesma propor&#231;&#227;o</td></tr>
+      <tr><td>Cabe no caixa (&#8804; R$ 5 mil)</td><td class="num">10</td><td>N&#227;o depende de empr&#233;stimo</td></tr>
+      <tr><td>Oper&#225;vel por 1 a 2 pessoas</td><td class="num">10</td><td>Carga de vendas, entrega e suporte</td></tr>
+      <tr><td>Usa sua rede e credibilidade</td><td class="num">10</td><td>Encaixa no que voc&#234; j&#225; &#233;: analista de CFO com 5 firmas conhecidas</td></tr>
+      <tr><td>Risco t&#233;cnico e reputacional (10 = baixo)</td><td class="num">10</td><td>N&#250;mero errado, falha ao vivo, LGPD</td></tr>
+      <tr><td>Margem</td><td class="num">10</td><td>Quanto de cada real sobra</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Rodada 1: os caminhos como est&#227;o</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Caminho</th><th class="num">Chance</th><th class="num">Tempo</th><th class="num">Escala</th><th class="num">Caixa</th><th class="num">Oper&#225;vel</th><th class="num">Rede</th><th class="num">Risco</th><th class="num">Margem</th><th class="num">Nota</th></tr></thead>
+    <tbody>
+      <tr><td>C1 SaaS puro</td><td class="num h3c">3</td><td class="num h3c">3</td><td class="num h9c">9</td><td class="num h6c">6</td><td class="num h5c">5</td><td class="num h6c">6</td><td class="num h4c">4</td><td class="num h9c">9</td><td class="num">5,40</td></tr>
+      <tr><td>C2 Consultoria direta</td><td class="num h5c">5</td><td class="num h6c">6</td><td class="num h3c">3</td><td class="num h9c">9</td><td class="num h7c">7</td><td class="num h4c">4</td><td class="num h6c">6</td><td class="num h7c">7</td><td class="num">5,65</td></tr>
+      <tr><td>C3 Analista as a Service</td><td class="num h7c">7</td><td class="num h8c">8</td><td class="num h4c">4</td><td class="num h9c">9</td><td class="num h7c">7</td><td class="num h9c">9</td><td class="num h7c">7</td><td class="num h7c">7</td><td class="num">7,10</td></tr>
+      <tr class="hl"><td>C4 H&#237;brido</td><td class="num h7c">7</td><td class="num h8c">8</td><td class="num h7c">7</td><td class="num h9c">9</td><td class="num h6c">6</td><td class="num h9c">9</td><td class="num h7c">7</td><td class="num h8c">8</td><td class="num">7,55</td></tr>
+      <tr><td>C5 Licen&#231;a barata</td><td class="num h3c">3</td><td class="num h5c">5</td><td class="num h8c">8</td><td class="num h7c">7</td><td class="num h5c">5</td><td class="num h5c">5</td><td class="num h4c">4</td><td class="num h8c">8</td><td class="num">5,45</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">Nota = soma(nota &#215; peso) &#247; 100. Exemplo C4: (7&#215;20 + 8&#215;15 + 7&#215;15 + 9&#215;10 + 6&#215;10 + 9&#215;10 + 7&#215;10 + 8&#215;10) &#247; 100 = 7,55.</p>
+  <div class="callout"><b>Pontos fracos encontrados na rodada 1</b>
+    C3 e C4 s&#227;o fracos em <b>escala</b> e <b>opera&#231;&#227;o</b> (dependem das suas horas e de duas frentes). C1 e C5 s&#227;o fracos em <b>chance</b> e <b>tempo</b> (exigem muitos clientes de software, que demoram a fechar). C2 &#233; fraco em <b>rede</b> (voc&#234; foi analista, n&#227;o CFO, e n&#227;o tem rede de donos de PME) e em <b>escala</b>.</div>
+
+  <h3>Rodada 2: ajustes aplicados</h3>
+  <ul>
+    <li><b>C3:</b> pre&#231;o por empresa ou por CFO, nunca por hora; entregas padronizadas (briefing semanal, pack mensal, ata); escopo fechado (sem lan&#231;amentos, concilia&#231;&#227;o ou contas a pagar); limite de 5h por empresa com a ferramenta. <b>Oper&#225;vel 7&#8594;8, Escala 4&#8594;5, Chance 7&#8594;8, Risco 7&#8594;8.</b></li>
+    <li><b>C4:</b> o software &#233; oferecido primeiro a quem j&#225; recebe o servi&#231;o e conhece o resultado; o ao vivo s&#243; responde com dados pr&#233;-calculados e com fonte. <b>Chance 7&#8594;8, Escala 7&#8594;8, Oper&#225;vel 6&#8594;7, Risco 7&#8594;8.</b></li>
+    <li><b>C1:</b> virar "SaaS + servi&#231;o" com design partners. <b>Tempo 3&#8594;4, Chance 3&#8594;4, Risco 4&#8594;5, Margem 9&#8594;8.</b></li>
+    <li><b>C2:</b> focar em PMEs da sua rede pessoal. <b>Chance 5&#8594;6, Rede 4&#8594;5.</b></li>
+    <li><b>C5:</b> ajuste poss&#237;vel apenas no risco (5). O problema de volume continua.</li>
+  </ul>
+  <div class="tbl"><table>
+    <thead><tr><th>Caminho</th><th class="num">Chance</th><th class="num">Tempo</th><th class="num">Escala</th><th class="num">Caixa</th><th class="num">Oper&#225;vel</th><th class="num">Rede</th><th class="num">Risco</th><th class="num">Margem</th><th class="num">Nota</th></tr></thead>
+    <tbody>
+      <tr><td>C1 SaaS + servi&#231;o</td><td class="num h4c">4</td><td class="num h4c">4</td><td class="num h9c">9</td><td class="num h6c">6</td><td class="num h5c">5</td><td class="num h6c">6</td><td class="num h5c">5</td><td class="num h8c">8</td><td class="num">5,75</td></tr>
+      <tr><td>C2 Consultoria direta</td><td class="num h6c">6</td><td class="num h6c">6</td><td class="num h3c">3</td><td class="num h9c">9</td><td class="num h7c">7</td><td class="num h5c">5</td><td class="num h6c">6</td><td class="num h7c">7</td><td class="num">5,95</td></tr>
+      <tr><td>C3 Analista as a Service</td><td class="num h8c">8</td><td class="num h8c">8</td><td class="num h5c">5</td><td class="num h9c">9</td><td class="num h8c">8</td><td class="num h9c">9</td><td class="num h8c">8</td><td class="num h7c">7</td><td class="num">7,65</td></tr>
+      <tr class="hl"><td>C4 H&#237;brido</td><td class="num h8c">8</td><td class="num h8c">8</td><td class="num h8c">8</td><td class="num h9c">9</td><td class="num h7c">7</td><td class="num h9c">9</td><td class="num h8c">8</td><td class="num h8c">8</td><td class="num">8,10</td></tr>
+      <tr><td>C5 Licen&#231;a barata</td><td class="num h3c">3</td><td class="num h5c">5</td><td class="num h8c">8</td><td class="num h7c">7</td><td class="num h5c">5</td><td class="num h5c">5</td><td class="num h5c">5</td><td class="num h8c">8</td><td class="num">5,55</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Rodada 3: refinando os dois l&#237;deres</h3>
+  <ul>
+    <li><b>Contrato m&#237;nimo de 6 meses</b> e taxa de setup de R$ 500 por empresa: protege o caixa (Caixa 9&#8594;10).</li>
+    <li><b>Piloto pago de 30 dias</b> com 3 empresas de um CFO que voc&#234; j&#225; conhece: primeiro real em 30 dias (Tempo 8&#8594;9).</li>
+    <li><b>Limite de 20 empresas por pessoa</b>; acima disso entra o ajudante, pago por empresa (Oper&#225;vel 7&#8594;8 no C4).</li>
+  </ul>
+  <div class="tbl"><table>
+    <thead><tr><th>Caminho</th><th class="num">Chance</th><th class="num">Tempo</th><th class="num">Escala</th><th class="num">Caixa</th><th class="num">Oper&#225;vel</th><th class="num">Rede</th><th class="num">Risco</th><th class="num">Margem</th><th class="num">Nota</th></tr></thead>
+    <tbody>
+      <tr><td>C3 Analista as a Service</td><td class="num h8c">8</td><td class="num h9c">9</td><td class="num h5c">5</td><td class="num h10c">10</td><td class="num h8c">8</td><td class="num h9c">9</td><td class="num h8c">8</td><td class="num h7c">7</td><td class="num">7,90</td></tr>
+      <tr class="hl"><td>C4 H&#237;brido</td><td class="num h8c">8</td><td class="num h9c">9</td><td class="num h8c">8</td><td class="num h10c">10</td><td class="num h8c">8</td><td class="num h9c">9</td><td class="num h8c">8</td><td class="num h8c">8</td><td class="num"><b>8,45</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Rodada 4: teste de mais um ajuste (e crit&#233;rio de parada)</h3>
+  <p>Testei somar ao C4 a consultoria direta para PMEs (sua ideia de "vender consultoria e usar o produto"). <b>A nota cai para 7,95</b>: Oper&#225;vel 8&#8594;6 (tr&#234;s frentes), Rede 9&#8594;7 (voc&#234; vira concorrente das firmas que s&#227;o seus clientes), Risco 8&#8594;7. <b>O ajuste piora a nota, ent&#227;o paro aqui.</b></p>
+
+  <h3>Evolu&#231;&#227;o das notas</h3>
+  <div class="legend"><span><i style="background:var(--bar2)"></i>Rodada 1</span><span><i style="background:var(--accent)"></i>Rodada 2</span><span><i style="background:var(--good)"></i>Rodada 3</span></div>
+  <div class="pair"><span>C1 SaaS puro</span><div class="tracks">
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:54%;background:var(--bar2)"></div></div><span>5,4</span></div>
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:57.5%;background:var(--accent)"></div></div><span>5,8</span></div></div></div>
+  <div class="pair"><span>C2 Consultoria direta</span><div class="tracks">
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:56.5%;background:var(--bar2)"></div></div><span>5,7</span></div>
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:59.5%;background:var(--accent)"></div></div><span>6,0</span></div></div></div>
+  <div class="pair"><span>C3 Analista as a Service</span><div class="tracks">
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:71%;background:var(--bar2)"></div></div><span>7,1</span></div>
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:76.5%;background:var(--accent)"></div></div><span>7,7</span></div>
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:79%;background:var(--good)"></div></div><span>7,9</span></div></div></div>
+  <div class="pair"><span><b>C4 H&#237;brido</b></span><div class="tracks">
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:75.5%;background:var(--bar2)"></div></div><span>7,6</span></div>
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:81%;background:var(--accent)"></div></div><span>8,1</span></div>
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:84.5%;background:var(--good)"></div></div><span><b>8,5</b></span></div></div></div>
+  <div class="pair"><span>C5 Licen&#231;a barata</span><div class="tracks">
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:54.5%;background:var(--bar2)"></div></div><span>5,5</span></div>
+    <div class="t"><div class="bar-track"><div class="bar-fill" style="width:55.5%;background:var(--accent)"></div></div><span>5,6</span></div></div></div>
+  <div class="callout good"><b>Resultado</b>O C4 (H&#237;brido: analista de reuni&#245;es as a Service e depois software) vence em todas as rodadas e &#233; o &#250;nico que combina dinheiro r&#225;pido com escala. Para chegar a R$ 20 mil, o C3 e o C4 s&#227;o praticamente iguais nos primeiros 6 meses. A diferen&#231;a aparece depois: s&#243; o C4 leva al&#233;m de R$ 40 mil.</div>
+</section>
+
+<section id="p2-6">
+  <h2><span class="n">6.</span> Avalia&#231;&#227;o do produto, item a item</h2>
+  <p>Mesmo ciclo: nota da vers&#227;o atual (v1), problema encontrado, ajuste e nova nota (v2). Crit&#233;rio da nota: valor para quem paga, ajustado por risco e esfor&#231;o.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Funcionalidade</th><th class="num">v1</th><th>Problema</th><th>Ajuste (v2)</th><th class="num">v2</th><th>Decis&#227;o</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>Isolamento por empresa <span class="badge b-yes">novo</span></td><td class="num">-</td><td>Sem isso, o produto mistura empresas, o mesmo erro que ele promete evitar</td><td>Cada empresa com base, mem&#243;ria e conversa separadas; nome e logo da empresa sempre vis&#237;veis na tela</td><td class="num h10c">10</td><td><span class="badge b-crit">Obrigat&#243;rio</span></td></tr>
+      <tr class="hl"><td>Briefing de 5 minutos antes de cada reuni&#227;o <span class="badge b-yes">novo</span></td><td class="num">-</td><td>Resolve a dor que voc&#234; descreveu: lembrar da empresa certa entre 10</td><td>1 p&#225;gina: n&#250;meros-chave, varia&#231;&#245;es, pend&#234;ncias da &#250;ltima reuni&#227;o, participantes e temas sens&#237;veis</td><td class="num h9c">9</td><td><span class="badge b-crit">Obrigat&#243;rio</span></td></tr>
+      <tr><td>Estudo pr&#233;vio e resumo executivo</td><td class="num h7c">7</td><td>N&#250;meros vindos de arquivos diferentes podem n&#227;o bater</td><td>"Base oficial" por empresa (DRE, caixa, BP, or&#231;ado), validada por voc&#234;; o resto vira s&#243; contexto</td><td class="num h9c">9</td><td>Manter</td></tr>
+      <tr><td>Ingest&#227;o de qualquer material</td><td class="num h5c">5</td><td>Excel, PPT e PDF com vers&#245;es diferentes geram respostas inconsistentes</td><td>Aceita tudo, mas n&#250;mero em resposta s&#243; sai da base oficial; o resto aparece com r&#243;tulo "contexto"</td><td class="num h8c">8</td><td>Manter, com regra</td></tr>
+      <tr><td>Perguntas prov&#225;veis com respostas</td><td class="num h8c">8</td><td>Resposta sem fonte n&#227;o gera confian&#231;a</td><td>Cada resposta com n&#250;mero, fonte (arquivo e c&#233;lula) e uma fala sugerida</td><td class="num h9c">9</td><td>Manter (n&#250;cleo)</td></tr>
+      <tr><td><b>Roteiro e falas para menos experientes</b></td><td class="num h7c">7</td><td>Se o analista s&#243; l&#234;, trava na pergunta seguinte; pode parecer "ponto eletr&#244;nico"</td><td>"Fala + por qu&#234;": a explica&#231;&#227;o do racioc&#237;nio ao lado da fala, que ensina; tom ajust&#225;vel; vendido como preparo</td><td class="num h9c">9</td><td><span class="badge b-yes">Diferencial</span></td></tr>
+      <tr><td>Camada 1 (resposta instant&#226;nea)</td><td class="num h3c">3</td><td>Frase de enrola&#231;&#227;o n&#227;o agrega e soa artificial</td><td>Vira o <b>n&#250;mero-chave instant&#226;neo</b>: detectou "margem", mostra margem atual, do m&#234;s anterior e or&#231;ada, direto do cache, sem gerar texto</td><td class="num h7c">7</td><td>Redesenhar</td></tr>
+      <tr><td>Camada 2 (3 a 5 s)</td><td class="num h6c">6</td><td>Texto longo para ler enquanto fala</td><td>Resposta de at&#233; 2 linhas, com fonte e n&#237;vel de confian&#231;a</td><td class="num h8c">8</td><td>Manter</td></tr>
+      <tr><td>Camada 3 (10 a 15 s)</td><td class="num h5c">5</td><td>Lat&#234;ncia e risco de c&#225;lculo errado ao vivo</td><td>An&#225;lises prov&#225;veis pr&#233;-calculadas antes da reuni&#227;o; ao vivo s&#243; monta a resposta, com fala sugerida</td><td class="num h7c">7</td><td>Manter</td></tr>
+      <tr><td>Transcri&#231;&#227;o e identifica&#231;&#227;o de participantes</td><td class="num h6c">6</td><td>Identificar pela voz &#233; dado biom&#233;trico (sens&#237;vel na LGPD)</td><td>Transcri&#231;&#227;o de fornecedor; nomes pela plataforma de reuni&#227;o ou pelo calend&#225;rio</td><td class="num h7c">7</td><td>Manter</td></tr>
+      <tr><td>Ata e plano de a&#231;&#227;o</td><td class="num h6c">6</td><td>Commodity se ficar s&#243; na ata</td><td>Pend&#234;ncias voltam automaticamente no briefing da reuni&#227;o seguinte</td><td class="num h8c">8</td><td>Manter</td></tr>
+      <tr><td>Exporta&#231;&#227;o para PPT</td><td class="num h5c">5</td><td>CFOs entregam em PowerPoint</td><td>Template do cliente (cores e logo da firma)</td><td class="num h7c">7</td><td>Depois do piloto</td></tr>
+      <tr><td>Copiloto Comercial</td><td class="num h2c">2</td><td>Mercado ocupado, sem vantagem sua</td><td>-</td><td class="num">-</td><td><span class="badge b-no">Cortar</span></td></tr>
+      <tr><td>Plataforma de copilotos</td><td class="num h1c">1</td><td>Dispers&#227;o; dado de gra&#231;a pelos gigantes</td><td>-</td><td class="num">-</td><td><span class="badge b-no">Cortar</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid2">
+    <div class="kpi"><div class="v">5,8 &#8594; 8,2</div><div class="l">Nota m&#233;dia do produto (itens mantidos), da v1 para a v2</div></div>
+    <div class="kpi"><div class="v">2 itens novos</div><div class="l">vieram da sua experi&#234;ncia: isolamento por empresa e briefing de 5 minutos</div></div>
+  </div>
+
+  <h3>Veredito sobre "preparador de reuni&#245;es + falas para menos experientes"</h3>
+  <div class="grid2">
+    <div class="card verdict-yes"><h4>Por que &#233; um diferencial</h4><ul>
+      <li>Para quem compra, o valor &#233; <b>capacidade</b>: um analista conduz reuni&#245;es que antes exigiam o CFO.</li>
+      <li>Microsoft, Zoom e Otter fazem resumo e resposta gen&#233;rica; nenhum monta narrativa financeira por empresa com mem&#243;ria das reuni&#245;es anteriores.</li>
+      <li>Nasceu da sua dor real como analista de CFO: &#233; a sua vantagem de fundador.</li>
+    </ul></div>
+    <div class="card verdict-maybe"><h4>Onde ele n&#227;o basta</h4><ul>
+      <li>N&#227;o &#233; moat: uma fala sugerida &#233; f&#225;cil de copiar. A defesa vem do pacote: base oficial + mem&#243;ria + falas + o seu servi&#231;o.</li>
+      <li>Precisa ensinar, n&#227;o s&#243; ditar ("fala + por qu&#234;"), sen&#227;o o analista trava na segunda pergunta.</li>
+      <li>Venda como preparo e treinamento, nunca como "ponto eletr&#244;nico" ao cliente final.</li>
+    </ul></div>
+  </div>
+  <p><b>Posicionamento revisado:</b> "Seu analista de reuni&#245;es: briefing de cada empresa antes de cada reuni&#227;o, roteiro com falas e n&#250;meros na hora, com fonte."</p>
+</section>
+
+<section id="p2-7">
+  <h2><span class="n">7.</span> Caminho mais f&#225;cil: analista de reuni&#245;es as a Service</h2>
+  <h3>A oferta</h3>
+  <p>Voc&#234; vira o "analista de FP&amp;A terceirizado" de CFOs independentes e de firmas de CFOaaS. Eles mant&#234;m o relacionamento com o cliente; voc&#234; e o Copiloto preparam tudo.</p>
+  <div class="grid3">
+    <div class="card"><h4>Pacote Comit&#234;</h4><div class="kpi" style="background:none;padding:0"><div class="v">R$ 590</div></div><p class="small">por empresa/m&#234;s</p><ul><li>Pack do comit&#234; mensal: DRE gerencial, an&#225;lise de varia&#231;&#245;es, PPT</li><li>Perguntas prov&#225;veis com resposta e fonte</li><li>Roteiro com falas</li><li>Ata e plano de a&#231;&#227;o</li></ul></div>
+    <div class="card verdict-yes"><h4>Pacote Completo</h4><div class="kpi" style="background:none;padding:0"><div class="v">R$ 890</div></div><p class="small">por empresa/m&#234;s</p><ul><li>Tudo do Comit&#234;</li><li>Briefing de 1 p&#225;gina antes de cada reuni&#227;o semanal</li><li>Pend&#234;ncias que voltam na reuni&#227;o seguinte</li><li>Acesso do CFO ao Copiloto ao vivo</li></ul></div>
+    <div class="card"><h4>Analista dedicado</h4><div class="kpi" style="background:none;padding:0"><div class="v">R$ 7.500</div></div><p class="small">por CFO/m&#234;s, at&#233; 10 empresas</p><ul><li>Pacote Completo para a carteira inteira</li><li>Prioridade em reuni&#245;es de &#250;ltima hora</li><li>Contrato m&#237;nimo de 6 meses</li></ul></div>
+  </div>
+  <ul>
+    <li><b>Setup:</b> R$ 500 por empresa (montar a base oficial). Nos 2 primeiros clientes, 50% de desconto.</li>
+    <li><b>Piloto:</b> 30 dias, 3 empresas, 30% de desconto, pago. Nunca de gra&#231;a.</li>
+  </ul>
+
+  <h3>Por que esse pre&#231;o se sustenta</h3>
+  <div class="formula">Analista j&#250;nior CLT: sal&#225;rio ~R$ 4.500 + encargos e benef&#237;cios (~75%) &#8776; R$ 7.900/m&#234;s
+  e atende ~10 empresas, com curva de aprendizado, faltas e rotatividade.
+
+Voc&#234; + Copiloto: R$ 7.500/m&#234;s por 10 empresas (R$ 750 cada)
+  &#8594; mais barato que contratar, sem risco trabalhista, com qualidade de quem j&#225; fez o trabalho.</div>
+  <p class="small">Sal&#225;rio e encargos s&#227;o estimativas de mercado; confirme com 2 ou 3 CFOs nas conversas.</p>
+
+  <h3>Capacidade</h3>
+  <div class="bars">
+    <div class="bar-row"><span>Sozinho, em paralelo ao emprego</span><div class="bar-track"><div class="bar-fill low" style="width:40%"></div></div><span class="bar-val">&#8804; 13</span></div>
+    <div class="bar-row"><span>Sozinho, tempo integral</span><div class="bar-track"><div class="bar-fill" style="width:71%"></div></div><span class="bar-val">&#8804; 20</span></div>
+    <div class="bar-row"><span>Voc&#234; + 1 ajudante</span><div class="bar-track"><div class="bar-fill top" style="width:100%"></div></div><span class="bar-val">&#8804; 28-35</span></div>
+  </div>
+  <p class="small">Empresas atendidas, a ~5h por empresa por m&#234;s.</p>
+  <div class="callout warn"><b>Teto do servi&#231;o</b>Com voc&#234; e um ajudante, o servi&#231;o para em ~30 a 35 empresas: R$ 27 a 31 mil de faturamento. D&#225; para a meta de R$ 20 mil, mas n&#227;o para R$ 100 mil. Para ir al&#233;m, s&#243; com software (se&#231;&#227;o 8).</div>
+</section>
+
+<section id="p2-8">
+  <h2><span class="n">8.</span> Caminho f&#225;cil e escal&#225;vel: h&#237;brido, do servi&#231;o ao software</h2>
+  <h3>Quando lan&#231;ar o software</h3>
+  <ul>
+    <li>Pelo menos 2 CFOs pedem para usar a ferramenta sozinhos.</li>
+    <li>Zero erro num&#233;rico reportado em 60 dias de servi&#231;o.</li>
+    <li>Onboarding de uma empresa leva menos de 2 horas.</li>
+  </ul>
+  <h3>Planos do software</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Plano</th><th>Para quem</th><th>Pre&#231;o</th><th>Inclui</th></tr></thead>
+    <tbody>
+      <tr><td><b>Solo</b></td><td>CFO independente</td><td>R$ 397/m&#234;s</td><td>At&#233; 5 empresas, briefing, pack, falas, ao vivo</td></tr>
+      <tr><td><b>Pro</b></td><td>CFO com carteira maior</td><td>R$ 797/m&#234;s</td><td>At&#233; 15 empresas, export PPT no template</td></tr>
+      <tr><td><b>Firma</b></td><td>Firmas de CFOaaS</td><td>R$ 149/empresa/m&#234;s (m&#237;n. 10)</td><td>V&#225;rios usu&#225;rios, revis&#227;o do j&#250;nior pelo s&#234;nior</td></tr>
+      <tr><td><b>Setup assistido</b></td><td>Todos</td><td>R$ 300 a 1.500</td><td>Voc&#234; monta as primeiras bases oficiais</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Rumo a R$ 100 mil/m&#234;s para voc&#234;</h3>
+  <div class="formula">R$ 100 mil l&#237;quidos &#8776; R$ 130 a 140 mil de faturamento/m&#234;s
+  Servi&#231;o (voc&#234; + 1 ajudante, teto) ............ &#8776; R$ 30 mil
+  Software (o restante) ........................ &#8776; R$ 100 a 110 mil
+    = ~180 a 250 CFOs a R$ 400&#8211;600, ou ~70 firmas com 10 empresas a R$ 149
+Prazo realista: 3 a 5 anos, se o software tiver reten&#231;&#227;o alta.</div>
+  <p>Com um &#250;nico ajudante, o software precisa de onboarding quase todo autom&#225;tico e suporte enxuto. Isso define o roadmap de produto depois do m&#234;s 6: autoatendimento e confiabilidade antes de novas funcionalidades.</p>
+</section>
+
+<section id="p2-9">
+  <h2><span class="n">9.</span> E vender consultoria usando o produto?</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Modelo</th><th>Pr&#243;s</th><th>Contras</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Consultoria para CFOs (analista de reuni&#245;es)</b></td><td>Voc&#234; j&#225; fez esse trabalho; rede de 5 firmas; venda de colega para colega; o cliente entende o valor na hora</td><td>Ticket por empresa menor; depende das horas</td><td><span class="badge b-yes">Come&#231;ar aqui</span></td></tr>
+      <tr><td><b>Consultoria para PMEs (voc&#234; como CFO)</b></td><td>Ticket maior (R$ 3 a 6 mil por empresa)</td><td>S&#243;cios pagam por senioridade de CFO, que voc&#234; ainda est&#225; construindo; sem rede de donos de PME; mais responsabilidade; <b>conflito de canal</b> com as firmas de CFO que s&#227;o seus clientes</td><td><span class="badge b-maybe">S&#243; no futuro, e em nicho que n&#227;o concorra com seus clientes</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><b>Conflito de canal</b>Se voc&#234; atende firmas de CFOaaS e ao mesmo tempo vende CFO para PMEs, as firmas v&#227;o te ver como concorrente e ter receio de te mostrar os dados dos clientes delas. Escolha um lado no come&#231;o: o lado dos CFOs &#233; o mais f&#225;cil para voc&#234;.</div>
+</section>
+
+<section id="p2-10">
+  <h2><span class="n">10.</span> Proje&#231;&#227;o de 12 meses (cen&#225;rio base, caminho C4)</h2>
+  <div class="legend"><span><i style="background:var(--accent)"></i>Servi&#231;o</span><span><i style="background:var(--good)"></i>Software</span><span><i style="border-top:2px dashed var(--bad);height:0;width:16px;border-radius:0"></i>Meta de faturamento &#8776; R$ 25 mil</span></div>
+  <div class="cols stackchart" role="img" aria-label="Faturamento mensal projetado, servi&#231;o e software">
+    <div class="goal" style="bottom:calc((100% - 10px) * 0.714)"></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(5.4% + 4px)">1,9</span><div class="s1" style="height:5.4%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(12.9% + 4px)">4,5</span><div class="s1" style="height:12.9%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(22.9% + 4px)">8,0</span><div class="s1" style="height:22.9%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(33.1% + 4px)">11,6</span><div class="s1" style="height:33.1%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(40.6% + 4px)">14,2</span><div class="s1" style="height:40.6%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(48.3% + 4px)">16,9</span><div class="s1" style="height:48.3%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(55.7% + 4px)">19,5</span><div class="s2" style="height:2.3%"></div><div class="s1" style="height:53.4%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(63.2% + 4px)">22,1</span><div class="s2" style="height:4.6%"></div><div class="s1" style="height:58.6%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(71.7% + 4px)">25,1</span><div class="s2" style="height:8%"></div><div class="s1" style="height:63.7%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(77.4% + 4px)">27,1</span><div class="s2" style="height:11.4%"></div><div class="s1" style="height:66%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(83.5% + 4px)">29,2</span><div class="s2" style="height:14.9%"></div><div class="s1" style="height:68.6%"></div></div>
+    <div class="col stack"><span class="lbl" style="top:auto;bottom:calc(89.4% + 4px)">31,3</span><div class="s2" style="height:18.3%"></div><div class="s1" style="height:71.1%"></div></div>
+  </div>
+  <div class="xaxis"><span>M1</span><span>M2</span><span>M3</span><span>M4</span><span>M5</span><span>M6</span><span>M7</span><span>M8</span><span>M9</span><span>M10</span><span>M11</span><span>M12</span></div>
+  <p class="small">Faturamento em R$ mil.</p>
+
+  <div class="tbl"><table>
+    <thead><tr><th>M&#234;s</th><th class="num">Empresas (servi&#231;o)</th><th class="num">Servi&#231;o</th><th class="num">CFOs no software</th><th class="num">Software</th><th class="num">Faturamento</th><th class="num">Ajudante</th><th class="num">Sobra para voc&#234;</th><th style="min-width:190px">Marco</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="num">3</td><td class="num">R$ 1,9 mil</td><td class="num">0</td><td class="num">-</td><td class="num">R$ 1,9 mil</td><td class="num">-</td><td class="num">&#8776; R$ 0,2 mil</td><td>Piloto pago com 1 CFO conhecido</td></tr>
+      <tr><td>2</td><td class="num">5</td><td class="num">R$ 4,5 mil</td><td class="num">0</td><td class="num">-</td><td class="num">R$ 4,5 mil</td><td class="num">-</td><td class="num">R$ 2,4 mil</td><td>Piloto vira contrato de 6 meses</td></tr>
+      <tr><td>3</td><td class="num">9</td><td class="num">R$ 8,0 mil</td><td class="num">0</td><td class="num">-</td><td class="num">R$ 8,0 mil</td><td class="num">-</td><td class="num">R$ 5,5 mil</td><td>2&#186; cliente</td></tr>
+      <tr><td>4</td><td class="num">13</td><td class="num">R$ 11,6 mil</td><td class="num">0</td><td class="num">-</td><td class="num">R$ 11,6 mil</td><td class="num">-</td><td class="num">R$ 8,6 mil</td><td>Gatilho atingido: avisar o emprego</td></tr>
+      <tr><td>5</td><td class="num">16</td><td class="num">R$ 14,2 mil</td><td class="num">0</td><td class="num">-</td><td class="num">R$ 14,2 mil</td><td class="num">-</td><td class="num">R$ 10,9 mil</td><td>Tempo integral</td></tr>
+      <tr><td>6</td><td class="num">19</td><td class="num">R$ 16,9 mil</td><td class="num">0</td><td class="num">-</td><td class="num">R$ 16,9 mil</td><td class="num">-</td><td class="num">R$ 13,2 mil</td><td>Teste dos gatilhos do software</td></tr>
+      <tr><td>7</td><td class="num">21</td><td class="num">R$ 18,7 mil</td><td class="num">2</td><td class="num">R$ 0,8 mil</td><td class="num">R$ 19,5 mil</td><td class="num">-</td><td class="num">R$ 15,5 mil</td><td>Software com 2 CFOs</td></tr>
+      <tr><td>8</td><td class="num">23</td><td class="num">R$ 20,5 mil</td><td class="num">4</td><td class="num">R$ 1,6 mil</td><td class="num">R$ 22,1 mil</td><td class="num">R$ 0,75 mil</td><td class="num">R$ 17,0 mil</td><td>Ajudante entra (por empresa)</td></tr>
+      <tr><td>9</td><td class="num">25</td><td class="num">R$ 22,3 mil</td><td class="num">7</td><td class="num">R$ 2,8 mil</td><td class="num">R$ 25,1 mil</td><td class="num">R$ 1,25 mil</td><td class="num">R$ 19,1 mil</td><td></td></tr>
+      <tr class="hl"><td>10</td><td class="num">26</td><td class="num">R$ 23,1 mil</td><td class="num">10</td><td class="num">R$ 4,0 mil</td><td class="num">R$ 27,1 mil</td><td class="num">R$ 1,5 mil</td><td class="num">R$ 20,6 mil</td><td><b>Meta de R$ 20 mil atingida</b></td></tr>
+      <tr><td>11</td><td class="num">27</td><td class="num">R$ 24,0 mil</td><td class="num">13</td><td class="num">R$ 5,2 mil</td><td class="num">R$ 29,2 mil</td><td class="num">R$ 1,75 mil</td><td class="num">R$ 22,2 mil</td><td></td></tr>
+      <tr><td>12</td><td class="num">28</td><td class="num">R$ 24,9 mil</td><td class="num">16</td><td class="num">R$ 6,4 mil</td><td class="num">R$ 31,3 mil</td><td class="num">R$ 2,0 mil</td><td class="num">R$ 23,7 mil</td><td>Software &#8776; 20% da receita</td></tr>
+    </tbody>
+  </table></div>
+  <div class="formula">Sobra para voc&#234; &#8776; Faturamento &#215; 0,87 (8% Simples + ~5% INSS/IR do pr&#243;-labore) &#8722; R$ 1.500 de custos fixos &#8722; ajudante
+Servi&#231;o: R$ 890 por empresa (m&#234;s 1 com 30% de desconto de piloto). Software: ~R$ 400 por CFO.
+Ajudante: R$ 250 por empresa delegada, para empresas acima de 20.</div>
+  <div class="grid2">
+    <div class="callout"><b>Cen&#225;rio conservador</b>Vendas 50% mais lentas: R$ 20 mil l&#237;quidos entre o m&#234;s 15 e o 18.</div>
+    <div class="callout"><b>Chance de chegar l&#225;</b>Estimativa subjetiva: 40% a 55% de atingir R$ 20 mil l&#237;quidos em 12 meses, se o plano for executado. O fator que mais pesa: converter 2 das 5 firmas que voc&#234; conhece nos primeiros 60 dias.</div>
+  </div>
+</section>
+
+<section id="p2-11">
+  <h2><span class="n">11.</span> Dinheiro: como usar os R$ 5 mil</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Item</th><th class="num">Custo</th><th>Observa&#231;&#227;o</th></tr></thead>
+    <tbody>
+      <tr><td>Abertura de empresa (ME, Simples)</td><td class="num">R$ 0 a 500</td><td>Muitos contadores online abrem sem custo com contrato anual</td></tr>
+      <tr><td>Contador</td><td class="num">R$ 250 a 450/m&#234;s</td><td>Pe&#231;a para planejar o fator R desde o in&#237;cio</td></tr>
+      <tr><td>IA + transcri&#231;&#227;o</td><td class="num">R$ 300 a 800/m&#234;s</td><td>Cresce com o n&#250;mero de empresas; repasse no pre&#231;o</td></tr>
+      <tr><td>Hospedagem e banco de dados</td><td class="num">R$ 0 a 150/m&#234;s</td><td>Planos gratuitos d&#227;o conta no in&#237;cio</td></tr>
+      <tr><td>Dom&#237;nio + e-mail profissional</td><td class="num">&#8776; R$ 30/m&#234;s</td><td>Passa credibilidade nas propostas</td></tr>
+      <tr><td>Contrato + NDA + termo de dados (LGPD) revisados</td><td class="num">R$ 800 a 1.500</td><td>Uma vez. &#201; o investimento mais importante</td></tr>
+      <tr class="hl"><td>Total dos 3 primeiros meses</td><td class="num">&#8776; R$ 2,5 a 4,5 mil</td><td>Cabe nos R$ 5 mil, sem empr&#233;stimo</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><b>Sobre pedir emprestado ao seu pai</b>N&#227;o use empr&#233;stimo para construir software nem para "aguentar" sem clientes. Se for usar, que seja s&#243; como <b>ponte</b> de 2 a 3 meses de custo de vida ao sair do emprego, e s&#243; depois de ter contratos assinados que cubram o seu sal&#225;rio atual.</div>
+</section>
+
+<section id="p2-12">
+  <h2><span class="n">12.</span> Plano de 90 dias, semana a semana</h2>
+  <div class="timeline">
+    <div class="step"><h4>Semanas 1 e 2: preparar</h4><ul>
+      <li>Produto: isolamento por empresa, base oficial de n&#250;meros e briefing de 5 minutos (se&#231;&#227;o 6).</li>
+      <li>Oferta de 1 p&#225;gina com os 3 pacotes, contrato, NDA e termo de dados.</li>
+      <li>Lista: as 5 firmas que voc&#234; conhece + 20 CFOs independentes ou ex-colegas (LinkedIn).</li>
+      <li>Confirmar no seu contrato de trabalho e no da empresa anterior se h&#225; cl&#225;usula de n&#227;o concorr&#234;ncia ou de n&#227;o aliciamento de clientes.</li>
+    </ul></div>
+    <div class="step"><h4>Semanas 3 e 4: vender o piloto</h4><ul>
+      <li>10 conversas de 30 minutos. Leve uma demonstra&#231;&#227;o com dados fict&#237;cios ou anonimizados.</li>
+      <li>Oferecer piloto pago de 30 dias com 3 empresas (30% de desconto).</li>
+      <li><b>Meta: 1 piloto fechado.</b></li>
+    </ul></div>
+    <div class="step"><h4>Semanas 5 a 8: executar com perfei&#231;&#227;o</h4><ul>
+      <li>Medir: horas por empresa, perguntas respondidas na hora, erros (meta: zero).</li>
+      <li>Reuni&#227;o de resultado com o CFO no dia 30, com os n&#250;meros do piloto.</li>
+      <li><b>Meta: piloto vira contrato de 6 meses + 1 segundo cliente em negocia&#231;&#227;o.</b></li>
+      <li>Pedir depoimento e 2 indica&#231;&#245;es.</li>
+    </ul></div>
+    <div class="step"><h4>Semanas 9 a 12: ganhar ritmo</h4><ul>
+      <li>2 a 3 clientes, 9 a 13 empresas, R$ 8 a 12 mil por m&#234;s.</li>
+      <li>LinkedIn: 2 posts por semana sobre bastidores de reuni&#227;o de resultados (sem expor clientes).</li>
+      <li>Decidir a data de sa&#237;da do emprego pelo gatilho da se&#231;&#227;o 13.</li>
+    </ul></div>
+  </div>
+
+  <h3>Mensagem para a sua rede (pronta para usar)</h3>
+  <blockquote>Oi, [Nome], tudo bem? Estou montando um servi&#231;o que &#233; exatamente o que eu fazia como analista do CFO: preparo as reuni&#245;es semanais e o comit&#234; mensal das empresas da sua carteira (briefing antes de cada reuni&#227;o, DRE gerencial, an&#225;lise de varia&#231;&#245;es, PPT, perguntas prov&#225;veis com respostas e roteiro de falas). Uso uma ferramenta pr&#243;pria que tamb&#233;m te mostra os n&#250;meros na hora, durante a reuni&#227;o, sempre com a fonte.<br><br>Queria rodar um piloto pago de 30 dias com 3 empresas suas, com 30% de desconto. Topa um caf&#233; de 30 minutos para eu te mostrar funcionando?</blockquote>
+
+  <h3>Estrutura da proposta (1 p&#225;gina)</h3>
+  <ol>
+    <li>Problema: 10 empresas, 40 reuni&#245;es por m&#234;s, risco de confundir n&#250;meros.</li>
+    <li>O que voc&#234; entrega, por pacote, com exemplo de briefing e de pack.</li>
+    <li>Pre&#231;o, setup, piloto e contrato m&#237;nimo.</li>
+    <li>Seguran&#231;a: NDA, dados isolados por empresa, nada usado para treinar modelos.</li>
+    <li>Compara&#231;&#227;o com contratar um analista CLT.</li>
+  </ol>
+</section>
+
+<section id="p2-13">
+  <h2><span class="n">13.</span> Indicadores e gatilhos de decis&#227;o</h2>
+  <h3>Indicadores semanais</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Indicador</th><th>Meta</th><th>Por qu&#234;</th></tr></thead>
+    <tbody>
+      <tr><td>Horas suas por empresa/m&#234;s</td><td>&#8804; 5h</td><td>Define capacidade e margem</td></tr>
+      <tr><td>N&#250;meros com fonte nas entregas</td><td>100%</td><td>Confian&#231;a &#233; o produto</td></tr>
+      <tr><td>Erros num&#233;ricos reportados</td><td>0</td><td>Um erro com s&#243;cio pode custar o cliente</td></tr>
+      <tr><td>Perguntas respondidas na hora (vs "te retorno")</td><td>&#8805; 70%</td><td>Prova o valor do ao vivo</td></tr>
+      <tr><td>Uso do briefing antes das reuni&#245;es</td><td>&#8805; 90% das reuni&#245;es</td><td>Mede o h&#225;bito</td></tr>
+      <tr><td>Conversas de venda por semana</td><td>&#8805; 3 at&#233; o m&#234;s 6</td><td>Alimenta o funil</td></tr>
+      <tr><td>Receita recorrente contratada</td><td>Seguir a se&#231;&#227;o 10</td><td>Meta principal</td></tr>
+      <tr><td>Maior cliente / receita total</td><td>&#8804; 40%</td><td>Evita depender de um CFO s&#243;</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Gatilhos de decis&#227;o</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Decis&#227;o</th><th>Quando</th></tr></thead>
+    <tbody>
+      <tr><td><b>Sair do emprego</b></td><td>Receita recorrente contratada &#8805; R$ 10 mil (acima do seu sal&#225;rio atual depois de impostos), com contratos de 6 meses ou mais e reserva de 2 meses de custo de vida</td></tr>
+      <tr><td><b>Chamar o ajudante</b></td><td>Mais de 20 empresas ou mais de 45h por semana. Pagar por empresa, n&#227;o sal&#225;rio fixo</td></tr>
+      <tr><td><b>Lan&#231;ar o software</b></td><td>2 CFOs pedirem para usar sozinhos + 0 erro em 60 dias + onboarding &lt; 2h por empresa</td></tr>
+      <tr><td><b>Subir o pre&#231;o</b></td><td>3 clientes seguidos fecharem sem negociar pre&#231;o</td></tr>
+      <tr><td><b>Mudar a oferta</b></td><td>20 conversas sem nenhum piloto pago: revisar p&#250;blico, pre&#231;o ou pacote</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="p2-14">
+  <h2><span class="n">14.</span> Riscos espec&#237;ficos deste caminho</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Risco</th><th>Impacto</th><th>Mitiga&#231;&#227;o</th></tr></thead>
+    <tbody>
+      <tr><td>Cl&#225;usula de n&#227;o concorr&#234;ncia ou n&#227;o aliciamento (emprego atual ou anterior)</td><td><span class="badge b-alto">Alto</span></td><td>Ler os contratos antes de abordar ex-clientes; na d&#250;vida, consultar um advogado</td></tr>
+      <tr><td>Dados confidenciais de clientes dos seus clientes</td><td><span class="badge b-alto">Alto</span></td><td>NDA, termo de tratamento de dados, isolamento por empresa, nada de IA pessoal</td></tr>
+      <tr><td>N&#250;mero errado na reuni&#227;o de um cliente</td><td><span class="badge b-crit">Cr&#237;tico</span></td><td>Base oficial validada, fonte em tudo, "n&#227;o sei" quando faltar dado</td></tr>
+      <tr><td>Concentra&#231;&#227;o em 1 ou 2 CFOs</td><td><span class="badge b-alto">Alto</span></td><td>Nenhum cliente acima de 40% da receita</td></tr>
+      <tr><td>Esgotamento (emprego + servi&#231;o nos primeiros meses)</td><td><span class="badge b-med">M&#233;dio</span></td><td>Teto de 13 empresas enquanto estiver empregado</td></tr>
+      <tr><td>Virar s&#243; prestador de servi&#231;o e nunca lan&#231;ar o software</td><td><span class="badge b-med">M&#233;dio</span></td><td>Gatilhos da se&#231;&#227;o 13 com data para revisar</td></tr>
+      <tr><td>Doen&#231;a ou aus&#234;ncia (opera&#231;&#227;o de 1 pessoa)</td><td><span class="badge b-med">M&#233;dio</span></td><td>Processos documentados; ajudante treinado a partir do m&#234;s 8</td></tr>
+      <tr><td>Custo de IA subir com o volume</td><td><span class="badge b-baixo">Baixo</span></td><td>Pr&#233;-c&#225;lculo e cache; custo de IA embutido no pre&#231;o por empresa</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="p2-15">
+  <h2><span class="n">15.</span> Veredito revisado</h2>
+  <div class="grid2">
+    <div class="card verdict-yes"><h4>Para a sua meta, o neg&#243;cio &#233; vi&#225;vel</h4><p>R$ 20 mil l&#237;quidos por m&#234;s correspondem a ~28 empresas atendidas ou 3 a 4 CFOs. N&#227;o precisa de investidor, nem de equipe, nem de milhares de clientes. Precisa de 2 a 4 CFOs que confiem em voc&#234;, e voc&#234; j&#225; conhece 5 firmas.</p></div>
+    <div class="card verdict-maybe"><h4>O que decide o resultado</h4><p>Vender o primeiro piloto em 30 dias e entregar sem erro. O produto j&#225; existe; a confian&#231;a ainda n&#227;o. Toda prioridade de produto nos pr&#243;ximos 90 dias deve servir a isso: isolamento por empresa, base oficial, briefing e fonte em cada n&#250;mero.</p></div>
+  </div>
+  <h3>Pr&#243;ximos 7 dias</h3>
+  <ul class="checklist">
+    <li><label><input type="checkbox">Ler os contratos (emprego atual e anterior) quanto a n&#227;o concorr&#234;ncia e n&#227;o aliciamento.</label></li>
+    <li><label><input type="checkbox">Implementar ou conferir o isolamento por empresa e a base oficial de n&#250;meros no Copiloto.</label></li>
+    <li><label><input type="checkbox">Escrever a oferta de 1 p&#225;gina com os 3 pacotes.</label></li>
+    <li><label><input type="checkbox">Mandar a mensagem para as 5 firmas e 10 CFOs da sua rede.</label></li>
+    <li><label><input type="checkbox">Conversar com um contador sobre ME no Simples e fator R.</label></li>
+    <li><label><input type="checkbox">Conectar o reposit&#243;rio do Copiloto a esta sess&#227;o, se quiser que eu avalie o c&#243;digo item a item.</label></li>
+  </ul>
+</section>
+
+</div>
+
+<footer>Copiloto FP&amp;A &#183; An&#225;lise estrat&#233;gica &#183; 12/11/2026</footer>
+</main>
+</div>
+
+<script>
+(function(){
+  // tema
+  var root=document.documentElement;
+  try{var t=localStorage.getItem('theme');if(t)root.setAttribute('data-theme',t);}catch(e){}
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    var dark=cur?cur==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var next=dark?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+  // menu mobile
+  var toc=document.getElementById('toc');
+  document.getElementById('menuBtn').addEventListener('click',function(){toc.classList.toggle('open');});
+  toc.addEventListener('click',function(e){if(e.target.tagName==='A')toc.classList.remove('open');});
+  // destaque do \u00edndice
+  var links=[].slice.call(toc.querySelectorAll('a'));
+  var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){links.forEach(function(l){l.classList.remove('active');});var a=map[en.target.id];if(a)a.classList.add('active');}});
+    },{rootMargin:'-20% 0px -70% 0px'});
+    document.querySelectorAll('main section').forEach(function(s){obs.observe(s);});
+  }
+  // calculadora
+  var brl=function(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:2});};
+  var num=function(v,d){return v.toLocaleString('pt-BR',{maximumFractionDigits:d===undefined?1:d});};
+  var pct=function(v){return isFinite(v)?num(v*100,1)+'%':'-';};
+  function g(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+  function s(id,v){document.getElementById(id).textContent=v;}
+  function calc(){
+    var custo=g('c_custo'),horas=g('c_horas'),antes=g('c_antes'),depois=g('c_depois'),emp=g('c_emp'),htot=g('c_htot'),hon=g('c_hon'),preco=g('c_preco');
+    var hora=horas>0?custo/horas:0;
+    var econ=Math.max(antes-depois,0)*hora;
+    var hlib=Math.max(antes-depois,0)*emp;
+    var cap=horas>0?hlib/horas:0;
+    var add=htot>0?Math.floor(hlib/htot):0;
+    var rec=add*hon;
+    var custoProd=preco*emp;
+    s('o_hora',brl(hora));s('o_econ',brl(econ));s('o_hlib',num(hlib)+' h');s('o_cap',pct(cap));
+    s('o_add',num(add,0));s('o_rec',brl(rec));s('o_custo',brl(custoProd));
+    s('o_cap1',econ>0?pct(preco/econ):'-');s('o_cap2',rec>0?pct(custoProd/rec):'-');
+    s('o_roi',preco>0?num(econ/preco,1)+'x':'-');
+  }
+  document.querySelectorAll('#s8b .calc input').forEach(function(i){i.addEventListener('input',calc);});
+  calc();
+
+  // abas
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function showTab(n,scroll){
+    tabs.forEach(function(t){t.setAttribute('aria-selected',t.getAttribute('data-tab')===n?'true':'false');});
+    document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.toggle('is-hidden',p.id!=='tab-'+n);});
+    document.querySelectorAll('.toc-list').forEach(function(l){l.classList.toggle('is-hidden',l.getAttribute('data-tab')!==n);});
+    try{localStorage.setItem('tab',n);}catch(e){}
+    if(scroll)window.scrollTo(0,0);
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){showTab(t.getAttribute('data-tab'),true);});});
+  var start='1';
+  if(location.hash.indexOf('#p2')===0){start='2';}else{try{var st=localStorage.getItem('tab');if(st==='1'||st==='2')start=st;}catch(e){}}
+  showTab(start,false);
+  // calculadora de renda
+  function rcalc(){
+    var emp=g('r_emp'),preco=g('r_preco'),saas=g('r_saas'),psaas=g('r_psaas'),aliq=g('r_aliq'),inssp=g('r_inss'),fixo=g('r_fixo'),hh=g('r_h'),deleg=Math.min(g('r_deleg'),emp),cdeleg=g('r_cdeleg'),hextra=g('r_hextra');
+    var fat=emp*preco+saas*psaas,imp=fat*aliq/100,inss=fat*inssp/100,custos=fixo+deleg*cdeleg,liq=fat-imp-inss-custos;
+    var h=(emp-deleg)*hh+deleg*1+hextra;
+    s('r_o_fat',brl(fat));s('r_o_imp',brl(imp));s('r_o_inss',brl(inss));s('r_o_custos',brl(custos));s('r_o_liq',brl(liq));
+    s('r_o_meta',liq>=20000?'Atingida':'Faltam '+brl(20000-liq));
+    s('r_o_h',num(h)+' h');s('r_o_hs',num(h/4.33)+' h');s('r_o_hora',h>0?brl(liq/h):'-');
+  }
+  document.querySelectorAll('#p2-3 .calc input').forEach(function(i){i.addEventListener('input',rcalc);});
+  rcalc();
+})();
+</script>
+</body>
+</html>
