@@ -1,0 +1,933 @@
+{
+ "decant": {
+  "top": [
+   {
+    "query": "perfume decant",
+    "value": 100
+   },
+   {
+    "query": "decant de perfume",
+    "value": 30
+   },
+   {
+    "query": "decant perfumes",
+    "value": 21
+   },
+   {
+    "query": "decant perfume arabe",
+    "value": 6
+   },
+   {
+    "query": "the king of decant",
+    "value": 6
+   },
+   {
+    "query": "decant in the box",
+    "value": 6
+   },
+   {
+    "query": "decant perfume original",
+    "value": 4
+   },
+   {
+    "query": "guido decant",
+    "value": 4
+   }
+  ],
+  "rising": null,
+  "region": {
+   "São Paulo": 100,
+   "Distrito Federal": 96,
+   "Paraná": 91,
+   "Santa Catarina": 89,
+   "Minas Gerais": 86,
+   "Espírito Santo": 82,
+   "Mato Grosso do Sul": 76,
+   "Rio de Janeiro": 76,
+   "Mato Grosso": 72,
+   "Sergipe": 65,
+   "Goiás": 62,
+   "Rio Grande do Sul": 59,
+   "Pernambuco": 52,
+   "Piauí": 49,
+   "Paraíba": 45,
+   "Alagoas": 45,
+   "Rio Grande do Norte": 45,
+   "Bahia": 43,
+   "Tocantins": 42,
+   "Ceará": 41,
+   "Maranhão": 36,
+   "Rondônia": 34,
+   "Amapá": 32,
+   "Amazonas": 27,
+   "Pará": 25,
+   "Acre": 0,
+   "Roraima": 0
+  }
+ },
+ "perfume arabe": {
+  "top": [
+   {
+    "query": "perfume feminino arabe",
+    "value": 100
+   },
+   {
+    "query": "perfume feminino",
+    "value": 100
+   },
+   {
+    "query": "perfume masculino arabe",
+    "value": 60
+   },
+   {
+    "query": "perfume masculino",
+    "value": 60
+   },
+   {
+    "query": "lattafa",
+    "value": 37
+   },
+   {
+    "query": "perfume lattafa",
+    "value": 37
+   },
+   {
+    "query": "perfume arabe lattafa",
+    "value": 37
+   },
+   {
+    "query": "perfume árabe",
+    "value": 24
+   },
+   {
+    "query": "yara perfume",
+    "value": 22
+   },
+   {
+    "query": "perfume yara arabe",
+    "value": 22
+   },
+   {
+    "query": "yara",
+    "value": 22
+   },
+   {
+    "query": "yara perfume arabe",
+    "value": 22
+   },
+   {
+    "query": "perfume arabe rosa",
+    "value": 19
+   },
+   {
+    "query": "perfume arabe original",
+    "value": 18
+   },
+   {
+    "query": "perfume arabe asad",
+    "value": 18
+   },
+   {
+    "query": "asad",
+    "value": 18
+   },
+   {
+    "query": "perfume arabe sabah",
+    "value": 17
+   },
+   {
+    "query": "sabah perfume",
+    "value": 17
+   },
+   {
+    "query": "sabah",
+    "value": 17
+   },
+   {
+    "query": "perfume arabe cobra",
+    "value": 13
+   },
+   {
+    "query": "melhor perfume arabe",
+    "value": 12
+   },
+   {
+    "query": "perfume arabe azul",
+    "value": 11
+   },
+   {
+    "query": "perfume abelha arabe",
+    "value": 11
+   },
+   {
+    "query": "perfume árabe masculino",
+    "value": 9
+   },
+   {
+    "query": "club de nuit",
+    "value": 8
+   }
+  ],
+  "rising": [
+   {
+    "query": "queen of arabia",
+    "value": 1750
+   },
+   {
+    "query": "vulcan feu",
+    "value": 700
+   },
+   {
+    "query": "perfume fada arabe",
+    "value": 650
+   },
+   {
+    "query": "perfume da abelha arabe",
+    "value": 600
+   },
+   {
+    "query": "perfume abelha arabe",
+    "value": 450
+   },
+   {
+    "query": "liquid brun",
+    "value": 250
+   },
+   {
+    "query": "perfume arabe liquid brun",
+    "value": 250
+   },
+   {
+    "query": "perfume do pavao arabe",
+    "value": 180
+   },
+   {
+    "query": "perfume pavao arabe",
+    "value": 120
+   },
+   {
+    "query": "perfume arabe da cobra",
+    "value": 90
+   },
+   {
+    "query": "saba perfume arabe",
+    "value": 90
+   },
+   {
+    "query": "club de nuit intense man",
+    "value": 80
+   },
+   {
+    "query": "body splash",
+    "value": 80
+   },
+   {
+    "query": "perfume arabe cobra",
+    "value": 80
+   },
+   {
+    "query": "perfume arabe afeef",
+    "value": 80
+   },
+   {
+    "query": "perfume arabe baunilha",
+    "value": 80
+   },
+   {
+    "query": "iara perfume arabe",
+    "value": 50
+   },
+   {
+    "query": "perfume arabe rosa",
+    "value": 50
+   }
+  ],
+  "region": {
+   "Mato Grosso do Sul": 100,
+   "Paraná": 99,
+   "Mato Grosso": 86,
+   "Rondônia": 76,
+   "São Paulo": 72,
+   "Goiás": 71,
+   "Santa Catarina": 70,
+   "Acre": 63,
+   "Sergipe": 62,
+   "Espírito Santo": 60,
+   "Tocantins": 59,
+   "Roraima": 59,
+   "Rio de Janeiro": 58,
+   "Minas Gerais": 56,
+   "Alagoas": 54,
+   "Paraíba": 50,
+   "Rio Grande do Norte": 50,
+   "Distrito Federal": 49,
+   "Ceará": 48,
+   "Rio Grande do Sul": 46,
+   "Piauí": 44,
+   "Maranhão": 44,
+   "Bahia": 42,
+   "Pernambuco": 42,
+   "Amazonas": 41,
+   "Amapá": 39,
+   "Pará": 34
+  }
+ },
+ "perfume arabe masculino": {
+  "top": [
+   {
+    "query": "perfume árabe masculino",
+    "value": 100
+   },
+   {
+    "query": "perfume feminino",
+    "value": 58
+   },
+   {
+    "query": "perfume arabe feminino",
+    "value": 58
+   },
+   {
+    "query": "melhor perfume arabe",
+    "value": 47
+   },
+   {
+    "query": "melhor perfume arabe masculino",
+    "value": 47
+   },
+   {
+    "query": "melhor perfume masculino",
+    "value": 47
+   },
+   {
+    "query": "perfume arabe asad masculino",
+    "value": 41
+   },
+   {
+    "query": "perfume arabe asad",
+    "value": 41
+   },
+   {
+    "query": "asad",
+    "value": 41
+   },
+   {
+    "query": "perfume arabe azul",
+    "value": 26
+   }
+  ],
+  "rising": null,
+  "region": {
+   "Mato Grosso do Sul": 100,
+   "Paraná": 84,
+   "Mato Grosso": 76,
+   "Santa Catarina": 66,
+   "Goiás": 63,
+   "Rondônia": 62,
+   "São Paulo": 62,
+   "Tocantins": 55,
+   "Alagoas": 53,
+   "Minas Gerais": 52,
+   "Espírito Santo": 51,
+   "Distrito Federal": 46,
+   "Rio Grande do Norte": 46,
+   "Rio de Janeiro": 45,
+   "Sergipe": 42,
+   "Acre": 41,
+   "Bahia": 41,
+   "Roraima": 41,
+   "Rio Grande do Sul": 41,
+   "Paraíba": 40,
+   "Ceará": 39,
+   "Pernambuco": 35,
+   "Piauí": 33,
+   "Maranhão": 32,
+   "Amazonas": 29,
+   "Pará": 28,
+   "Amapá": 0
+  }
+ },
+ "perfume importado": {
+  "top": [
+   {
+    "query": "perfume importado feminino",
+    "value": 100
+   },
+   {
+    "query": "perfume feminino",
+    "value": 97
+   },
+   {
+    "query": "perfume masculino importado",
+    "value": 82
+   },
+   {
+    "query": "perfume masculino",
+    "value": 78
+   },
+   {
+    "query": "perfumes",
+    "value": 23
+   },
+   {
+    "query": "wepink",
+    "value": 19
+   },
+   {
+    "query": "melhor perfume importado",
+    "value": 16
+   },
+   {
+    "query": "perfume arabe",
+    "value": 15
+   },
+   {
+    "query": "perfume importado arabe",
+    "value": 15
+   },
+   {
+    "query": "perfume importado original",
+    "value": 15
+   },
+   {
+    "query": "loja perfume importado",
+    "value": 13
+   },
+   {
+    "query": "perfume importado rosa",
+    "value": 12
+   },
+   {
+    "query": "body splash",
+    "value": 12
+   },
+   {
+    "query": "perfume azul importado",
+    "value": 10
+   },
+   {
+    "query": "loja de perfume importado",
+    "value": 10
+   },
+   {
+    "query": "perfume árabe",
+    "value": 10
+   },
+   {
+    "query": "comprar perfume importado",
+    "value": 9
+   },
+   {
+    "query": "212",
+    "value": 9
+   },
+   {
+    "query": "perfume importado 212",
+    "value": 9
+   },
+   {
+    "query": "perfumes importados",
+    "value": 9
+   },
+   {
+    "query": "perfume boticario",
+    "value": 9
+   },
+   {
+    "query": "boticario",
+    "value": 8
+   },
+   {
+    "query": "perfume chanel",
+    "value": 7
+   },
+   {
+    "query": "perfume doce importado",
+    "value": 7
+   },
+   {
+    "query": "perfume vermelho importado",
+    "value": 6
+   }
+  ],
+  "rising": [
+   {
+    "query": "wonderful wepink",
+    "value": 170
+   },
+   {
+    "query": "we pink",
+    "value": 80
+   },
+   {
+    "query": "perfume árabe",
+    "value": 70
+   },
+   {
+    "query": "delina",
+    "value": 70
+   },
+   {
+    "query": "burberry goddess",
+    "value": 60
+   },
+   {
+    "query": "delina perfume",
+    "value": 60
+   },
+   {
+    "query": "wepink",
+    "value": 50
+   },
+   {
+    "query": "body splash",
+    "value": 50
+   }
+  ],
+  "region": {
+   "Tocantins": 100,
+   "Mato Grosso": 88,
+   "Goiás": 86,
+   "Piauí": 82,
+   "Sergipe": 76,
+   "Mato Grosso do Sul": 76,
+   "Espírito Santo": 76,
+   "Alagoas": 73,
+   "Rondônia": 73,
+   "Minas Gerais": 71,
+   "Maranhão": 70,
+   "São Paulo": 69,
+   "Ceará": 67,
+   "Acre": 64,
+   "Rio de Janeiro": 64,
+   "Distrito Federal": 62,
+   "Bahia": 61,
+   "Pernambuco": 58,
+   "Paraíba": 57,
+   "Paraná": 57,
+   "Pará": 54,
+   "Santa Catarina": 53,
+   "Roraima": 53,
+   "Rio Grande do Norte": 45,
+   "Rio Grande do Sul": 39,
+   "Amazonas": 30,
+   "Amapá": 25
+  }
+ },
+ "contratipo": {
+  "top": [
+   {
+    "query": "perfume contratipo",
+    "value": 100
+   },
+   {
+    "query": "perfumes contratipo",
+    "value": 14
+   },
+   {
+    "query": "perfume contratipo masculino",
+    "value": 7
+   },
+   {
+    "query": "paris elysees contratipo",
+    "value": 5
+   },
+   {
+    "query": "contratipo delina",
+    "value": 4
+   },
+   {
+    "query": "o que é perfume contratipo",
+    "value": 3
+   },
+   {
+    "query": "contratipo bleu de chanel",
+    "value": 3
+   },
+   {
+    "query": "la vie est belle contratipo",
+    "value": 2
+   },
+   {
+    "query": "contratipo good girl",
+    "value": 2
+   },
+   {
+    "query": "effervescent lab 8 é contratipo de qual perfume",
+    "value": 1
+   },
+   {
+    "query": "creed wild vetiver contratipo",
+    "value": 0
+   },
+   {
+    "query": "la rive in flames contratipo de qual perfume",
+    "value": 0
+   }
+  ],
+  "rising": [
+   {
+    "query": "effervescent lab 8 é contratipo de qual perfume",
+    "value": 28900
+   },
+   {
+    "query": "creed wild vetiver contratipo",
+    "value": 22000
+   },
+   {
+    "query": "la rive in flames contratipo de qual perfume",
+    "value": 100
+   }
+  ],
+  "region": {
+   "Distrito Federal": 100,
+   "São Paulo": 89,
+   "Rio de Janeiro": 86,
+   "Mato Grosso do Sul": 75,
+   "Espírito Santo": 74,
+   "Minas Gerais": 70,
+   "Rio Grande do Norte": 67,
+   "Paraíba": 62,
+   "Alagoas": 60,
+   "Goiás": 59,
+   "Paraná": 59,
+   "Pernambuco": 58,
+   "Piauí": 57,
+   "Sergipe": 56,
+   "Santa Catarina": 56,
+   "Ceará": 56,
+   "Mato Grosso": 52,
+   "Rio Grande do Sul": 52,
+   "Bahia": 49,
+   "Tocantins": 49,
+   "Maranhão": 48,
+   "Amapá": 45,
+   "Rondônia": 37,
+   "Amazonas": 34,
+   "Pará": 32,
+   "Roraima": 31,
+   "Acre": 29
+  }
+ },
+ "perfume masculino": {
+  "top": [
+   {
+    "query": "perfume masculino boticário",
+    "value": 100
+   },
+   {
+    "query": "perfume arabe masculino",
+    "value": 90
+   },
+   {
+    "query": "perfume arabe",
+    "value": 90
+   },
+   {
+    "query": "perfume árabe masculino",
+    "value": 86
+   },
+   {
+    "query": "perfume árabe",
+    "value": 86
+   },
+   {
+    "query": "melhor perfume masculino",
+    "value": 85
+   },
+   {
+    "query": "perfume feminino",
+    "value": 83
+   },
+   {
+    "query": "perfume natura masculino",
+    "value": 80
+   },
+   {
+    "query": "natura",
+    "value": 80
+   },
+   {
+    "query": "perfume natura",
+    "value": 80
+   },
+   {
+    "query": "perfume boticario",
+    "value": 77
+   },
+   {
+    "query": "perfume boticario masculino",
+    "value": 75
+   },
+   {
+    "query": "boticario",
+    "value": 75
+   },
+   {
+    "query": "perfume importado masculino",
+    "value": 66
+   },
+   {
+    "query": "perfume importado",
+    "value": 66
+   },
+   {
+    "query": "perfume 212",
+    "value": 43
+   },
+   {
+    "query": "212",
+    "value": 42
+   },
+   {
+    "query": "perfume 212 masculino",
+    "value": 41
+   },
+   {
+    "query": "perfume masculino da boticário",
+    "value": 40
+   },
+   {
+    "query": "perfume essencial masculino",
+    "value": 36
+   },
+   {
+    "query": "perfume masculino eudora",
+    "value": 36
+   },
+   {
+    "query": "dior perfume masculino",
+    "value": 31
+   },
+   {
+    "query": "qual o melhor perfume masculino",
+    "value": 31
+   },
+   {
+    "query": "perfume lattafa masculino",
+    "value": 28
+   },
+   {
+    "query": "malbec",
+    "value": 27
+   }
+  ],
+  "rising": [
+   {
+    "query": "perfume wepink masculino",
+    "value": 120
+   },
+   {
+    "query": "body splash",
+    "value": 100
+   },
+   {
+    "query": "body splash masculino",
+    "value": 100
+   },
+   {
+    "query": "perfume granado masculino",
+    "value": 60
+   },
+   {
+    "query": "perfume arabe masculino",
+    "value": 50
+   },
+   {
+    "query": "perfume arabe",
+    "value": 50
+   },
+   {
+    "query": "perfume you masculino",
+    "value": 50
+   }
+  ],
+  "region": {
+   "São Paulo": 100,
+   "Paraná": 93,
+   "Goiás": 91,
+   "Mato Grosso": 87,
+   "Minas Gerais": 87,
+   "Tocantins": 84,
+   "Distrito Federal": 83,
+   "Rio de Janeiro": 80,
+   "Bahia": 79,
+   "Santa Catarina": 79,
+   "Pernambuco": 79,
+   "Ceará": 78,
+   "Mato Grosso do Sul": 77,
+   "Sergipe": 77,
+   "Alagoas": 75,
+   "Espírito Santo": 74,
+   "Paraíba": 72,
+   "Piauí": 71,
+   "Rio Grande do Sul": 69,
+   "Rondônia": 66,
+   "Rio Grande do Norte": 66,
+   "Maranhão": 59,
+   "Acre": 56,
+   "Roraima": 55,
+   "Amapá": 47,
+   "Amazonas": 47,
+   "Pará": 47
+  }
+ },
+ "perfume feminino": {
+  "top": [
+   {
+    "query": "perfume feminino arabe",
+    "value": 100
+   },
+   {
+    "query": "perfume arabe",
+    "value": 100
+   },
+   {
+    "query": "boticário perfume feminino",
+    "value": 56
+   },
+   {
+    "query": "perfume masculino",
+    "value": 55
+   },
+   {
+    "query": "perfume importado",
+    "value": 53
+   },
+   {
+    "query": "perfume feminino importado",
+    "value": 53
+   },
+   {
+    "query": "perfume importado feminino",
+    "value": 53
+   },
+   {
+    "query": "natura perfume feminino",
+    "value": 46
+   },
+   {
+    "query": "natura",
+    "value": 45
+   },
+   {
+    "query": "perfume natura",
+    "value": 43
+   },
+   {
+    "query": "melhor perfume feminino",
+    "value": 39
+   },
+   {
+    "query": "perfume árabe feminino",
+    "value": 37
+   },
+   {
+    "query": "perfume boticario feminino",
+    "value": 32
+   },
+   {
+    "query": "boticario",
+    "value": 31
+   },
+   {
+    "query": "perfume boticario",
+    "value": 31
+   },
+   {
+    "query": "perfume essencial feminino",
+    "value": 23
+   },
+   {
+    "query": "perfume eudora feminino",
+    "value": 22
+   },
+   {
+    "query": "perfume lattafa feminino",
+    "value": 20
+   },
+   {
+    "query": "perfume da boticário feminino",
+    "value": 20
+   },
+   {
+    "query": "perfume da boticário",
+    "value": 20
+   },
+   {
+    "query": "212 feminino",
+    "value": 19
+   },
+   {
+    "query": "perfume 212",
+    "value": 19
+   },
+   {
+    "query": "dior perfume feminino",
+    "value": 19
+   },
+   {
+    "query": "perfume 212 feminino",
+    "value": 18
+   },
+   {
+    "query": "perfume o boticário feminino",
+    "value": 16
+   }
+  ],
+  "rising": [
+   {
+    "query": "perfume de nicho feminino",
+    "value": 120
+   },
+   {
+    "query": "wepink",
+    "value": 90
+   },
+   {
+    "query": "perfume arabe feminino rosa",
+    "value": 80
+   },
+   {
+    "query": "perfume granado feminino",
+    "value": 70
+   },
+   {
+    "query": "perfume árabe feminino original",
+    "value": 60
+   },
+   {
+    "query": "perfume lattafa feminino",
+    "value": 50
+   }
+  ],
+  "region": {
+   "Paraná": 100,
+   "São Paulo": 100,
+   "Goiás": 95,
+   "Minas Gerais": 93,
+   "Distrito Federal": 91,
+   "Mato Grosso do Sul": 86,
+   "Mato Grosso": 84,
+   "Tocantins": 82,
+   "Sergipe": 80,
+   "Santa Catarina": 79,
+   "Alagoas": 76,
+   "Rio Grande do Sul": 75,
+   "Pernambuco": 75,
+   "Bahia": 73,
+   "Rio Grande do Norte": 71,
+   "Ceará": 70,
+   "Espírito Santo": 70,
+   "Rondônia": 70,
+   "Rio de Janeiro": 69,
+   "Paraíba": 68,
+   "Piauí": 67,
+   "Roraima": 57,
+   "Acre": 56,
+   "Maranhão": 55,
+   "Amapá": 47,
+   "Amazonas": 46,
+   "Pará": 44
+  }
+ }
+}

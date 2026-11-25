@@ -1,0 +1,62 @@
+{
+ "YSL Y / MYSLF": {
+  "raw_ratio_to_anchor": 0.4711705023509033,
+  "last_q_ratio": 0.4237336531323168,
+  "first_q_ratio": 0.5115070527097253
+ },
+ "CH Bad Boy": {
+  "raw_ratio_to_anchor": 0.2873051224944321,
+  "last_q_ratio": 0.23910684712466448,
+  "first_q_ratio": 0.3329335846039632
+ },
+ "Armani Code": {
+  "raw_ratio_to_anchor": 0.5657015590200446,
+  "last_q_ratio": 0.4903203700531095,
+  "first_q_ratio": 0.6668760588582415
+ },
+ "D&G Light Blue": {
+  "raw_ratio_to_anchor": 0.8844345459044792,
+  "last_q_ratio": 0.8898406715778653,
+  "first_q_ratio": 0.9786229608055889
+ },
+ "Paco Rabanne Phantom": {
+  "raw_ratio_to_anchor": 0.34067293419099454,
+  "last_q_ratio": 0.31873025539527267,
+  "first_q_ratio": 0.3550412971491645
+ },
+ "Versace Dylan Blue": {
+  "raw_ratio_to_anchor": 0.20435428005937653,
+  "last_q_ratio": 0.1916416092566513,
+  "first_q_ratio": 0.22190081071822781
+ },
+ "Lattafa Asad Bourbon": {
+  "raw_ratio_to_anchor": 0.5423057892132608,
+  "last_q_ratio": 0.5023027442621703,
+  "first_q_ratio": 0.5012941042134511
+ },
+ "Maison Alhambra Salvo": {
+  "raw_ratio_to_anchor": 0.16674913409203362,
+  "last_q_ratio": 0.11296768545655234,
+  "first_q_ratio": 0.18861568911049365
+ },
+ "Lattafa Musamam": {
+  "raw_ratio_to_anchor": 0.35778957227599123,
+  "last_q_ratio": 0.43531304786378155,
+  "first_q_ratio": 0.24311342731573765
+ },
+ "Lattafa Atheeri": {
+  "raw_ratio_to_anchor": 0.3477989384951608,
+  "last_q_ratio": 0.23929489180816063,
+  "first_q_ratio": 0.5104109128461298
+ },
+ "Afnan Turathi": {
+  "raw_ratio_to_anchor": 0.16390883546674992,
+  "last_q_ratio": 0.16165133648742766,
+  "first_q_ratio": 0.1514685751338889
+ },
+ "Armaf CDN Untold": {
+  "raw_ratio_to_anchor": 0.020605682172962846,
+  "last_q_ratio": 0.03182112922980859,
+  "first_q_ratio": 0.016546987199500467
+ }
+}
